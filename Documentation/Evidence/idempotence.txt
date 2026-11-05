@@ -1,0 +1,1 @@
+PASS: 51 generated asset paths and GUIDs preserved after regeneration.

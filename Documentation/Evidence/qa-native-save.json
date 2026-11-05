@@ -1,0 +1,43 @@
+{
+    "format": "nebula-defender",
+    "schemaVersion": 1,
+    "selectedPilotId": "6bff0bf5455441199177486e2a929d16",
+    "pilots": [
+        {
+            "id": "6bff0bf5455441199177486e2a929d16",
+            "nickname": "QA Validacion",
+            "registeredUtc": "2026-11-05T00:39:07.1943248Z",
+            "bestScore": 0,
+            "maxSector": 1,
+            "enemiesDestroyed": 0,
+            "asteroidsDestroyed": 0,
+            "gamesPlayed": 2
+        }
+    ],
+    "runs": [
+        {
+            "id": "d6c6eed30ca443fa952b83b70e8a2497",
+            "pilotId": "6bff0bf5455441199177486e2a929d16",
+            "nickname": "QA Validacion",
+            "updatedUtc": "2026-11-05T00:41:02.1011351Z",
+            "score": 0,
+            "sector": 1,
+            "asteroids": 0,
+            "enemies": 0,
+            "survivalSeconds": 79.87338256835938,
+            "victory": false
+        },
+        {
+            "id": "b68d503454ee4a6aa8a3d914afb8f09c",
+            "pilotId": "6bff0bf5455441199177486e2a929d16",
+            "nickname": "QA Validacion",
+            "updatedUtc": "2026-11-05T00:47:12.4687661Z",
+            "score": 0,
+            "sector": 1,
+            "asteroids": 0,
+            "enemies": 0,
+            "survivalSeconds": 38.86351776123047,
+            "victory": false
+        }
+    ]
+}

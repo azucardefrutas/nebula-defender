@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f068b78ad6a08f4ca3796d08edea96b, type: 3}
+  m_Name: Sector01
+  m_EditorClassIdentifier: Nebula.Runtime::NebulaDefender.LevelDefinition
+  sector: 1
+  displayName: "\xD3RBITA EXTERIOR"
+  briefing: "Destruye diez asteroides y asegura la \xF3rbita."
+  asteroidGoal: 10
+  droneGoal: 0
+  boss: 0
+  initialRocks: 5
+  simultaneousDrones: 0
+  asteroidSpeed: 2
+  enemySpeed: 4
+  enemyFireInterval: 2.8
+  enemyHealth: 60
+  bossHealth: 1100
+  seed: 7319
+  spaceColor: {r: 0.012, g: 0.026, b: 0.065, a: 1}
+  accent: {r: 0.1, g: 0.85, b: 1, a: 1}

@@ -1,0 +1,11 @@
+{
+  "name": "Nebula.Runtime",
+  "rootNamespace": "NebulaDefender",
+  "references": [
+    "Unity.InputSystem",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro",
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.RenderPipelines.Core.Runtime"
+  ]
+}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f068b78ad6a08f4ca3796d08edea96b, type: 3}
+  m_Name: Sector03
+  m_EditorClassIdentifier: Nebula.Runtime::NebulaDefender.LevelDefinition
+  sector: 3
+  displayName: "FORTALEZA N\xC9MESIS"
+  briefing: Elimina cuatro drones de defensa y derrota a Nemesis Prime.
+  asteroidGoal: 0
+  droneGoal: 4
+  boss: 1
+  initialRocks: 4
+  simultaneousDrones: 2
+  asteroidSpeed: 3.2
+  enemySpeed: 5.2
+  enemyFireInterval: 2.2
+  enemyHealth: 75
+  bossHealth: 1100
+  seed: 7545
+  spaceColor: {r: 0.025, g: 0.009, b: 0.025, a: 1}
+  accent: {r: 1, g: 0.25, b: 0.1, a: 1}

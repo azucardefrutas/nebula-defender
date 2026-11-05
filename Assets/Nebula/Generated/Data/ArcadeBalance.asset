@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c1b9d2256e37f4fae0408f63b87489, type: 3}
+  m_Name: ArcadeBalance
+  m_EditorClassIdentifier: Nebula.Runtime::NebulaDefender.GameBalance
+  acceleration: 24
+  maxSpeed: 13
+  turnSpeed: 165
+  drag: 0.45
+  reverseAcceleration: 19
+  arenaHalfSize: {x: 27, y: 17}
+  wrapEdges: 1
+  startingLives: 3
+  healthPerLife: 100
+  respawnProtection: 3
+  hitProtection: 0.65
+  shieldDuration: 2.8
+  shieldCooldown: 10
+  fireInterval: 0.18
+  projectileSpeed: 48
+  projectileLifetime: 1.4
+  projectileDamage: 25
+  maxProjectiles: 144
+  maxAsteroids: 42
+  fragmentAsteroids: 1
+  smallPoints: 50
+  mediumPoints: 100
+  largePoints: 150
+  dronePoints: 200
+  bossPoints: 2000
+  sectorBonus: 500
+  flawlessBonus: 250

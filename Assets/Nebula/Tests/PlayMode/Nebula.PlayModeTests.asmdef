@@ -1,0 +1,14 @@
+{
+  "name": "Nebula.PlayModeTests",
+  "references": [
+    "Nebula.Runtime",
+    "Unity.InputSystem"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "includePlatforms": [],
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ]
+}

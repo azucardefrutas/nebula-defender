@@ -1,0 +1,11 @@
+{
+  "runtime_scripts": 28,
+  "network_api_references": [],
+  "audio_assets": 15,
+  "generated_prefabs": 12,
+  "scenes": [
+    "Campaign.unity",
+    "CoreSandbox.unity"
+  ],
+  "scope": "First-party runtime source audit only; does not prove physical disconnected execution."
+}

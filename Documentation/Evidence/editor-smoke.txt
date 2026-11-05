@@ -1,0 +1,9 @@
+Unity 6000.3.15f1 opened the actual project in the interactive Windows Editor.
+Scene: Assets/Nebula/Generated/Scenes/CoreSandbox.unity
+Entered Play Mode through the toolbar. The flight, 3D ship, moving asteroids, HUD, contact damage and clock were visibly active without a menu or pilot registration.
+Exited Play Mode after inspection. CoreSandbox remains open; Game View is configured to Play Maximized.
+No C# compiler errors or exception entries were found in editor-interactive.log.
+URP performed its initial material-version upgrade. Generated material files did not change; ProjectSettings/URPProjectSettings.asset now records material version 10.
+One observed Editor Statistics snapshot: 88.4 FPS (11.3 ms), 2560x1440, 235 batches, 13.1k triangles, 16.8k vertices, 30 SetPass calls.
+This snapshot is not a sustained performance benchmark or a school-PC compatibility result.
+Editor ran with --burst-disable-compilation because Windows blocks an optional Burst JIT library on this machine. No Windows security settings were changed.

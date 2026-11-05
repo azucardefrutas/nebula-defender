@@ -1,0 +1,15 @@
+{
+  "name": "Nebula.Editor",
+  "rootNamespace": "NebulaDefender.Editor",
+  "references": [
+    "Nebula.Runtime",
+    "Unity.InputSystem",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro",
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.RenderPipelines.Core.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

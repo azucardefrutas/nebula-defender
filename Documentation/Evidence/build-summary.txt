@@ -1,0 +1,7 @@
+Result: Succeeded
+Platform: StandaloneWindows64
+Errors: 0
+Warnings: 0
+Size: 95068582
+Time: 00:00:19.4021297
+Output: C:/Users/tonyh/OneDrive/Documents/nebula 3D/Builds/Windows/NebulaDefender.exe

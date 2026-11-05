@@ -1,0 +1,107 @@
+[
+  {
+    "file": "Assets\\Nebula\\Audio\\Music\\Sector0.wav",
+    "seconds": 19.2,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\Music\\Sector1.wav",
+    "seconds": 19.2,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\Music\\Sector2.wav",
+    "seconds": 19.2,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\Music\\Sector3.wav",
+    "seconds": 19.2,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Complete.wav",
+    "seconds": 1.0,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Confirm.wav",
+    "seconds": 0.15,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Defeat.wav",
+    "seconds": 1.5,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Engine.wav",
+    "seconds": 2.0,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Explosion.wav",
+    "seconds": 0.65,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\HostileLaser.wav",
+    "seconds": 0.21,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Impact.wav",
+    "seconds": 0.13,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Laser.wav",
+    "seconds": 0.13,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Select.wav",
+    "seconds": 0.07,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Shield.wav",
+    "seconds": 0.6,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  },
+  {
+    "file": "Assets\\Nebula\\Audio\\SFX\\Victory.wav",
+    "seconds": 2.0,
+    "channels": 1,
+    "rate": 22050,
+    "peak": 0.66
+  }
+]

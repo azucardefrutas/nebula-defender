@@ -1,0 +1,4 @@
+NEBULA_PROJECT_VALIDATION_OK
+Objects checked: 310
+Scenes: CoreSandbox, Campaign
+Three sector assets, required references, prefab scripts, material shaders, URP, gameplay layers, laser collision policy, Windows profile scene order.
