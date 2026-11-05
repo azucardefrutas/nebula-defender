@@ -1,8 +1,8 @@
-# Informe de pruebas — 4 de noviembre de 2026
+# Informe de pruebas — actualizado el 5 de noviembre de 2026
 
 ## Estado
 
-Implementación jugable y compilada para Windows, con **35 pruebas automatizadas aprobadas**: 20 EditMode y 15 PlayMode. No se declara terminada la validación académica: faltan una campaña completa jugada por una persona, escucha de audio, medición en el equipo de exposición y prueba física con Internet desconectado.
+Implementación jugable y compilada para Windows, con **39 pruebas automatizadas aprobadas**: 20 EditMode y 19 PlayMode, ejecutadas nuevamente el 5 de noviembre. No se declara terminada la validación académica: faltan una campaña completa jugada por una persona, escucha de audio, medición en el equipo de exposición y prueba física con Internet desconectado.
 
 Entorno: Unity **6000.3.15f1**, URP **17.3.0**, Input System **1.19.0**, uGUI/TMP **2.0.0**, Test Framework **1.6.0**. Backend de jugador: Mono, Windows x64. El directorio estaba vacío al inicio; no había una base de pruebas previa ni archivos originales de juego.
 
@@ -11,7 +11,7 @@ Entorno: Unity **6000.3.15f1**, URP **17.3.0**, Input System **1.19.0**, uGUI/TM
 | Grupo | Resultado | Evidencia |
 | --- | --- | --- |
 | Reglas y guardado EditMode | **20/20 aprobadas**, cero omitidas | Evidence/edit-tests.xml |
-| Física, controles e integración PlayMode | **15/15 aprobadas**, cero omitidas | Evidence/play-tests.xml |
+| Física, controles e integración PlayMode | **19/19 aprobadas**, cero omitidas | Evidence/play-tests.xml |
 | Hito inicial de mecánica central | **6/6 aprobadas** antes de generar la campaña completa | Evidence/core-milestone-passed.xml |
 | Referencias de escenas, prefabs, shaders, URP, capas y perfil | Aprobado; **310 objetos revisados** | Evidence/project-validation.txt |
 | WAV originales | 15 archivos, mono 22,050 Hz; pico máximo 0.66; sin revisión subjetiva de audio | Evidence/audio-inspection.json |
@@ -75,7 +75,7 @@ Se conservaron XML de intentos fallidos en Evidence. Los registros completos `.l
 | 60 FPS y compatibilidad con equipos escolares | Instantánea del Editor: **88.4 FPS a 2560×1440**; falta ensayo sostenido y medición en el equipo de exposición |
 | Mando físico | **No probado**; bindings preparados |
 
-## Validación final de esta entrega
+## Validación de la entrega del 4 de noviembre
 
 La reconstrucción final terminó con **cero errores y cero advertencias**, 95,068,582 bytes y 19.4 s de build incremental. `NebulaDefender-Windows-x64.zip` contiene **161 entradas**, ocupa **38,098,515 bytes** y pasó comprobación CRC completa y presencia de ejecutable, datos, UnityPlayer y Mono. SHA-256: `18ed91cff3d9c9aeec2061cefbf8c73604b27d04fa2c27dfafdfa25b0e2c7b03`.
 
@@ -88,3 +88,33 @@ El único perfil creado por las pruebas (`QA Validacion`) y sus partidas reales 
 La entrega sigue siendo una **versión candidata a validación académica** por las comprobaciones manuales pendientes descritas arriba. Los automatismos no certifican diversión, equilibrio, percepción del sonido, 60 FPS ni ejecución con la conexión físicamente deshabilitada.
 
 También se abrió el Editor interactivo con CoreSandbox, se pulsó Play y se comprobó el inicio directo del vuelo sin menú. Se salió de Play y se dejó la escena abierta con Play Maximized. Unity mostró una instantánea de 88.4 FPS a 2560×1440, 235 batches y 13.1k triángulos; no es una medición sostenida. Evidencia: `Evidence/editor-smoke.txt`. La actualización inicial de versión de materiales URP quedó registrada en ProjectSettings, sin cambios en los materiales generados.
+
+## Continuación — 5 de noviembre de 2026
+
+Se reprodujo un fallo del pool configurable: al inicializarlo con capacidad 5 se creaban 64 objetos. El XML `Evidence/play-tests-capacity-before-fix.xml` conserva la aserción fallida (esperado ≤5, observado 64). La reserva inicial ahora alterna equipos y está limitada por la capacidad total. La prueba comprueba también disparos de ambos equipos, agotamiento y reutilización.
+
+En el ejecutable anterior se comprobó con ratón el paso a pantalla completa, el regreso a ventana y el cambio de 1600×900 a 1680×1050. La interfaz continuó siendo legible. Al revisar Calidad se encontró que únicamente PC se incluía en Windows; el botón no ofrecía una alternativa real. Se incluyeron los dos perfiles existentes y se renombraron **Eficiente** y **Alta**, conservando sus índices y assets URP.
+
+La prueba nueva `ThreeSectorsCanCompleteThroughWeaponAndColliderHits` completó los tres sectores mediante `WeaponController.TryFire`, contactos reales de proyectiles, daño, fragmentación, puntos y condiciones de cierre, sin llamar directamente a las API de daño o puntuación. Los blancos se inmovilizan y colocan en un carril; verifica la integración del combate hasta la victoria, **no la dificultad ni una campaña humana**. Evidencia aislada aprobada: `Evidence/collider-campaign-passed.xml`.
+
+Se añadieron comprobaciones físicas de reparación (+30 una sola vez), recogida del láser doble, dos proyectiles por disparo y caducidad de la mejora conservada durante pausa, además de continuidad de bordes con velocidad y orientación preservadas. La primera preparación de la prueba de campaña eliminaba sus propios blancos; se corrigió reiniciando el sector antes de disparar. Se conservaron los intentos fallidos. Otra ejecución se interrumpió al detectar una espera de tiempo escalado que quedaba suspendida por la pantalla de resultados; el test ahora espera con tiempo real. Estos fueron problemas del escenario de pruebas, sin cambios en las reglas del juego.
+
+La inyección de Enter desde la herramienta de Windows volvió a no producir una acción visible. El teclado físico del jugador continúa pendiente; las pruebas de entrada en Unity no sustituyen esa comprobación.
+
+La ejecución final completa aprobó **20/20 EditMode y 19/19 PlayMode**, cero fallos y cero omisiones. La suite PlayMode tardó 77.91 segundos. El resultado aislado de la campaña no se sumó como una prueba adicional al total: ya forma parte de las 19.
+
+## Entrega Windows y localhost solicitada posteriormente
+
+El paquete Windows del 5 de noviembre contiene 161 entradas y ocupa **38,166,267 bytes**. Su SHA-256 es `3798072b9a4546a6e653861215d308c96f7520e8472ba39cd977c2b603818781`. La comprobación CRC y de archivos requeridos pasó. Se corrigió el verificador para admitir los datos comprimidos de Unity en `data.unity3d`, además de `globalgamemanagers` en builds sin ese empaquetado. El juego no carecía de sus datos; la comprobación anterior exigía el formato equivocado. El .exe se abrió nuevamente y queda disponible mediante `JUGAR_WINDOWS.cmd`.
+
+Se creó una exportación WebAssembly del mismo juego y se sirvió en **http://localhost:8080**. El proyecto principal permanece en Unity 6000.3.15f1/URP 17.3; la exportación usa una copia en `BuildWork/UnityWeb` con Unity **6000.4.6f1 y URP 17.4**, aprovechando su módulo Web instalado. Se canceló la descarga del módulo faltante de 6.3; no se instaló otra versión del Editor ni se actualizaron los paquetes del proyecto principal.
+
+La primera compilación Web aprobó sin errores ni advertencias en 8 min 43 s. La reconstrucción con los controles de pantalla adaptados al navegador y el vuelo sin registro aprobó con **cero errores y cero advertencias**, **16,822,869 bytes** y **4 min 41 s**. Resumen vigente: `Evidence/web-build-summary.txt`.
+
+Se ejecutó Chromium con Playwright sobre la página real. Se verificaron menú, registro, selección de sectores, entrada a misión, W/D para movimiento y giro, Espacio con proyectiles visibles, Shift con escudo y Escape para pausa/reanudación. Los disparos destruyeron cuatro asteroides en la captura de combate (250 puntos); otro impacto pendiente elevó la marca guardada a **300 puntos**. Al volver al menú y recargar, el piloto `QANavegador` y el ranking con 300 puntos/01:10 se recuperaron desde IndexedDB. No se asignó ninguna puntuación directamente. El perfil pertenece únicamente al navegador aislado de pruebas, no al navegador habitual del usuario ni a los perfiles de Windows.
+
+En la exportación final se comprobó además **VUELO RÁPIDO / SIN REGISTRO**, que inicia CoreSandbox directamente, y se repitieron los controles. El botón de pantalla completa devolvió `document.fullscreenElement=true`. El enlace de Windows descargó el ZIP completo desde localhost; el archivo descargado pasó la misma comprobación CRC y SHA-256.
+
+La comprobación HTTP validó el servidor, los tres archivos gzip, sus tamaños, `Content-Encoding: gzip`, `Content-Type: application/wasm` y la firma del módulo Wasm descomprimido. Evidencia: `Evidence/web-http-check.json` y las capturas `web-final-controls.png`, `web-combat.png`, `web-ranking-restored.png` y `web-quickflight.png`.
+
+Después de corregir el icono de la página, la consola del navegador mostró **cero errores**. Chromium emitió seis advertencias de consulta de formatos WebGL y una del shader opcional de escalado FSR no compatible. Se conservaron en el registro; no se ocultaron ni se interpretan como ausencia de advertencias en ejecución. El menú, escenario y combate renderizaron correctamente. La revisión de audio subjetiva, la campaña humana completa, el teclado físico del ejecutable y el rendimiento sostenido en el equipo de exposición siguen pendientes.

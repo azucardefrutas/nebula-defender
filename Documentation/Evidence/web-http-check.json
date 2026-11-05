@@ -1,0 +1,30 @@
+{
+  "url": "http://localhost:8080",
+  "health": {
+    "app": "nebula-defender",
+    "ready": true
+  },
+  "assets": {
+    "WebGL.data.gz": {
+      "http": 200,
+      "bytes": 5883637,
+      "content_type": "application/octet-stream",
+      "encoding": "gzip",
+      "gzip_integrity": "passed"
+    },
+    "WebGL.framework.js.gz": {
+      "http": 200,
+      "bytes": 90481,
+      "content_type": "application/javascript",
+      "encoding": "gzip",
+      "gzip_integrity": "passed"
+    },
+    "WebGL.wasm.gz": {
+      "http": 200,
+      "bytes": 10816946,
+      "content_type": "application/wasm",
+      "encoding": "gzip",
+      "gzip_integrity": "passed"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nebula Defender · Galactic Assault</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#050b15;color:#e0f3ff;font-family:Segoe UI,Arial,sans-serif}header{height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid #173447;background:#091322}header strong{letter-spacing:2px;font-size:16px}header small{color:#62dce9;display:block;font-size:10px;letter-spacing:3px;margin-top:4px}nav{display:flex;gap:12px;align-items:center}a,button{font:inherit;font-size:12px;color:#bceef5;background:#102b3a;border:1px solid #265b6b;border-radius:4px;text-decoration:none;padding:10px 14px;cursor:pointer}a:hover,button:hover{background:#1d4657}main{position:relative;width:min(calc((100vh - 125px)*16/9),100%);margin:0 auto;background:#02060d;aspect-ratio:16/9}canvas{width:100%;height:100%;display:block;outline:none}#loading{position:absolute;inset:0;display:grid;place-content:center;background:radial-gradient(ellipse at center,#122a44,#050b15 70%);text-align:center;padding:32px}#loading h1{font-size:clamp(24px,4vw,54px);letter-spacing:5px;margin:0 0 12px}#loading p{color:#7ba3bc}progress{width:min(420px,80vw);height:8px;accent-color:#4ce7f3;margin:20px auto}#enter{margin:16px auto;width:230px;padding:16px;background:#13526a;color:white;font-weight:700}#status{min-height:40px;max-width:600px;white-space:pre-wrap}footer{text-align:center;padding:15px 12px;color:#7195ac;font-size:12px}#error{color:#ffb295}main:fullscreen{width:100vw;height:100vh;max-width:none;background:#02060d}main:fullscreen canvas{object-fit:contain}@media(max-width:650px){header{padding:0 12px}header strong{font-size:12px}nav a{display:none}footer{font-size:10px}main{width:100%}}
+  </style>
+</head>
+<body>
+  <header><div><strong>NEBULA DEFENDER</strong><small>GALACTIC ASSAULT · 3D</small></div><nav><a href="/descargar/NebulaDefender-Windows-x64.zip">DESCARGAR PARA WINDOWS</a><button id="fullscreen">PANTALLA COMPLETA</button></nav></header>
+  <main id="game"><canvas id="unity-canvas" width="1920" height="1080" tabindex="0" aria-label="Nebula Defender, juego espacial tridimensional"></canvas><section id="loading"><h1>NEBULA DEFENDER</h1><p>Preparando tu nave y los tres sectores</p><progress id="progress" max="1" value="0"></progress><p id="status" role="status">Cargando el juego…</p><button id="enter" hidden>ENTRAR AL JUEGO</button><p id="error" role="alert"></p></section></main>
+  <footer>W / S propulsión · A / D giro · ESPACIO disparar · SHIFT escudo · ESC pausa &nbsp; | &nbsp; Pilotos y ranking guardados en este navegador</footer>
+  <script>
+    const canvas=document.getElementById('unity-canvas');
+    const status=document.getElementById('status');
+    const enter=document.getElementById('enter');
+    let player;
+    document.getElementById('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.getElementById('game').requestFullscreen();canvas.focus();}catch(error){document.getElementById('error').textContent=error.message;}};
+    canvas.addEventListener('keydown',event=>{if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.code))event.preventDefault();});
+    const config={
+      dataUrl:'Build/{{{ DATA_FILENAME }}}',
+      frameworkUrl:'Build/{{{ FRAMEWORK_FILENAME }}}',
+      codeUrl:'Build/{{{ CODE_FILENAME }}}',
+      streamingAssetsUrl:'StreamingAssets',
+      companyName:{{{ JSON.stringify(COMPANY_NAME) }}},
+      productName:{{{ JSON.stringify(PRODUCT_NAME) }}},
+      productVersion:{{{ JSON.stringify(PRODUCT_VERSION) }}},
+      autoSyncPersistentDataPath:true,
+      devicePixelRatio:Math.min(window.devicePixelRatio,1.5),
+      showBanner:(message,type)=>{if(type==='error')document.getElementById('error').textContent=message;}
+    };
+    const loader=document.createElement('script');loader.src='Build/{{{ LOADER_FILENAME }}}';
+    loader.onerror=()=>{status.textContent='No se pudo cargar el juego. Abre esta página desde JUGAR_LOCALHOST.cmd.';};
+    loader.onload=()=>createUnityInstance(canvas,config,value=>{document.getElementById('progress').value=value;status.textContent='Cargando '+Math.round(value*100)+'%';}).then(instance=>{player=instance;window.nebulaPlayer=instance;status.textContent='Tu nave está lista. Haz clic para activar el juego y el sonido.';document.getElementById('progress').hidden=true;enter.hidden=false;}).catch(error=>{status.textContent='No se pudo iniciar el juego.';document.getElementById('error').textContent=String(error);});
+    enter.onclick=()=>{document.getElementById('loading').hidden=true;document.getElementById('loading').style.display='none';canvas.focus();};
+    document.body.appendChild(loader);
+  </script>
+</body>
+</html>

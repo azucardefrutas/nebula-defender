@@ -15,9 +15,10 @@ namespace NebulaDefender
         public void Configure(Projectile friendly, Projectile enemy) { playerPrefab = friendly; hostilePrefab = enemy; }
         public void Initialize(ArenaBounds arena, int max)
         {
-            Arena = arena; limit = max;
-            for (int i = 0; i < 32; i++) Create(Team.Player);
-            for (int i = 0; i < 32; i++) Create(Team.Hostile);
+            Arena = arena; limit = Mathf.Max(0, max);
+            // Alternate factions so small budgets still reserve shots for both sides.
+            int warmCount = Mathf.Min(64, limit);
+            for (int i = 0; i < warmCount; i++) Create(i % 2 == 0 ? Team.Player : Team.Hostile);
         }
         private void Create(Team faction)
         {

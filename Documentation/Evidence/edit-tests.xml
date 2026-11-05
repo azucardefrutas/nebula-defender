@@ -1,146 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="20" result="Passed" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.3096297">
-  <test-suite type="TestSuite" id="1000" name="Nebula Defender Galactic Assault" fullname="Nebula Defender Galactic Assault" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.309630" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="20" result="Passed" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 13:10:18Z" end-time="2026-11-05 13:10:19Z" duration="0.2304432">
+  <test-suite type="TestSuite" id="1000" name="Nebula Defender Galactic Assault" fullname="Nebula Defender Galactic Assault" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-11-05 13:10:18Z" end-time="2026-11-05 13:10:19Z" duration="0.230443" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="EditMode" />
     </properties>
-    <test-suite type="Assembly" id="1025" name="Nebula.EditModeTests.dll" fullname="C:/Users/tonyh/OneDrive/Documents/nebula 3D/Library/ScriptAssemblies/Nebula.EditModeTests.dll" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.295498" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1025" name="Nebula.EditModeTests.dll" fullname="C:/Users/tonyh/OneDrive/Documents/nebula 3D/Library/ScriptAssemblies/Nebula.EditModeTests.dll" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-11-05 13:10:18Z" end-time="2026-11-05 13:10:19Z" duration="0.222193" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="14200" />
+        <property name="_PID" value="22264" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="EditMode" />
         <property name="EditorOnly" value="True" />
       </properties>
-      <test-suite type="TestSuite" id="1026" name="NebulaDefender" fullname="NebulaDefender" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.294363" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1026" name="NebulaDefender" fullname="NebulaDefender" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-11-05 13:10:18Z" end-time="2026-11-05 13:10:19Z" duration="0.221522" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1027" name="Tests" fullname="NebulaDefender.Tests" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.293914" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1027" name="Tests" fullname="NebulaDefender.Tests" runstate="Runnable" testcasecount="20" result="Passed" start-time="2026-11-05 13:10:18Z" end-time="2026-11-05 13:10:19Z" duration="0.221198" total="20" passed="20" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestFixture" id="1001" name="LevelDataTests" fullname="NebulaDefender.Tests.LevelDataTests" classname="NebulaDefender.Tests.LevelDataTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.053937" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1001" name="LevelDataTests" fullname="NebulaDefender.Tests.LevelDataTests" classname="NebulaDefender.Tests.LevelDataTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-05 13:10:18Z" end-time="2026-11-05 13:10:18Z" duration="0.040076" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1002" name="SectorAssetsHaveRequiredQuotasAndIncreasingDifficulty" fullname="NebulaDefender.Tests.LevelDataTests.SectorAssetsHaveRequiredQuotasAndIncreasingDifficulty" methodname="SectorAssetsHaveRequiredQuotasAndIncreasingDifficulty" classname="NebulaDefender.Tests.LevelDataTests" runstate="Runnable" seed="565879695" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.032948" asserts="0">
+            <test-case id="1002" name="SectorAssetsHaveRequiredQuotasAndIncreasingDifficulty" fullname="NebulaDefender.Tests.LevelDataTests.SectorAssetsHaveRequiredQuotasAndIncreasingDifficulty" methodname="SectorAssetsHaveRequiredQuotasAndIncreasingDifficulty" classname="NebulaDefender.Tests.LevelDataTests" runstate="Runnable" seed="2050961619" result="Passed" start-time="2026-11-05 13:10:18Z" end-time="2026-11-05 13:10:18Z" duration="0.023618" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1003" name="PersistenceTests" fullname="NebulaDefender.Tests.PersistenceTests" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.219854" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1003" name="PersistenceTests" fullname="NebulaDefender.Tests.PersistenceTests" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-05 13:10:18Z" end-time="2026-11-05 13:10:19Z" duration="0.169624" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1007" name="CorruptPrimaryRecoversBackupAndPreservesDamagedFile" fullname="NebulaDefender.Tests.PersistenceTests.CorruptPrimaryRecoversBackupAndPreservesDamagedFile" methodname="CorruptPrimaryRecoversBackupAndPreservesDamagedFile" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="1389996642" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.080642" asserts="0">
+            <test-case id="1007" name="CorruptPrimaryRecoversBackupAndPreservesDamagedFile" fullname="NebulaDefender.Tests.PersistenceTests.CorruptPrimaryRecoversBackupAndPreservesDamagedFile" methodname="CorruptPrimaryRecoversBackupAndPreservesDamagedFile" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="398441900" result="Passed" start-time="2026-11-05 13:10:18Z" end-time="2026-11-05 13:10:19Z" duration="0.063200" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1009" name="FutureVersionIsKeptWithoutReplacingWithAnOldBackup" fullname="NebulaDefender.Tests.PersistenceTests.FutureVersionIsKeptWithoutReplacingWithAnOldBackup" methodname="FutureVersionIsKeptWithoutReplacingWithAnOldBackup" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="354511322" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.012058" asserts="0">
+            <test-case id="1009" name="FutureVersionIsKeptWithoutReplacingWithAnOldBackup" fullname="NebulaDefender.Tests.PersistenceTests.FutureVersionIsKeptWithoutReplacingWithAnOldBackup" methodname="FutureVersionIsKeptWithoutReplacingWithAnOldBackup" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="2078876706" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.010756" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-suite type="ParameterizedMethod" id="1014" name="InvalidNicknameIsRejected" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.010743" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <test-suite type="ParameterizedMethod" id="1014" name="InvalidNicknameIsRejected" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.009006" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
               <properties />
-              <test-case id="1010" name="InvalidNicknameIsRejected(&quot;&lt;script&gt;&quot;)" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected(&quot;&lt;script&gt;&quot;)" methodname="InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="528699111" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.004343" asserts="0">
+              <test-case id="1010" name="InvalidNicknameIsRejected(&quot;&lt;script&gt;&quot;)" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected(&quot;&lt;script&gt;&quot;)" methodname="InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="842507179" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.003638" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1011" name="InvalidNicknameIsRejected(&quot; &quot;)" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected(&quot; &quot;)" methodname="InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="1663261410" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.001699" asserts="0">
+              <test-case id="1011" name="InvalidNicknameIsRejected(&quot; &quot;)" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected(&quot; &quot;)" methodname="InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="419069875" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.001066" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1012" name="InvalidNicknameIsRejected(&quot;a&quot;)" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected(&quot;a&quot;)" methodname="InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="230082317" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.001701" asserts="0">
+              <test-case id="1012" name="InvalidNicknameIsRejected(&quot;a&quot;)" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected(&quot;a&quot;)" methodname="InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="229635711" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.000992" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
-              <test-case id="1013" name="InvalidNicknameIsRejected(&quot;name\nother&quot;)" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected(&quot;name\nother&quot;)" methodname="InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="921326968" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.001509" asserts="0">
+              <test-case id="1013" name="InvalidNicknameIsRejected(&quot;name\nother&quot;)" fullname="NebulaDefender.Tests.PersistenceTests.InvalidNicknameIsRejected(&quot;name\nother&quot;)" methodname="InvalidNicknameIsRejected" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="184340234" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.001730" asserts="0">
                 <properties>
                   <property name="retryIteration" value="0" />
                   <property name="repeatIteration" value="0" />
                 </properties>
               </test-case>
             </test-suite>
-            <test-case id="1015" name="InvalidSchemaAndDuplicateIdsCannotBeSaved" fullname="NebulaDefender.Tests.PersistenceTests.InvalidSchemaAndDuplicateIdsCannotBeSaved" methodname="InvalidSchemaAndDuplicateIdsCannotBeSaved" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="521833505" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.005380" asserts="0">
+            <test-case id="1015" name="InvalidSchemaAndDuplicateIdsCannotBeSaved" fullname="NebulaDefender.Tests.PersistenceTests.InvalidSchemaAndDuplicateIdsCannotBeSaved" methodname="InvalidSchemaAndDuplicateIdsCannotBeSaved" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="1394580713" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.005724" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1004" name="MultiplePilotsRoundTripWithSelectionAndUniqueIds" fullname="NebulaDefender.Tests.PersistenceTests.MultiplePilotsRoundTripWithSelectionAndUniqueIds" methodname="MultiplePilotsRoundTripWithSelectionAndUniqueIds" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="1196828231" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.013855" asserts="0">
+            <test-case id="1004" name="MultiplePilotsRoundTripWithSelectionAndUniqueIds" fullname="NebulaDefender.Tests.PersistenceTests.MultiplePilotsRoundTripWithSelectionAndUniqueIds" methodname="MultiplePilotsRoundTripWithSelectionAndUniqueIds" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="29314300" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.011436" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1006" name="RankingUsesBestRealRunPerPilotAndOrdersScore" fullname="NebulaDefender.Tests.PersistenceTests.RankingUsesBestRealRunPerPilotAndOrdersScore" methodname="RankingUsesBestRealRunPerPilotAndOrdersScore" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="1609380763" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.048260" asserts="0">
+            <test-case id="1006" name="RankingUsesBestRealRunPerPilotAndOrdersScore" fullname="NebulaDefender.Tests.PersistenceTests.RankingUsesBestRealRunPerPilotAndOrdersScore" methodname="RankingUsesBestRealRunPerPilotAndOrdersScore" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="106685818" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.041908" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1005" name="RepeatedCheckpointsDoNotDuplicateGamesOrLifetimeStats" fullname="NebulaDefender.Tests.PersistenceTests.RepeatedCheckpointsDoNotDuplicateGamesOrLifetimeStats" methodname="RepeatedCheckpointsDoNotDuplicateGamesOrLifetimeStats" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="1569435788" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.033705" asserts="0">
+            <test-case id="1005" name="RepeatedCheckpointsDoNotDuplicateGamesOrLifetimeStats" fullname="NebulaDefender.Tests.PersistenceTests.RepeatedCheckpointsDoNotDuplicateGamesOrLifetimeStats" methodname="RepeatedCheckpointsDoNotDuplicateGamesOrLifetimeStats" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="1410347458" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.018601" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1008" name="UnrecoverablePrimaryIsNeverSilentlyOverwritten" fullname="NebulaDefender.Tests.PersistenceTests.UnrecoverablePrimaryIsNeverSilentlyOverwritten" methodname="UnrecoverablePrimaryIsNeverSilentlyOverwritten" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="1146737411" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.011217" asserts="0">
+            <test-case id="1008" name="UnrecoverablePrimaryIsNeverSilentlyOverwritten" fullname="NebulaDefender.Tests.PersistenceTests.UnrecoverablePrimaryIsNeverSilentlyOverwritten" methodname="UnrecoverablePrimaryIsNeverSilentlyOverwritten" classname="NebulaDefender.Tests.PersistenceTests" runstate="Runnable" seed="1797628179" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.004712" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1016" name="RulesTests" fullname="NebulaDefender.Tests.RulesTests" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.014128" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1016" name="RulesTests" fullname="NebulaDefender.Tests.RulesTests" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.009850" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1019" name="AsteroidFragmentsCountAsDestructionsAndQuotaDoesNotRequireEmptyArena" fullname="NebulaDefender.Tests.RulesTests.AsteroidFragmentsCountAsDestructionsAndQuotaDoesNotRequireEmptyArena" methodname="AsteroidFragmentsCountAsDestructionsAndQuotaDoesNotRequireEmptyArena" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1370286271" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.001827" asserts="0">
+            <test-case id="1019" name="AsteroidFragmentsCountAsDestructionsAndQuotaDoesNotRequireEmptyArena" fullname="NebulaDefender.Tests.RulesTests.AsteroidFragmentsCountAsDestructionsAndQuotaDoesNotRequireEmptyArena" methodname="AsteroidFragmentsCountAsDestructionsAndQuotaDoesNotRequireEmptyArena" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="640844952" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.001031" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1017" name="DamageConsumesExactlyThreeLivesAndNeverRevivesAfterDefeat" fullname="NebulaDefender.Tests.RulesTests.DamageConsumesExactlyThreeLivesAndNeverRevivesAfterDefeat" methodname="DamageConsumesExactlyThreeLivesAndNeverRevivesAfterDefeat" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1419250817" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.001921" asserts="0">
+            <test-case id="1017" name="DamageConsumesExactlyThreeLivesAndNeverRevivesAfterDefeat" fullname="NebulaDefender.Tests.RulesTests.DamageConsumesExactlyThreeLivesAndNeverRevivesAfterDefeat" methodname="DamageConsumesExactlyThreeLivesAndNeverRevivesAfterDefeat" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1154231064" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.000902" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1021" name="FinalVictoryRequiresDefensesAndBoss" fullname="NebulaDefender.Tests.RulesTests.FinalVictoryRequiresDefensesAndBoss" methodname="FinalVictoryRequiresDefensesAndBoss" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="2134230054" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.000757" asserts="0">
+            <test-case id="1021" name="FinalVictoryRequiresDefensesAndBoss" fullname="NebulaDefender.Tests.RulesTests.FinalVictoryRequiresDefensesAndBoss" methodname="FinalVictoryRequiresDefensesAndBoss" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1750119918" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.000645" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1024" name="LargeRockHasFiniteThreeTierFragmentationAndHigherValue" fullname="NebulaDefender.Tests.RulesTests.LargeRockHasFiniteThreeTierFragmentationAndHigherValue" methodname="LargeRockHasFiniteThreeTierFragmentationAndHigherValue" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="75224843" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.001624" asserts="0">
+            <test-case id="1024" name="LargeRockHasFiniteThreeTierFragmentationAndHigherValue" fullname="NebulaDefender.Tests.RulesTests.LargeRockHasFiniteThreeTierFragmentationAndHigherValue" methodname="LargeRockHasFiniteThreeTierFragmentationAndHigherValue" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1292269177" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.001819" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1018" name="RepairIsLimitedAndNegativeDamageIsIgnored" fullname="NebulaDefender.Tests.RulesTests.RepairIsLimitedAndNegativeDamageIsIgnored" methodname="RepairIsLimitedAndNegativeDamageIsIgnored" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="843338237" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.000501" asserts="0">
+            <test-case id="1018" name="RepairIsLimitedAndNegativeDamageIsIgnored" fullname="NebulaDefender.Tests.RulesTests.RepairIsLimitedAndNegativeDamageIsIgnored" methodname="RepairIsLimitedAndNegativeDamageIsIgnored" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="569485642" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.000316" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1022" name="ScoreCannotBecomeNegativeOrOverflow" fullname="NebulaDefender.Tests.RulesTests.ScoreCannotBecomeNegativeOrOverflow" methodname="ScoreCannotBecomeNegativeOrOverflow" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1656551307" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.000259" asserts="0">
+            <test-case id="1022" name="ScoreCannotBecomeNegativeOrOverflow" fullname="NebulaDefender.Tests.RulesTests.ScoreCannotBecomeNegativeOrOverflow" methodname="ScoreCannotBecomeNegativeOrOverflow" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1910698614" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.000319" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1020" name="SecondSectorRequiresBothQuotas" fullname="NebulaDefender.Tests.RulesTests.SecondSectorRequiresBothQuotas" methodname="SecondSectorRequiresBothQuotas" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1962875475" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.000369" asserts="0">
+            <test-case id="1020" name="SecondSectorRequiresBothQuotas" fullname="NebulaDefender.Tests.RulesTests.SecondSectorRequiresBothQuotas" methodname="SecondSectorRequiresBothQuotas" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="72315884" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.000296" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1023" name="WrappingPreservesOvershootAndThePlayablePlane" fullname="NebulaDefender.Tests.RulesTests.WrappingPreservesOvershootAndThePlayablePlane" methodname="WrappingPreservesOvershootAndThePlayablePlane" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1397556716" result="Passed" start-time="2026-11-05 00:31:28Z" end-time="2026-11-05 00:31:28Z" duration="0.002643" asserts="0">
+            <test-case id="1023" name="WrappingPreservesOvershootAndThePlayablePlane" fullname="NebulaDefender.Tests.RulesTests.WrappingPreservesOvershootAndThePlayablePlane" methodname="WrappingPreservesOvershootAndThePlayablePlane" classname="NebulaDefender.Tests.RulesTests" runstate="Runnable" seed="1970137987" result="Passed" start-time="2026-11-05 13:10:19Z" end-time="2026-11-05 13:10:19Z" duration="0.001630" asserts="0">
               <properties>
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />

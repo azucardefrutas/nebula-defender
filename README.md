@@ -4,6 +4,14 @@ Shooter espacial arcade 3D, individual y offline para Windows. Creado para la Se
 
 Navega con inercia, gira para orientar el láser, destruye asteroides que se fragmentan y protege tres sectores frente a drones y Nemesis Prime. Registro de pilotos y ranking guardados únicamente en tu computadora.
 
+## Jugar en este equipo
+
+- **Windows:** abre `JUGAR_WINDOWS.cmd` o `Builds/Windows/NebulaDefender.exe`.
+- **Como página:** abre `JUGAR_LOCALHOST.cmd` y entra a **http://localhost:8080**. Mantén el servidor abierto mientras juegas. La página incluye la descarga del ZIP de Windows.
+- **Otra computadora Windows:** extrae todo `Builds/NebulaDefender-Windows-x64.zip` y ejecuta `Windows/NebulaDefender.exe`.
+
+La página ejecuta una exportación WebAssembly del mismo juego Unity. El proyecto fuente y el ejecutable usan Unity 6.3; la exportación web utiliza una copia de compilación con el Unity 6.4 que ya tiene soporte web en este equipo. Consulta [BUILD_WEB.md](Documentation/BUILD_WEB.md). Los perfiles del navegador y de Windows se guardan por separado.
+
 ## Abrir y probar primero la nave
 
 En este equipo puedes hacer doble clic en **ABRIR_NEBULA.cmd**: abre Unity 6.3 directamente en CoreSandbox y evita la biblioteca opcional de Burst que Windows bloqueó durante la importación. Si el proyecto ya está abierto, vuelve a esa ventana en lugar de abrir una segunda instancia.

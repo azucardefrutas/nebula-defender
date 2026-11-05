@@ -20,6 +20,7 @@ python Tools/run_unity.py edit-tests
 python Tools/run_unity.py play-tests
 python Tools/run_unity.py validate
 python Tools/run_unity.py build --graphics
+python Tools/verify_package.py
 ```
 
 También se puede usar directamente el Editor, sin Python:
@@ -29,6 +30,8 @@ También se puede usar directamente el Editor, sin Python:
 ```
 
 La opción de Burst evita la carga de código nativo opcional que Windows bloqueó en este entorno. No cambia las reglas de juego ni la física Rigidbody. No se modifican políticas de seguridad de Windows. URP arrastra algunas dependencias Burst/Collections, pero el código del juego no utiliza DOTS/ECS.
+
+Para investigar una prueba concreta puede añadirse `--filter NombreDeLaPrueba` a los modos de pruebas. Una ejecución filtrada sustituye su XML de resultados; antes de entregar se ejecuta nuevamente la suite completa. `verify_package.py` revisa CRC, archivos del jugador y runtime Mono, y registra tamaño y SHA-256 del ZIP en `Evidence/package-inspection.json`.
 
 ## Entrega
 

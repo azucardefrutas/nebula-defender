@@ -4,6 +4,9 @@
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 Builds/
+BuildWork/
+output/
+.playwright-cli/
 *.csproj
 *.sln
 *.slnx
@@ -11,3 +14,5 @@ Builds/
 *.zip
 *.pid
 Documentation/Evidence/*.log
+__pycache__/
+*.pyc

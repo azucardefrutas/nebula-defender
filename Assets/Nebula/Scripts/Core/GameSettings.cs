@@ -16,13 +16,17 @@ namespace NebulaDefender
             CameraShake = PlayerPrefs.GetInt("nd.shake", 1) != 0;
             int quality = Mathf.Clamp(PlayerPrefs.GetInt("nd.quality", QualitySettings.GetQualityLevel()), 0, QualitySettings.names.Length - 1);
             QualitySettings.SetQualityLevel(quality);
+#if !(UNITY_WEBGL && !UNITY_EDITOR)
             if (PlayerPrefs.HasKey("nd.width")) Screen.SetResolution(Mathf.Clamp(PlayerPrefs.GetInt("nd.width"), 960, 3840), Mathf.Clamp(PlayerPrefs.GetInt("nd.height"), 540, 2160), PlayerPrefs.GetInt("nd.fullscreen", 0) != 0 ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed);
+#endif
         }
         public void Apply(float music, float effects, float turn, bool shake, bool fullscreen, int width, int height, int quality)
         {
             Music = Mathf.Clamp01(music); Effects = Mathf.Clamp01(effects); Turn = Mathf.Clamp(turn, 0.6f, 1.4f); CameraShake = shake;
             QualitySettings.SetQualityLevel(Mathf.Clamp(quality, 0, QualitySettings.names.Length - 1));
+#if !(UNITY_WEBGL && !UNITY_EDITOR)
             Screen.SetResolution(width, height, fullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed);
+#endif
             PlayerPrefs.SetFloat("nd.music", Music); PlayerPrefs.SetFloat("nd.effects", Effects); PlayerPrefs.SetFloat("nd.turn", Turn);
             PlayerPrefs.SetInt("nd.shake", CameraShake ? 1 : 0); PlayerPrefs.SetInt("nd.fullscreen", fullscreen ? 1 : 0);
             PlayerPrefs.SetInt("nd.width", width); PlayerPrefs.SetInt("nd.height", height); PlayerPrefs.SetInt("nd.quality", QualitySettings.GetQualityLevel());

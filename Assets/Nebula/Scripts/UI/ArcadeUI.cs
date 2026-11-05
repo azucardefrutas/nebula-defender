@@ -109,7 +109,11 @@ namespace NebulaDefender
             Button(page,"02   REGISTRAR / CAMBIAR PILOTO",90,616,600,Pilots);
             Button(page,"03   SALÓN DE LA FAMA",90,690,600,Ranking);
             Button(page,"04   CONFIGURACIÓN",90,764,600,()=>Settings(false));
+#if UNITY_WEBGL && !UNITY_EDITOR
+            Button(page,"05   VUELO RÁPIDO / SIN REGISTRO",90,838,600,()=>SceneManager.LoadScene("CoreSandbox"));
+#else
             Button(page,"05   SALIR",90,838,600,session.Quit);
+#endif
             Label(page,session.Profiles?.Selected!=null?"PILOTO ACTIVO  /  "+session.Profiles.Selected.nickname:"SIN PILOTO  /  REGISTRO LOCAL",90,945,680,34,19,cyan);
             Label(page,"UNIVERSIDAD POLITÉCNICA DE BACALAR\nMtro. Esdras Chuc C. · Arcade 3D independiente / Offline",90,1000,690,58,16,muted);
             Label(page,"ND–01\nAURORA INTERCEPTOR",1280,770,520,80,25,cyan);
@@ -122,7 +126,10 @@ namespace NebulaDefender
             Label(card,"Nave 3D · física XZ · láser · asteroides destructibles\nEste vuelo no modifica los perfiles ni el ranking.",36,166,820,100,26,muted);
             Button(card,"INICIAR VUELO",36,320,828,()=>session.StartRun(0),true,true);
             Button(card,"ABRIR CAMPAÑA",36,405,828,()=>{Time.timeScale=1;SceneManager.LoadScene("Campaign");});
-            Button(card,"SALIR",36,490,828,session.Quit);FocusFirst();
+#if !(UNITY_WEBGL && !UNITY_EDITOR)
+            Button(card,"SALIR",36,490,828,session.Quit);
+#endif
+            FocusFirst();
         }
         private void Notice(Transform parent,float x,float y,float width)
         {
@@ -215,10 +222,17 @@ namespace NebulaDefender
             var sensitivity=Volume(card,"VELOCIDAD DE GIRO",300,(s.Turn-0.6f)/0.8f);
             bool full=Screen.fullScreen;bool shake=s.CameraShake;int quality=QualitySettings.GetQualityLevel();
             int resolutionIndex=resolutions.IndexOf(new Vector2Int(Screen.width,Screen.height));if(resolutionIndex<0)resolutionIndex=Mathf.Max(0,resolutions.Count-2);
-            Button fullscreenButton=null,shakeButton=null,qualityButton=null,resolutionButton=null;
+            Button shakeButton=null,qualityButton=null;
+#if !(UNITY_WEBGL && !UNITY_EDITOR)
+            Button fullscreenButton=null,resolutionButton=null;
+#endif
             void SetButtonText(Button b,string value)=>b.GetComponentInChildren<TMP_Text>().text=value;
+#if UNITY_WEBGL && !UNITY_EDITOR
+            Label(card,"Usa PANTALLA COMPLETA arriba del juego.\nLa imagen se adapta al tamaño de tu navegador.",36,395,1028,130,25,muted);
+#else
             fullscreenButton=Button(card,"PANTALLA: "+(full?"COMPLETA":"VENTANA"),36,395,1028,()=>{full=!full;SetButtonText(fullscreenButton,"PANTALLA: "+(full?"COMPLETA":"VENTANA"));});
             resolutionButton=Button(card,$"RESOLUCIÓN: {resolutions[resolutionIndex].x} × {resolutions[resolutionIndex].y}",36,470,1028,()=>{resolutionIndex=(resolutionIndex+1)%resolutions.Count;SetButtonText(resolutionButton,$"RESOLUCIÓN: {resolutions[resolutionIndex].x} × {resolutions[resolutionIndex].y}");});
+#endif
             qualityButton=Button(card,"CALIDAD: "+QualitySettings.names[quality],36,545,1028,()=>{quality=(quality+1)%QualitySettings.names.Length;SetButtonText(qualityButton,"CALIDAD: "+QualitySettings.names[quality]);});
             shakeButton=Button(card,"VIBRACIÓN DE CÁMARA: "+(shake?"ACTIVA":"DESACTIVADA"),36,620,1028,()=>{shake=!shake;SetButtonText(shakeButton,"VIBRACIÓN DE CÁMARA: "+(shake?"ACTIVA":"DESACTIVADA"));});
             Label(card,"Pulsa las opciones para alternarlas. Los cambios se aplican al guardar.",36,716,1010,65,22,muted);

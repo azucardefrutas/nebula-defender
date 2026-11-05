@@ -18,6 +18,10 @@
 
 La simulación usa tiempo escalado; los menús tiempo no escalado. Pausa y resultados detienen la física mediante `Time.timeScale=0`. El mapa de vuelo se deshabilita fuera del combate. La pérdida de foco pausa la aplicación interactiva. Los bordes transfieren Rigidbody conservando velocidad y exceso de desplazamiento; se puede desactivar la continuidad en el asset de balance.
 
+La reserva inicial de proyectiles alterna ambos equipos y nunca supera `maxProjectiles`, incluso con presupuestos inferiores a 64. El crecimiento posterior mantiene ese mismo límite total.
+
+Windows incluye dos perfiles gráficos seleccionables: **Eficiente** utiliza el asset URP con escala de renderizado 0.8 y sombras de 1024; **Alta** utiliza escala 1.0 y sombras de 2048. La selección se guarda en las preferencias locales. Los perfiles conservan sus índices originales para mantener las preferencias existentes.
+
 Capas 8–13: Player, Asteroids, Enemies, PlayerProjectiles, EnemyProjectiles, Pickups. El generador habilita únicamente las parejas requeridas entre estas capas; los disparos propios no colisionan con su nave. Los decorados no tienen colliders.
 
 ## Archivos persistentes
