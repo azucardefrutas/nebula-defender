@@ -24,8 +24,8 @@ namespace NebulaDefender
         public string Objective => boss ? $"Defensas {Mathf.Max(0, droneGoal)} · Derrota a NEMESIS PRIME" :
             $"Destruye {asteroidGoal} asteroides" + (droneGoal > 0 ? $" y {droneGoal} drones" : "");
         public string MissionSteps => boss
-            ? $"1. Destruye {droneGoal} drones de defensa.\n2. Derrota a Nemesis Prime cuando aparezca."
-            : $"Destruye {asteroidGoal} asteroides." + (droneGoal > 0 ? $"\nElimina {droneGoal} drones enemigos." : "\nCada fragmento destruido también cuenta.");
+            ? $"Rompe {droneGoal} defensas y derrota a Némesis.\nCruza el portal para volver a casa."
+            : $"Destruye {asteroidGoal} asteroides." + (droneGoal > 0 ? $" Elimina {droneGoal} drones." : "") + "\nDespués, cruza el portal azul.";
         public string TacticalAdvice => boss
             ? "Apártate de las salvas del jefe. Por debajo de la mitad de salud dispara más rápido."
             : droneGoal > 0

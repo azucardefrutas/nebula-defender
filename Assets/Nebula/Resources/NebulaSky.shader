@@ -43,9 +43,10 @@ Shader "Nebula Defender/Deep Space Sky"
                 float radius=.025+Hash(cell+6.2)*.04;
                 float distanceToStar=length(frac(grid)-starCenter);
                 float pixelWidth=clamp(max(length(ddx(grid)),length(ddy(grid))),.015,.35);
-                float star=(1-smoothstep(max(0,radius-pixelWidth*.4),radius+pixelWidth*.4,distanceToStar))*step(.993,seed);
+                radius=max(radius,pixelWidth*.7);
+                float star=(1-smoothstep(max(0,radius-pixelWidth*.4),radius+pixelWidth*.4,distanceToStar))*step(.996,seed);
                 float starColor=Hash(cell+17.3);
-                color+=star*lerp(float3(.45,.65,1),float3(1,.95,.85),starColor)*(.35+starColor*.45);
+                color+=star*lerp(float3(.55,.75,1),float3(1,.95,.85),starColor)*(.65+starColor*.65);
                 return half4(color,1);
             }
             ENDHLSL

@@ -5,6 +5,7 @@
 `Assets/Nebula/Scripts` contiene una asamblea de ejecución con namespace `NebulaDefender`; `Editor` y ambas carpetas de pruebas tienen asambleas separadas. El generador conecta referencias explícitas en escenas y prefabs. Los modelos visuales son hijos de los objetos físicos y se pueden sustituir sin reescribir el control.
 
 - `GameSession`: estado de la sesión, inicio y fin de sectores, conexión de servicios y puntos de guardado. No mueve actores ni resuelve impactos.
+- `JumpGate`: portal procedural reutilizado por los tres sectores. Sus colliders notifican a `GameSession.TryExtract`, que exige cuotas completas, partida activa y distancia máxima de dos unidades. Cierra el portal antes de asignar la bonificación, evitando premios duplicados. `CampaignMode` activa esta extracción; el sandbox conserva el cierre inmediato. `GuestRun` permite jugar sin persistencia ni perfiles ficticios.
 - `PilotInput`: acciones del nuevo Input System. `PlayerController` lee las acciones en Update y aplica fuerzas y giro de Rigidbody en FixedUpdate.
 - `PlayerHealth` y `PilotVitals`: salud, vidas, escudo y protección. `DamageTarget` define el contrato de daño.
 - `WeaponController`, `ProjectilePool`, `Projectile`: cadencia, cupo/reutilización y contacto único. El barrido esférico complementa triggers para impedir que un láser rápido atraviese una roca pequeña.
@@ -20,7 +21,7 @@ La simulación usa tiempo escalado; los menús tiempo no escalado. Pausa y resul
 
 `CameraRig` recibe explícitamente el jugador y la sesión. Ambas vistas siguen al jugador; C alterna la perspectiva cercana y un encuadre táctico del combate local. La cámara cambia la presentación; la física sigue en XZ. `CombatDirector.NearestObjective` consulta sus listas existentes para guiar a objetivos pendientes fuera del encuadre.
 
-Los generadores sitúan amenazas alrededor de la posición actual del piloto. Cada segundo, el director reutiliza actores vivos que estén a más de 80 unidades y fuera del encuadre, colocándolos también fuera del encuadre cerca de la nueva zona; conserva salud, cuotas y puntuación. Los fragmentos nacen junto a la roca destruida. El jefe patrulla alrededor de un ancla que sigue al piloto. Los proyectiles conservan tiempo de vida y cupo del pool, sin retirarse por cruzar el antiguo rectángulo. El límite de objetos activos sigue protegiendo el rendimiento.
+Los generadores sitúan amenazas alrededor de la posición actual del piloto. Cada segundo, el director reutiliza rocas a más de 38 unidades y drones a más de 42, si están fuera del encuadre; los coloca fuera de cámara, cerca de la nueva zona, conservando salud, cuotas y puntuación. Los fragmentos nacen junto a la roca destruida. El jefe patrulla alrededor de un ancla que sigue al piloto. Los proyectiles conservan tiempo de vida y cupo del pool, sin retirarse por cruzar el antiguo rectángulo. Al abrir el portal, `StopForExtraction` elimina amenazas y deshabilita nuevas apariciones, mientras el piloto sigue volando. El límite de objetos activos protege el rendimiento.
 
 `ArcadeUI.Guidance` es la parte de presentación de informes, ayuda, aprendizaje de controles y HUD. F1 usa una acción de Input System; la ayuda conserva la pausa y vuelve al contexto de origen. Los contadores y barras derivan de `MissionProgress`, nunca de contadores paralelos de interfaz.
 

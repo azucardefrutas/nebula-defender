@@ -21,6 +21,8 @@ python Tools/run_unity.py play-tests
 python Tools/run_unity.py validate
 python Tools/run_unity.py build --graphics
 python Tools/verify_package.py
+python Tools/build_installer.py
+python Tools/verify_installer.py
 ```
 
 También se puede usar directamente el Editor, sin Python:
@@ -44,9 +46,14 @@ Builds/
     MonoBleedingEdge/
     [otros archivos que produzca Unity]
   NebulaDefender-Windows-x64.zip
+  NebulaDefender-Setup-x64.exe
 ```
 
-Copiar o comprimir la carpeta entera. En el otro equipo: extraer primero el ZIP y abrir NebulaDefender.exe. El ranking permanece local a cada computadora.
+La entrega recomendada es `NebulaDefender-Setup-x64.exe`: incluye el jugador completo, instala por usuario sin pedir administrador, crea accesos directos e incluye desinstalador. El compilador NSIS debe estar previamente instalado; `build_installer.py` detecta el existente y no descarga software. La desinstalación elimina únicamente los archivos empaquetados, preservando partidas guardadas y archivos ajenos.
+
+Como alternativa portable, copiar o comprimir la carpeta entera. En el otro equipo: extraer primero el ZIP y abrir NebulaDefender.exe. El ranking permanece local a cada computadora.
+
+La prueba del instalador utiliza `/S /QA /D=<carpeta temporal>`: instala el mismo contenido pero omite accesos directos y registro del usuario. Comprueba todos los hashes y después ejecuta su desinstalador con `/S _?=<carpeta temporal>`. Esta modalidad permite verificar archivos y conservación de datos sin sustituir una instalación real del usuario. Los accesos directos de una instalación normal requieren revisión manual.
 
 ## Comprobar en el equipo de exposición
 

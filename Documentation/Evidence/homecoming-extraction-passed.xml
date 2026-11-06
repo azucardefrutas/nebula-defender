@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-06 15:12:01Z" end-time="2026-11-06 15:12:41Z" duration="39.5805535">
+  <test-suite type="TestSuite" id="1041" name="Nebula Defender Galactic Assault" fullname="Nebula Defender Galactic Assault" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-06 15:12:01Z" end-time="2026-11-06 15:12:41Z" duration="39.580554" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1035" name="Nebula.PlayModeTests.dll" fullname="C:/Users/tonyh/OneDrive/Documents/nebula 3D/Library/ScriptAssemblies/Nebula.PlayModeTests.dll" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-06 15:12:01Z" end-time="2026-11-06 15:12:41Z" duration="39.571205" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9132" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1036" name="NebulaDefender" fullname="NebulaDefender" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-06 15:12:01Z" end-time="2026-11-06 15:12:41Z" duration="39.570297" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1037" name="Tests" fullname="NebulaDefender.Tests" runstate="Runnable" testcasecount="30" result="Passed" start-time="2026-11-06 15:12:01Z" end-time="2026-11-06 15:12:41Z" duration="39.569708" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1031" name="HomecomingTests" fullname="NebulaDefender.Tests.HomecomingTests" classname="NebulaDefender.Tests.HomecomingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-06 15:12:01Z" end-time="2026-11-06 15:12:41Z" duration="39.567613" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1032" name="GuestCampaignNeedsRealExtractionAndDoesNotCreateProfiles" fullname="NebulaDefender.Tests.HomecomingTests.GuestCampaignNeedsRealExtractionAndDoesNotCreateProfiles" methodname="GuestCampaignNeedsRealExtractionAndDoesNotCreateProfiles" classname="NebulaDefender.Tests.HomecomingTests" runstate="Runnable" seed="1576023517" result="Passed" start-time="2026-11-06 15:12:01Z" end-time="2026-11-06 15:12:02Z" duration="0.839300" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="PausedPortalCannotCompleteAndRestartClosesIt" fullname="NebulaDefender.Tests.HomecomingTests.PausedPortalCannotCompleteAndRestartClosesIt" methodname="PausedPortalCannotCompleteAndRestartClosesIt" classname="NebulaDefender.Tests.HomecomingTests" runstate="Runnable" seed="1664657492" result="Passed" start-time="2026-11-06 15:12:02Z" end-time="2026-11-06 15:12:03Z" duration="0.255282" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="ThreeRoutesCompleteByRealLasersAndPhysicalPortalEntries" fullname="NebulaDefender.Tests.HomecomingTests.ThreeRoutesCompleteByRealLasersAndPhysicalPortalEntries" methodname="ThreeRoutesCompleteByRealLasersAndPhysicalPortalEntries" classname="NebulaDefender.Tests.HomecomingTests" runstate="Runnable" seed="2100952378" result="Passed" start-time="2026-11-06 15:12:03Z" end-time="2026-11-06 15:12:41Z" duration="38.460039" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/tonyh/AppData/LocalLow/UPB Arcade/Nebula Defender Galactic Assault\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,4 +1,17 @@
-# Progreso — actualizado el 5 de noviembre de 2026
+# Progreso — actualizado el 6 de noviembre de 2026
+
+## Windows 1.0 · Vuelve a casa
+
+- Implementado: campaña de tres rutas con portal físico, victoria al volver a casa, inicio sin registro, asistencia ligera de puntería, primera mejora garantizada, atracción de recogidas, combate más próximo, estelas de motores y cámara estable.
+- Ejecutado: **20/20 EditMode y 30/30 PlayMode**. La nueva campaña atraviesa los tres sectores mediante armas, contactos físicos y entrada a los portales en un escenario controlado. La comprobación posterior del radio de entrada pasó **3/3** pruebas de campaña; ya están incluidas en el total, no se suman otra vez.
+- Distribución: jugador Windows 1.0 compilado sin errores ni advertencias. Instalador `.exe` creado y ejecutado en una carpeta temporal; los 161 archivos coinciden por SHA-256. Desinstalación comprobada conservando un archivo ajeno y la inscripción real del usuario.
+- Pendiente: campaña completa jugada por una persona, escucha, rendimiento en equipo escolar y ejecución con la conexión físicamente deshabilitada.
+- Web: localhost conserva la revisión anterior de vuelo abierto. La campaña nueva está en Windows; todavía no se ha recompilado Web para este cambio.
+- Meshy: cuatro modelos autorizados, presupuesto máximo de 64 créditos. La cuenta conectada devuelve HTTP 402 «Free plan» incluso después de la confirmación de activación. No hay tareas aceptadas ni créditos consumidos. Modelos externos e integración pendientes; no se atribuye el arte actual a Meshy.
+
+El registro siguiente conserva la evolución y las cifras de entregas anteriores. Los resultados actuales están en `TEST_REPORT.md` y `Evidence/homecoming-full-suite.xml`.
+
+## Historial hasta el 5 de noviembre
 
 Este registro distingue implementación de verificación. No se considera un juego terminado por compilar o por existir sus scripts.
 

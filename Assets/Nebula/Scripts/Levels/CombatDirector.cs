@@ -18,6 +18,7 @@ namespace NebulaDefender
         private Transform pickupRoot;
         private Camera view;
         private float nextReposition;
+        private bool earlyUpgrade;
         public BossController Boss { get; private set; }
         public int DroneCount => drones.Count;
         public GameSession Session { get; private set; }
@@ -44,9 +45,14 @@ namespace NebulaDefender
         public void Begin(LevelDefinition definition)
         {
             Clear(); level = definition; rng = new System.Random(level.seed);
-            bossSpawned = false; nextDrone = Time.time + 2; nextReposition = Time.time + 1;
+            bossSpawned = earlyUpgrade = false; nextDrone = Time.time + 2; nextReposition = Time.time + 1;
             pickupRoot = new GameObject("Active pickups").transform; pickupRoot.SetParent(transform);
-            for (int i = 0; i < level.initialRocks; i++) SpawnRock(i % 3, SpawnPoint(), RandomDirection() * level.asteroidSpeed);
+            for (int i = 0; i < level.initialRocks; i++)
+            {
+                var p=i==0 ? Session.Player.Body.position+Vector3.forward*8 : SpawnPoint();
+                var velocity=i==0 ? Vector3.zero : (Session.Player.Body.position-p).normalized*level.asteroidSpeed*.65f+RandomDirection()*.6f;
+                SpawnRock(i%3,p,velocity);
+            }
         }
         private void Update()
         {
@@ -76,13 +82,13 @@ namespace NebulaDefender
         {
             var center = Session.Player.Body.position;
             foreach (var rock in rocks)
-                if (rock != null && rock.IsAlive && rock.enabled && (rock.transform.position-center).sqrMagnitude > 80*80 && !Visible(rock.transform.position))
+                if (rock != null && rock.IsAlive && rock.enabled && (rock.transform.position-center).sqrMagnitude > 38*38 && !Visible(rock.transform.position))
                 {
                     var p = SpawnPoint(true);
                     rock.Relocate(p, (center-p).normalized * level.asteroidSpeed);
                 }
             foreach (var drone in drones)
-                if (drone != null && drone.IsAlive && drone.enabled && (drone.transform.position-center).sqrMagnitude > 80*80 && !Visible(drone.transform.position))
+                if (drone != null && drone.IsAlive && drone.enabled && (drone.transform.position-center).sqrMagnitude > 42*42 && !Visible(drone.transform.position))
                     drone.Relocate(SpawnPoint(true));
         }
         private Vector3 SpawnPoint(bool offscreen = false)
@@ -92,7 +98,9 @@ namespace NebulaDefender
                 var center = Session.Player.Body.position;
                 for (int i = 0; i < 24; i++)
                 {
-                    var p = center + RandomDirection() * (offscreen ? Range(34,44) : Range(14,26));
+                    var direction=RandomDirection();
+                    if(!offscreen && direction.z<0)direction.z=-direction.z;
+                    var p = center + direction * (offscreen ? Range(25,34) : Range(12,23));
                     if (!offscreen || !Visible(p)) return p;
                 }
                 var behind = view.transform.forward; behind.y = 0; behind.Normalize();
@@ -131,7 +139,9 @@ namespace NebulaDefender
                 }
             }
             Session.AwardRock(rock.Tier);
-            if (Session.IsPlaying && rocks.Count < 3 && Session.Mission.Asteroids < level.asteroidGoal)
+            if(Session.IsPlaying && !Session.ExtractionReady && !earlyUpgrade && Session.Mission.Asteroids>=3)
+            { earlyUpgrade=true; DropPickup(Session.Player.Body.position+Session.Player.transform.forward*3,PickupKind.DoubleShot); }
+            if (Session.IsPlaying && level!=null && rocks.Count < 3 && Session.Mission.Asteroids < level.asteroidGoal)
                 SpawnRock(2, SpawnPoint(), RandomDirection() * level.asteroidSpeed);
         }
         public void DroneDestroyed(EnemyController drone)
@@ -147,6 +157,27 @@ namespace NebulaDefender
             var prefab = kind == PickupKind.Repair ? repairPrefab : doubleShotPrefab;
             if (prefab == null) return;
             var item = Instantiate(prefab, position, Quaternion.identity, pickupRoot); item.Initialize(Session, kind);
+        }
+        public void StopForExtraction() { Clear(); level=null; }
+        public Vector3 AssistedDirection(Vector3 muzzle, Vector3 forward)
+        {
+            DamageTarget best=null; float alignment=Mathf.Cos(7*Mathf.Deg2Rad);
+            void Consider(DamageTarget target)
+            {
+                if(target==null || !target.enabled || !target.IsAlive)return;
+                var delta=target.transform.position-muzzle;
+                if(delta.sqrMagnitude>32*32 || delta.sqrMagnitude<1)return;
+                float dot=Vector3.Dot(forward,delta.normalized);
+                if(dot>alignment) { alignment=dot; best=target; }
+            }
+            foreach(var rock in rocks)Consider(rock);
+            foreach(var drone in drones)Consider(drone);
+            Consider(Boss);
+            if(best==null)return forward;
+            var body=best.GetComponent<Rigidbody>();
+            float flight=Mathf.Min(.35f,Vector3.Distance(muzzle,best.transform.position)/Session.Balance.projectileSpeed);
+            var prediction=best.transform.position+(body!=null?body.linearVelocity*flight:Vector3.zero);
+            return (prediction-muzzle).normalized;
         }
         public void Clear()
         {

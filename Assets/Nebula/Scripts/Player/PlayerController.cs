@@ -15,6 +15,7 @@ namespace NebulaDefender
         private Transform visualRoot;
         private Quaternion visualRest;
         private Camera flightCamera;
+        private ShipPresentation presentation;
         public bool PointerAimValid { get; private set; }
         public Vector3 PointerAim { get; private set; }
         public Rigidbody Body => body;
@@ -24,7 +25,7 @@ namespace NebulaDefender
             session = owner; input = pilotInput; arena = bounds; body = GetComponent<Rigidbody>();
             flightCamera = Camera.main;
             if (engineGlow != null) { visualRoot = engineGlow.parent; visualRest = visualRoot.localRotation; }
-            var presentation = GetComponent<ShipPresentation>();
+            presentation = GetComponent<ShipPresentation>();
             if (presentation == null) presentation = gameObject.AddComponent<ShipPresentation>();
             presentation.Build(visualRoot);
         }
@@ -45,6 +46,7 @@ namespace NebulaDefender
             }
             if (engineGlow != null) engineGlow.localScale = new Vector3(1, 1, active && throttle > 0 ? 1.8f + Mathf.Sin(Time.time * 38) * 0.12f : 0.45f);
             if (visualRoot != null) visualRoot.localRotation = Quaternion.Slerp(visualRoot.localRotation, visualRest * Quaternion.Euler(0, 0, -turn * 14), Time.deltaTime * 9);
+            if(presentation!=null)presentation.SetThrust(active && throttle>0);
         }
         private void FixedUpdate()
         {
@@ -61,6 +63,7 @@ namespace NebulaDefender
         {
             if (resetToOrigin) { body.position = Vector3.zero; body.rotation = Quaternion.identity; }
             body.linearVelocity = body.angularVelocity = Vector3.zero;
+            if(presentation!=null)presentation.ClearTrails();
         }
     }
 }

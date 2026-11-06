@@ -1,4 +1,28 @@
-# Informe de pruebas — actualizado el 5 de noviembre de 2026
+# Informe de pruebas — actualizado el 6 de noviembre de 2026
+
+## Resultado actual · Windows 1.0
+
+**50 pruebas aprobadas: 20 EditMode y 30 PlayMode**, sin omisiones. La campaña «Vuelve a casa» permite jugar sin registro, cumplir las cuotas, abrir un portal y completar cada sector al cruzarlo. La victoria final requiere al jefe y la entrada al último portal.
+
+| Verificación actual | Resultado | Evidencia |
+| --- | --- | --- |
+| Reglas y persistencia | 20/20 | Evidence/edit-tests.xml |
+| Suite completa de integración | 30/30, 125.32 s | Evidence/homecoming-full-suite.xml; copia en play-tests.xml |
+| Radio de entrada final y protección de extracción | 3/3, 39.58 s; subconjunto del total anterior | Evidence/homecoming-extraction-passed.xml |
+| Build Windows x64 1.0 | Succeeded; cero errores y advertencias; 95,177,759 bytes; 13.50 s | Evidence/build-summary.txt |
+| ZIP portable | 161 entradas, 38,181,246 bytes, CRC y archivos esenciales aprobados | Evidence/package-inspection.json |
+| Instalador | Compilado, 27,933,998 bytes | Evidence/installer-build.json |
+| Instalación y desinstalación reales | 161 archivos verificados por SHA-256; archivo ajeno conservado; inscripción del usuario intacta | Evidence/installer-qa.json |
+
+`HomecomingTests` comprueba campaña de invitado sin crear perfiles, negativa de entrada lejana, bonificación única, bloqueo durante pausa y cierre del portal al reiniciar. El recorrido completo dispara con `WeaponController.TryFire` a blancos inmovilizados y usa colliders reales; después desplaza el cuerpo del piloto hasta el portal para verificar el contacto de extracción. **Es una prueba controlada de integración, no una campaña humana ni una medición de dificultad.** Se ajustó el radio máximo de extracción a dos unidades y se repitió este grupo tras el cambio.
+
+El jugador nativo de esta revisión se abrió y su vuelo se inspeccionó visualmente. Faltan el recorrido humano completo, escucha, rendimiento sostenido en el equipo de exposición, teclado/mando físicos y prueba con Internet físicamente desconectado. El juego no requiere servicios de red en ejecución.
+
+La exportación servida en localhost sigue siendo la revisión anterior de vuelo abierto; las pruebas web históricas de abajo no certifican la nueva campaña de portales. El ZIP descargable sí corresponde al jugador Windows actual.
+
+**Meshy pendiente:** la API de la cuenta conectada mantiene HTTP 402 por plan gratuito, con saldo de 140 y cero tareas listadas. No se aceptaron generaciones, descargaron modelos ni consumieron créditos. La mejora con modelos de ese servicio no está verificada ni integrada.
+
+## Historial hasta el 5 de noviembre de 2026
 
 ## Estado
 

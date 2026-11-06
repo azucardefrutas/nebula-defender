@@ -44,6 +44,7 @@ namespace NebulaDefender.Editor
             string project=Path.GetFullPath(".");string output=Path.Combine(project,"Builds","Windows");Directory.CreateDirectory(output);
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
             EditorUserBuildSettings.development=false;
+            PlayerSettings.bundleVersion="1.0.0";
             var report=BuildPipeline.BuildPlayer(new BuildPlayerWithProfileOptions {
                 buildProfile=profile,locationPathName=Path.Combine(output,"NebulaDefender.exe"),options=BuildOptions.CompressWithLz4HC
             });
@@ -52,7 +53,7 @@ namespace NebulaDefender.Editor
             if(report.summary.result!=BuildResult.Succeeded||report.summary.totalErrors!=0)throw new BuildFailedException("Windows build failed; inspect Evidence/build.log and build-summary.txt.");
             foreach(string name in new[]{"NebulaDefender.exe","UnityPlayer.dll","NebulaDefender_Data"})
                 if(!File.Exists(Path.Combine(output,name))&&!Directory.Exists(Path.Combine(output,name)))throw new BuildFailedException("Missing build artifact: "+name);
-            File.WriteAllText(Path.Combine(output,"LEEME.txt"),"NEBULA DEFENDER: GALACTIC ASSAULT\r\nExtrae la carpeta completa y ejecuta NebulaDefender.exe. Conserva NebulaDefender_Data, UnityPlayer.dll y todas las bibliotecas incluidas. No necesitas Unity ni Visual Studio para jugar.\r\nMouse: apuntar. Clic izquierdo: disparar. Mantener clic derecho: avanzar. Pulsar rueda o Shift: escudo. C: cámara. Escape: pausa. WASD y Espacio también disponibles.\r\nRegistro y ranking locales a esta computadora.\r\n");
+            File.WriteAllText(Path.Combine(output,"LEEME.txt"),"NEBULA DEFENDER 1.0 - VUELVE A CASA\r\nAbre tres rutas de salto: despeja cada sector, entra en el portal azul y derrota a Nemesis para volver a casa.\r\nExtrae la carpeta completa y ejecuta NebulaDefender.exe. Conserva todos sus datos y bibliotecas. No necesitas Unity ni Visual Studio.\r\nMouse: apuntar. Clic izquierdo: disparar. Mantener clic derecho: avanzar. Pulsar rueda o Shift: escudo. C: camara. Escape: pausa. WASD y Espacio tambien disponibles.\r\nJUGAR permite entrar directamente; registra un piloto si quieres guardar marcas en el ranking local.\r\n");
             string zip=Path.Combine(project,"Builds","NebulaDefender-Windows-x64.zip");
             if(File.Exists(zip))File.Move(zip,Path.Combine(project,"Builds","NebulaDefender-Windows-x64-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff")+".zip"));
             ZipFile.CreateFromDirectory(output,zip,System.IO.Compression.CompressionLevel.Optimal,true);

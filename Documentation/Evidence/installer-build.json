@@ -1,0 +1,8 @@
+{
+  "file": "NebulaDefender-Setup-x64.exe",
+  "bytes": 27933998,
+  "sha256": "daecf10a9a20a42b0dfbd543951eb23e8e4d581a24b032331ba860a29165172a",
+  "payload_files": 161,
+  "compiler": "C:\\Users\\tonyh\\AppData\\Local\\electron-builder\\Cache\\nsis-3.0.4.1\\nsis-3.0.4.1-1mx3n\\makensis.exe",
+  "result": "compiled"
+}

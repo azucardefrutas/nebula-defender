@@ -24,7 +24,9 @@ La vista principal sigue a la nave para apreciar el volumen. Un indicador cian s
 
 Vuela sin perímetro: no hay paredes ni saltos al lado opuesto. Ambas cámaras siguen a la nave y las amenazas aparecen alrededor de tu zona de vuelo. El indicador cian orienta hacia los objetivos.
 
-La preparación muestra el objetivo y el botón DESPEGAR. El HUD compacto presenta salud, vidas, puntos, cuotas y escudo. La pista de controles desaparece tras 12 segundos. Los fragmentos también cuentan; no es necesario eliminar amenazas residuales al cumplir la misión.
+JUGAR abre la preparación sin exigir registro. Despega, cumple las cuotas del HUD y **entra en el centro del portal azul** cuando aparezca. La flecha y la distancia indican dónde está. Continúa desde los resultados y cruza el último portal para volver a casa. El HUD presenta salud, vidas, puntos, cuotas y escudo; la pista de controles desaparece tras 12 segundos. Los fragmentos también cuentan y no es necesario eliminar amenazas residuales.
+
+El láser tiene una pequeña asistencia de puntería. Tras destruir tres rocas aparece la primera mejora de disparo doble; acércate para recogerla con la atracción automática. El registro de piloto es opcional y solo es necesario para guardar tus marcas.
 
 Preparado para mando: stick izquierdo propulsión/giro; gatillo derecho disparo; botón sur escudo; Start pausa. Su funcionamiento con hardware físico se considera pendiente hasta realizar esa prueba.
 

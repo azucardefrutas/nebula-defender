@@ -21,10 +21,14 @@ namespace NebulaDefender
         public event Action<SessionState> StateChanged;
         public static event Action EditorQuitRequested;
         public bool Sandbox => quickStart;
+        public bool CampaignMode { get; private set; }
+        public bool GuestRun { get; private set; }
+        public JumpGate Gate { get; private set; }
+        public bool ExtractionReady => CampaignMode && Gate != null && Gate.Ready;
         public ProfileRepository Profiles { get; private set; }
         public GameSettings Settings { get; } = new GameSettings();
         public AudioService Audio => audioService;
-        public int UnlockedSector => quickStart ? 3 : Profiles?.Selected?.maxSector ?? 1;
+        public int UnlockedSector => quickStart || GuestRun ? 3 : Profiles?.Selected?.maxSector ?? 1;
         public int CurrentSectorIndex => levelIndex;
         public LevelDefinition[] Levels => levels;
         public SessionState State { get; private set; }
@@ -49,6 +53,9 @@ namespace NebulaDefender
         private void Start()
         {
             Settings.Load();
+            CampaignMode = !quickStart;
+            Gate = new GameObject("Jump gate").AddComponent<JumpGate>();
+            Gate.transform.SetParent(transform,false); Gate.Initialize(this);
             if (!quickStart) Profiles = new ProfileRepository(Application.persistentDataPath);
             if (audioService != null) audioService.Initialize(this);
             feedback.SetSession(this);
@@ -68,29 +75,56 @@ namespace NebulaDefender
         }
         public void StartRun(int index)
         {
-            if (!quickStart && (Profiles.Selected == null || index >= UnlockedSector)) return;
+            if (!quickStart && !GuestRun && (Profiles.Selected == null || index >= UnlockedSector)) return;
             CommitRun();
-            runId = !quickStart ? Profiles.StartRun() : null;
+            runId = !quickStart && !GuestRun ? Profiles.StartRun() : null;
             Stats = new RunStatistics(); Health.Initialize(this, balance); Weapon.Initialize(this);
             BeginSector(index);
+        }
+        public void LaunchCampaign(int index = 0)
+        {
+            CommitRun(); runId = null;
+            CampaignMode = true; GuestRun = Profiles?.Selected == null;
+            StartRun(index);
         }
         public void BeginSector(int index)
         {
             levelIndex = Mathf.Clamp(index, 0, levels.Length - 1); Stats.maxSector = Mathf.Max(Stats.maxSector, levelIndex + 1);
             Mission = new MissionProgress(Level.asteroidGoal, Level.droneGoal, Level.boss); DamagedThisSector = false;
+            Gate.Close();
             Time.timeScale = 1; player.gameObject.SetActive(true); player.ResetPosition();
             projectiles.Clear(); SetState(SessionState.Playing); director.Begin(Level);
             Camera.main.backgroundColor = Level.spaceColor;
             if (backdrop != null) backdrop.ShowSector(Level.sector);
             if (audioService != null) audioService.PlayMusic(Level.sector);
         }
-        public void AwardRock(int tier) { if (!IsPlaying) return; Stats.AddScore(balance.AsteroidPoints(tier)); Stats.asteroids++; Mission.RockDestroyed(); CheckComplete(); }
-        public void AwardDrone() { if (!IsPlaying) return; Stats.AddScore(balance.dronePoints); Stats.enemies++; Mission.DroneDestroyed(); CheckComplete(); }
-        public void AwardBoss() { if (!IsPlaying) return; Stats.AddScore(balance.bossPoints); Stats.enemies++; Mission.DefeatBoss(); CheckComplete(); }
+        public void AwardRock(int tier) { if (!IsPlaying || ExtractionReady) return; Stats.AddScore(balance.AsteroidPoints(tier)); Stats.asteroids++; Mission.RockDestroyed(); CheckComplete(); }
+        public void AwardDrone() { if (!IsPlaying || ExtractionReady) return; Stats.AddScore(balance.dronePoints); Stats.enemies++; Mission.DroneDestroyed(); CheckComplete(); }
+        public void AwardBoss() { if (!IsPlaying || ExtractionReady) return; Stats.AddScore(balance.bossPoints); Stats.enemies++; Mission.DefeatBoss(); CheckComplete(); }
         public void MarkDamage() => DamagedThisSector = true;
         public void CheckComplete()
         {
             if (!IsPlaying || !Mission.Complete) return;
+            if (CampaignMode)
+            {
+                if (!Gate.Ready)
+                {
+                    director.StopForExtraction(); projectiles.Clear();
+                    var heading=Camera.main.transform.forward; heading.y=0; heading.Normalize();
+                    Gate.Open(player.Body.position+heading*14,heading);
+                    if(audioService!=null)audioService.Cue(AudioCue.Complete);
+                }
+                return;
+            }
+            CompleteSector();
+        }
+        public bool TryExtract()
+        {
+            if (!IsPlaying || !ExtractionReady || !Mission.Complete || (player.Body.position-Gate.transform.position).sqrMagnitude>4) return false;
+            Gate.Close(); CompleteSector(); return true;
+        }
+        private void CompleteSector()
+        {
             Stats.AddScore(balance.sectorBonus + (DamagedThisSector ? 0 : balance.flawlessBonus));
             SetState(levelIndex == levels.Length - 1 ? SessionState.Victory : SessionState.SectorComplete);
             Stats.victory = State == SessionState.Victory;
@@ -100,7 +134,7 @@ namespace NebulaDefender
         }
         public void Lose()
         {
-            if (!IsPlaying) return; SetState(SessionState.Defeat); player.gameObject.SetActive(false); CommitRun();
+            if (!IsPlaying) return; Gate.Close(); SetState(SessionState.Defeat); player.gameObject.SetActive(false); CommitRun();
             if (audioService != null) audioService.Cue(AudioCue.Defeat);
         }
         public void NextSector() { if (State == SessionState.SectorComplete) { Health.Repair(25); BeginSector(levelIndex + 1); } }
@@ -108,6 +142,7 @@ namespace NebulaDefender
         public void ReturnToMenu()
         {
             CommitRun(); runId = null; director.Clear(); projectiles.Clear(); player.gameObject.SetActive(false);
+            Gate.Close(); GuestRun=false; CampaignMode=!quickStart;
             SetState(SessionState.Menu);
             if (backdrop != null) backdrop.ShowSector(0);
             if (audioService != null) audioService.PlayMusic(0);

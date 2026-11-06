@@ -11,7 +11,7 @@ namespace NebulaDefender
         private GameObject missionToast, hintPanel;
         private MissionProgress observedMission;
         private int lastScore, lastLives, lastHealth;
-        private bool doubleSeen, helpVisible;
+        private bool doubleSeen, helpVisible, gateAnnounced;
         private float toastUntil, scoreUntil, hintUntil;
         private Action returnFromHelp;
         private Camera gameplayCamera;
@@ -22,12 +22,13 @@ namespace NebulaDefender
         {
             index = Mathf.Clamp(index, 0, session.Levels.Length - 1);
             var level = session.Levels[index];
-            var card = Modal($"SECTOR {index + 1:00}", level.displayName, 1040, 590);
+            var card = Modal($"SALTO {index + 1} / 3 · VUELVE A CASA", level.displayName, 1040, 650);
             Label(card, level.MissionSteps, 36, 178, 968, 135, 32);
-            Label(card, "Mouse apunta · Clic dispara · Derecho avanza", 36, 338, 968, 44, 26, cyan);
-            Button(card, "DESPEGAR", 36, 470, 530, () => session.StartRun(index), true, true);
-            Button(card, "AYUDA", 586, 470, 190, () => ShowHelp(() => Briefing(index)));
-            Button(card, "VOLVER", 796, 470, 208, Sectors);
+            Label(card, "DESPEJA  >  ABRE EL SALTO  >  CRUZA EL ANILLO", 36, 330, 968, 45, 25, cyan);
+            Label(card, "Mouse apunta · Clic dispara · Derecho avanza", 36, 397, 968, 44, 26, muted);
+            Button(card, "DESPEGAR", 36, 530, 530, () => session.LaunchCampaign(index), true, true);
+            Button(card, "AYUDA", 586, 530, 190, () => ShowHelp(() => Briefing(index)));
+            Button(card, "VOLVER", 796, 530, 208, MainMenu);
             FocusFirst();
         }
         private void ShowHelp(Action onReturn)
@@ -43,7 +44,7 @@ namespace NebulaDefender
                 Label(card, keys[i], 54, y + 15, 390, 40, 26, cyan);
                 Label(card, descriptions[i], 454, y + 15, 510, 40, 27);
             }
-            Label(card, "También: WASD + Espacio\nC cambia cámara · ESC pausa", 36, 525, 948, 100, 27, muted);
+            Label(card, "Despeja el sector y entra en el portal azul.\nTambién: WASD + Espacio · C cámara · ESC pausa", 36, 525, 948, 100, 27, muted);
             Button(card, "LISTO", 36, 664, 948, CloseHelp, true, true);
             FocusFirst();
         }
@@ -101,8 +102,8 @@ namespace NebulaDefender
             if (observedMission == session.Mission) return;
             observedMission = session.Mission; lastScore = session.Stats.score;
             lastLives = session.Health.Vitals.Lives; lastHealth = session.Health.Vitals.Health;
-            doubleSeen = false; scoreUntil = 0; hintUntil = Time.time + 12;
-            Announce(session.Sandbox ? "VUELO LIBRE" : session.Level.displayName);
+            doubleSeen = gateAnnounced = false; scoreUntil = 0; hintUntil = Time.time + 12;
+            Announce(session.CampaignMode ? $"SALTO {session.Level.sector} / 3" : "VUELO LIBRE",session.Level.Objective);
         }
         private void Update()
         {
@@ -134,6 +135,12 @@ namespace NebulaDefender
             scoreGain.gameObject.SetActive(Time.time < scoreUntil); score.text = $"{session.Stats.score:000000}";
             var m = session.Mission; var b = session.Director.Boss;
             objective.text = session.Level.boss ? $"DEFENSAS  {Mathf.Min(m.Drones,m.DroneGoal)}/{m.DroneGoal}" : $"ASTEROIDES  {Mathf.Min(m.Asteroids,m.AsteroidGoal)}/{m.AsteroidGoal}" + (m.DroneGoal > 0 ? $"    DRONES  {Mathf.Min(m.Drones,m.DroneGoal)}/{m.DroneGoal}" : "");
+            if(session.CampaignMode)objective.text=$"{session.Level.sector}/3  ·  "+objective.text;
+            if(session.ExtractionReady)
+            {
+                objective.text=$"SALTO {session.Level.sector}/3 · CRUZA EL PORTAL";
+                if(!gateAnnounced) { gateAnnounced=true; Announce("SALTO ABIERTO","Entra en el anillo azul para continuar."); }
+            }
             float progress = (float)(Mathf.Min(m.Asteroids,m.AsteroidGoal) + Mathf.Min(m.Drones,m.DroneGoal)) / Mathf.Max(1,m.AsteroidGoal + m.DroneGoal);
             goalFill.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 620 * progress);
             if (v.Lives < lastLives) Announce("OTRA OPORTUNIDAD", $"{v.Lives} vidas");
@@ -147,22 +154,26 @@ namespace NebulaDefender
             shield.text = h.ShieldActive ? "ESCUDO ACTIVO" : h.ShieldRemaining > 0 ? $"ESCUDO  {h.ShieldRemaining:0.0}s" : "ESCUDO LISTO / SHIFT";
             shieldFill.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 314 * Mathf.Clamp01(1 - h.ShieldRemaining / Mathf.Max(.01f,session.Balance.shieldCooldown)));
             cameraView.GetComponentInChildren<TMP_Text>().text = flightCamera.TacticalView ? "C / VISTA 3D" : "C / TÁCTICA";
-            hintPanel.SetActive(Time.time < hintUntil);
+            hintPanel.SetActive(Time.time < hintUntil || session.ExtractionReady);
+            hintPanel.GetComponentInChildren<TMP_Text>().text=session.ExtractionReady
+                ? $"PORTAL A {Vector3.Distance(session.Player.Body.position,session.Gate.transform.position):0} m · MANTÉN CLIC DERECHO"
+                : "Mouse apunta · Clic dispara · Derecho avanza";
             timer.text = TimeLabel(session.Stats.seconds);
             UpdateTargetMarker();
         }
         private void UpdateTargetMarker()
         {
             var target = session.Director.NearestObjective();
-            if (target == null || (flightCamera.TacticalView && !session.Arena.OpenSpace) || !session.IsPlaying) { targetMarker.gameObject.SetActive(false); return; }
-            var v = gameplayCamera.WorldToViewportPoint(target.transform.position);
+            bool gate=session.ExtractionReady;
+            if ((!gate && target == null) || (flightCamera.TacticalView && !session.Arena.OpenSpace) || !session.IsPlaying) { targetMarker.gameObject.SetActive(false); return; }
+            var v = gameplayCamera.WorldToViewportPoint(gate ? session.Gate.transform.position : target.transform.position);
             bool outside = v.z < 0 || v.x < .05f || v.x > .95f || v.y < .12f || v.y > .85f;
             targetMarker.gameObject.SetActive(outside); if (!outside) return;
             var direction = new Vector2(v.x-.5f,v.y-.5f); if (v.z < 0) direction = -direction;
             if (direction.sqrMagnitude < .001f) direction = Vector2.down; direction.Normalize();
             targetMarker.anchoredPosition = new Vector2(Mathf.Clamp(960+direction.x*820-90,28,1712),-Mathf.Clamp(540-direction.y*400-27,148,908));
             string arrow = Mathf.Abs(direction.x) > Mathf.Abs(direction.y) ? (direction.x > 0 ? ">" : "<") : (direction.y > 0 ? "^" : "v");
-            targetCaption.text = arrow + (target is BossController ? "  NÉMESIS" : target is EnemyController ? "  DRON" : "  ROCA");
+            targetCaption.text = arrow + (gate ? "  SALTO" : target is BossController ? "  NÉMESIS" : target is EnemyController ? "  DRON" : "  ROCA");
         }
     }
 }

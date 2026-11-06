@@ -16,8 +16,6 @@ namespace NebulaDefender
         private GameSession session;
         private Vector3 lastPlayerPosition;
         private bool wasInFlight;
-        private bool wasMouseSteering;
-        private Vector3 mouseForward;
         public bool TacticalView { get; private set; }
         public void Configure(GameBalance b) => balance = b;
         public void Bind(PlayerController ship, GameSession owner) { player = ship; session = owner; }
@@ -40,13 +38,8 @@ namespace NebulaDefender
             if (inFlight && !TacticalView)
             {
                 var p = player.Body.position;
-                var forward = player.transform.forward;
-                bool mouse = session.Input.MouseSteering;
-                if (mouse && !wasMouseSteering) { mouseForward = transform.forward; mouseForward.y = 0; mouseForward.Normalize(); }
-                if (mouse) forward = mouseForward;
-                wasMouseSteering = mouse;
-                var destination = p - forward * 16 + Vector3.up * 10;
-                var focus = p + forward * 6 + Vector3.up * 0.4f;
+                var destination = p + new Vector3(0,18,-22);
+                var focus = p + Vector3.forward * 2;
                 bool snap = !wasInFlight || Vector3.Distance(p, lastPlayerPosition) > 18;
                 float blend = snap ? 1 : 1 - Mathf.Exp(-7 * Time.deltaTime);
                 stablePosition = Vector3.Lerp(stablePosition, destination, blend);

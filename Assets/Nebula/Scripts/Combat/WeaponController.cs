@@ -17,13 +17,14 @@ namespace NebulaDefender
             if (session == null || !session.IsPlaying || Time.time < nextFire) return false;
             var b = session.Balance;
             var muzzle = transform.position + transform.forward * 1.75f;
+            var aim = session.Director.AssistedDirection(muzzle,transform.forward);
             bool fired;
             if (DoubleShot)
             {
-                fired = session.Projectiles.Fire(Team.Player, muzzle - transform.right * 0.5f, transform.forward, b.projectileSpeed, b.projectileDamage, b.projectileLifetime);
-                session.Projectiles.Fire(Team.Player, muzzle + transform.right * 0.5f, transform.forward, b.projectileSpeed, b.projectileDamage, b.projectileLifetime);
+                fired = session.Projectiles.Fire(Team.Player, muzzle - transform.right * 0.5f, aim, b.projectileSpeed, b.projectileDamage, b.projectileLifetime);
+                session.Projectiles.Fire(Team.Player, muzzle + transform.right * 0.5f, aim, b.projectileSpeed, b.projectileDamage, b.projectileLifetime);
             }
-            else fired = session.Projectiles.Fire(Team.Player, muzzle, transform.forward, b.projectileSpeed, b.projectileDamage, b.projectileLifetime);
+            else fired = session.Projectiles.Fire(Team.Player, muzzle, aim, b.projectileSpeed, b.projectileDamage, b.projectileLifetime);
             if (fired) { nextFire = Time.time + b.fireInterval; session.Feedback.Laser(muzzle, false); }
             return fired;
         }

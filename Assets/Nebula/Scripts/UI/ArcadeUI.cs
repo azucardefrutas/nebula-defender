@@ -107,10 +107,10 @@ namespace NebulaDefender
             Box("Left accent",page,62,84,4,46,cyan);
             Label(page,"UPB  /  SCIENCE & TECHNOLOGY 2026",88,90,650,30,18,cyan);
             Label(page,"NEBULA\nDEFENDER",82,164,705,218,92);
-            Label(page,"G A L A C T I C   A S S A U L T",89,390,660,36,23,cyan);
-            Label(page,"Tres sectores. Una última defensa.",90,451,620,70,25,muted);
-            Button(page,"JUGAR",90,532,600,()=>{if(session.Profiles?.Selected==null)Pilots();else Sectors();},true,true);
-            Button(page,"CÓMO JUGAR",90,602,600,()=>ShowHelp(MainMenu));
+            Label(page,"V U E L V E   A   C A S A",89,390,660,36,23,cyan);
+            Label(page,"Abre tres rutas de salto.\nDespeja cada sector y cruza el portal.",90,451,620,70,25,muted);
+            Button(page,"JUGAR",90,532,600,()=>Briefing(0),true,true);
+            Button(page,"SECTORES",90,602,600,()=>{if(session.Profiles?.Selected==null)Pilots();else Sectors();});
             Button(page,"PILOTOS",90,672,600,Pilots);
             Button(page,"RÉCORDS",90,742,600,Ranking);
             Button(page,"OPCIONES",90,812,600,()=>Settings(false));
@@ -119,7 +119,7 @@ namespace NebulaDefender
 #else
             Button(page,"SALIR",90,882,600,session.Quit);
 #endif
-            Label(page,session.Profiles?.Selected!=null?"PILOTO ACTIVO  /  "+session.Profiles.Selected.nickname:"SIN PILOTO  /  REGISTRO LOCAL",90,962,680,34,19,cyan);
+            Label(page,session.Profiles?.Selected!=null?"PILOTO  /  "+session.Profiles.Selected.nickname:"JUEGA DIRECTO · PILOTO OPCIONAL",90,962,680,34,19,cyan);
             Label(page,"UNIVERSIDAD POLITÉCNICA DE BACALAR\nMtro. Esdras Chuc C. · Arcade 3D independiente / Offline",90,1000,690,58,16,muted);
             Label(page,"ND–01\nAURORA INTERCEPTOR",1280,770,520,80,25,cyan);
             Label(page,"MOUSE + CLIC  /  TÚ PILOTAS",1140,1000,700,36,20,muted);
@@ -263,11 +263,11 @@ namespace NebulaDefender
         private void Results()
         {
             bool complete=session.State==SessionState.SectorComplete;bool victory=session.State==SessionState.Victory;
-            var card=Modal(victory?"LOS TRES SECTORES ESTÁN A SALVO":complete?"OBJETIVO COMPLETADO":"SIN VIDAS DISPONIBLES",victory?"VICTORIA GALÁCTICA":complete?"SECTOR ASEGURADO":"MISIÓN TERMINADA",980,790);
+            var card=Modal(victory?"LOS TRES SALTOS ESTÁN ABIERTOS":complete?$"RUTA {session.Level.sector} / 3 ABIERTA":"SIN VIDAS DISPONIBLES",victory?"ESTÁS EN CASA":complete?"SALTO COMPLETADO":"INTÉNTALO DE NUEVO",980,790);
             Label(card,$"{session.Stats.score:000000}",36,182,900,105,82,cyan);
             Label(card,"PUNTUACIÓN TOTAL",40,292,860,38,18,muted);
             Label(card,$"SECTOR {session.Stats.maxSector}     /     {TimeLabel(session.Stats.seconds)} DE VUELO\n{session.Stats.asteroids} ASTEROIDES     /     {session.Stats.enemies} ENEMIGOS",36,368,900,95,26);
-            if(complete)Button(card,"SIGUIENTE SECTOR",36,528,908,session.NextSector,true,true);
+            if(complete)Button(card,"CONTINUAR EL VIAJE",36,528,908,session.NextSector,true,true);
             else Button(card,"VOLVER A INTENTAR",36,528,908,()=>session.StartRun(0),true,true);
             Button(card,"MENÚ PRINCIPAL",36,611,908,session.ReturnToMenu);Notice(card,36,710,900);FocusFirst();
         }

@@ -1,0 +1,21 @@
+{
+  "checked_date": "2026-11-06",
+  "service": "Meshy",
+  "cli_version": "0.8.3",
+  "authenticated": true,
+  "verified": true,
+  "requested_assets": ["Aurora", "Hostile drone", "Nemesis Prime", "Asteroid"],
+  "approved_estimated_credits": 60,
+  "approved_maximum_credits": 64,
+  "reported_balance": 140,
+  "tasks_listed": 0,
+  "accepted_task_ids": [],
+  "credits_consumed_by_these_requests": 0,
+  "last_operation_id": "nebula-aurora-active-20261106",
+  "last_operation_state": "rejected",
+  "http_status": 402,
+  "service_message": "Task creation on the free plan is no longer supported. To continue creating tasks, please upgrade your plan.",
+  "user_confirmation": "The subscription was activated on the same account.",
+  "result": "blocked_by_service_plan_status",
+  "models_integrated": false
+}

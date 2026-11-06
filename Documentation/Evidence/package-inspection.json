@@ -1,8 +1,8 @@
 {
   "zip": "NebulaDefender-Windows-x64.zip",
-  "bytes": 38177975,
+  "bytes": 38181246,
   "entries": 161,
   "integrity": "passed",
-  "sha256": "796e6228e639b9be9b805bb57573ebddec015c9a28db698861adef745005ab66",
+  "sha256": "8cf73d8cb8e1c87ba0920ad7992beffed0ef867bd4660d4af7f3b209ebdda4d7",
   "required_player_files": "passed"
 }
