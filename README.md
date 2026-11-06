@@ -25,6 +25,8 @@ Si faltan recursos generados, usa **Tools → Nebula Defender → Generate Demo*
 
 ## Campaña
 
+La cámara principal sigue ahora la nave desde atrás. Pulsa **C** para alternar con la vista táctica y **F1** para abrir la guía. Cada sector ofrece un informe de misión; el HUD muestra los objetivos pendientes y un indicador para encontrar amenazas fuera de vista.
+
 Usa **Tools → Nebula Defender → Open Campaign** y pulsa Play. Registra un apodo, selecciona un sector desbloqueado y completa sus objetivos. Los siguientes sectores se desbloquean al ganar; la pantalla de resultados permite continuar. Al perder las tres vidas termina la partida.
 
 El ranking muestra las mejores diez marcas locales, una por piloto. Los perfiles, estadísticas y resultados están en `Application.persistentDataPath/pilots-v1.json` con respaldo `.bak`. La ruta habitual en Windows es `%USERPROFILE%\AppData\LocalLow\UPB Arcade\Nebula Defender Galactic Assault`. Las preferencias simples se guardan por separado en PlayerPrefs.

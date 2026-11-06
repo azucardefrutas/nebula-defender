@@ -131,5 +131,37 @@ namespace NebulaDefender.Tests
             Assert.That(session.State,Is.EqualTo(SessionState.Playing));
             InputSystem.QueueStateEvent(keyboard,new KeyboardState());
         }
+        [UnityTest] public IEnumerator F1HelpFreezesCombatAndReturnsToFlight()
+        {
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.F1));
+            yield return new WaitForSecondsRealtime(0.1f);
+            Assert.That(session.State,Is.EqualTo(SessionState.Paused));
+            Assert.That(session.Weapon.TryFire(),Is.False);
+            float seconds=session.Stats.seconds;
+            yield return new WaitForSecondsRealtime(0.15f);
+            Assert.That(session.Stats.seconds,Is.EqualTo(seconds));
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.F1));
+            yield return new WaitForSecondsRealtime(0.1f);
+            Assert.That(session.State,Is.EqualTo(SessionState.Playing));
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());
+        }
+        [UnityTest] public IEnumerator Close3DCameraKeepsShipVisibleAndCChangesToTacticalView()
+        {
+            var camera=Camera.main;var rig=camera.GetComponent<CameraRig>();
+            Assert.That(rig.TacticalView,Is.False);
+            Assert.That(camera.transform.position.y,Is.LessThan(20));
+            var visible=camera.WorldToViewportPoint(session.Player.Body.position);
+            Assert.That(visible.z,Is.GreaterThan(0));
+            Assert.That(visible.x,Is.InRange(0.2f,0.8f));Assert.That(visible.y,Is.InRange(0.15f,0.85f));
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.C));
+            yield return new WaitForSecondsRealtime(0.1f);
+            Assert.That(rig.TacticalView,Is.True);Assert.That(camera.transform.position.y,Is.GreaterThan(20));
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());yield return null;
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.C));
+            yield return new WaitForSecondsRealtime(0.1f);
+            Assert.That(rig.TacticalView,Is.False);Assert.That(camera.transform.position.y,Is.LessThan(20));
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 ## Estado
 
-Implementación jugable y compilada para Windows, con **39 pruebas automatizadas aprobadas**: 20 EditMode y 19 PlayMode, ejecutadas nuevamente el 5 de noviembre. No se declara terminada la validación académica: faltan una campaña completa jugada por una persona, escucha de audio, medición en el equipo de exposición y prueba física con Internet desconectado.
+Implementación jugable y compilada para Windows y navegador, con **41 pruebas automatizadas aprobadas**: 20 EditMode y 21 PlayMode. No se declara terminada la validación académica: faltan una campaña completa jugada por una persona, escucha de audio, medición en el equipo de exposición y prueba física con Internet desconectado.
 
 Entorno: Unity **6000.3.15f1**, URP **17.3.0**, Input System **1.19.0**, uGUI/TMP **2.0.0**, Test Framework **1.6.0**. Backend de jugador: Mono, Windows x64. El directorio estaba vacío al inicio; no había una base de pruebas previa ni archivos originales de juego.
 
@@ -11,7 +11,7 @@ Entorno: Unity **6000.3.15f1**, URP **17.3.0**, Input System **1.19.0**, uGUI/TM
 | Grupo | Resultado | Evidencia |
 | --- | --- | --- |
 | Reglas y guardado EditMode | **20/20 aprobadas**, cero omitidas | Evidence/edit-tests.xml |
-| Física, controles e integración PlayMode | **19/19 aprobadas**, cero omitidas | Evidence/play-tests.xml |
+| Física, controles e integración PlayMode | **21/21 aprobadas**, cero omitidas | Evidence/play-tests.xml |
 | Hito inicial de mecánica central | **6/6 aprobadas** antes de generar la campaña completa | Evidence/core-milestone-passed.xml |
 | Referencias de escenas, prefabs, shaders, URP, capas y perfil | Aprobado; **310 objetos revisados** | Evidence/project-validation.txt |
 | WAV originales | 15 archivos, mono 22,050 Hz; pico máximo 0.66; sin revisión subjetiva de audio | Evidence/audio-inspection.json |
@@ -118,3 +118,17 @@ En la exportación final se comprobó además **VUELO RÁPIDO / SIN REGISTRO**, 
 La comprobación HTTP validó el servidor, los tres archivos gzip, sus tamaños, `Content-Encoding: gzip`, `Content-Type: application/wasm` y la firma del módulo Wasm descomprimido. Evidencia: `Evidence/web-http-check.json` y las capturas `web-final-controls.png`, `web-combat.png`, `web-ranking-restored.png` y `web-quickflight.png`.
 
 Después de corregir el icono de la página, la consola del navegador mostró **cero errores**. Chromium emitió seis advertencias de consulta de formatos WebGL y una del shader opcional de escalado FSR no compatible. Se conservaron en el registro; no se ocultaron ni se interpretan como ausencia de advertencias en ejecución. El menú, escenario y combate renderizaron correctamente. La revisión de audio subjetiva, la campaña humana completa, el teclado físico del ejecutable y el rendimiento sostenido en el equipo de exposición siguen pendientes.
+
+## Mejora visual 3D y usabilidad
+
+La cámara predeterminada sigue ahora a la nave desde atrás y arriba, con interpolación y ajuste al cruzar un borde. C alterna con la vista táctica. El modelo visual se inclina al girar sin cambiar las restricciones físicas. El escenario incorpora cielo direccional procedural, reflejos ambientales y ocho grupos de restos a distintas profundidades; los láseres dejan estelas y los asteroides muestran un destello al recibir daño. No se añadieron recursos externos.
+
+Se añadieron preparación de misión, ayuda F1, aprendizaje contextual de los cuatro controles principales, indicadores de objetivos fuera de pantalla, progreso de cuotas, protección/recarga del escudo y avisos de combate. Los objetivos continúan usando los mismos datos y condiciones de victoria. En Chromium se recorrió registro → selección → VER MISIÓN → COMENZAR MISIÓN, y se comprobaron movimiento, giro y disparos. También se revisaron F1 y el cambio de cámara C. Las capturas son `chase-3d-final.png`, `tactical-final.png`, `help-final.png`, `briefing-final.png` y `campaign-3d-start.png` en Evidence. La consola mantuvo cero errores y las siete advertencias WebGL/FSR previamente descritas.
+
+La última suite aprobó **20/20 EditMode y 21/21 PlayMode**, cero fallos y omisiones; PlayMode tardó 78.63 s. Las nuevas pruebas `F1HelpFreezesCombatAndReturnsToFlight` y `Close3DCameraKeepsShipVisibleAndCChangesToTacticalView` comprueban pausa/reanudación desde ayuda, encuadre de la nave y alternancia real por teclado. Un intento anterior acumuló 30,281 s y tres timeouts durante una ejecución prolongada/interrumpida; se conserva en `play-tests-polish-timeouts.xml`. La repetición completa aprobó sin desactivar pruebas ni ampliar sus límites.
+
+Un primer intento de shader usó el identificador reservado `point`; las compilaciones detectaron tres errores y se rechazaron, aunque Unity devolviera inicialmente Succeeded. Los resúmenes fallidos se conservan en `build-sky-attempt.txt` y `web-sky-attempt.txt`. Se corrigió a `starCenter`, se amplió el validador a todos los shaders propios y se redujo la densidad/brillo del cielo tras inspección visual. El validador final pasó.
+
+Compilaciones vigentes: Windows **95,169,530 bytes**, 7.14 s incremental; Web **16,852,712 bytes**, 11.84 s incremental. Ambas tienen **cero errores y cero advertencias de build**. El proyecto fuente sigue en Unity 6.3; Web usa la copia aislada 6.4 descrita arriba. El ZIP Windows contiene **161 entradas**, ocupa **38,175,678 bytes** y pasó CRC y presencia de todos los archivos requeridos. SHA-256: `e73ccf54e156eebadf2d5fa966c627ac97914767b953768bf609fc6efd7a9d30`. `web-http-check.json` registra la comprobación actual de los assets servidos y de la descarga Windows.
+
+La revisión visual de esta mejora se realizó en WebGL. El nuevo ejecutable se compiló y empaquetó; su recorrido visual actualizado, el equilibrio de los tres sectores, la escucha y el rendimiento sostenido siguen pendientes. No se toma la compilación como prueba de jugabilidad humana.

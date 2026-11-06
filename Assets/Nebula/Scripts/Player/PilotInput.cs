@@ -7,12 +7,14 @@ namespace NebulaDefender
     {
         [SerializeField] private InputActionAsset actions;
         private InputActionMap flight;
-        private InputAction throttle, turn, fire, shield, pause;
+        private InputAction throttle, turn, fire, shield, pause, help, view;
         public float Throttle => flight != null && flight.enabled ? throttle.ReadValue<float>() : 0;
         public float Turn => flight != null && flight.enabled ? turn.ReadValue<float>() : 0;
         public bool Fire => flight != null && flight.enabled && fire.IsPressed();
         public bool ShieldPressed => flight != null && flight.enabled && shield.WasPressedThisFrame();
         public bool PausePressed => pause != null && pause.WasPressedThisFrame();
+        public bool HelpPressed => help != null && help.WasPressedThisFrame();
+        public bool ViewPressed => view != null && view.WasPressedThisFrame();
         public bool FlightEnabled => flight != null && flight.enabled;
         public void Configure(InputActionAsset asset) => actions = asset;
         private void Awake()
@@ -22,7 +24,10 @@ namespace NebulaDefender
             throttle = flight.FindAction("Throttle", true); turn = flight.FindAction("Turn", true);
             fire = flight.FindAction("Fire", true); shield = flight.FindAction("Shield", true);
             pause = actions.FindAction("System/Pause", true);
-            actions.FindActionMap("System").Enable();
+            var system = actions.FindActionMap("System");
+            help = system.FindAction("Help") ?? system.AddAction("Help", InputActionType.Button, "<Keyboard>/f1");
+            view = system.FindAction("View") ?? system.AddAction("View", InputActionType.Button, "<Keyboard>/c");
+            system.Enable();
         }
         public void SetFlight(bool value) { if (value) flight.Enable(); else flight.Disable(); }
         private void OnDestroy() { if (actions != null) { actions.Disable(); Destroy(actions); } }

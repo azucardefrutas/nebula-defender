@@ -20,6 +20,21 @@ namespace NebulaDefender
         public int DroneCount => drones.Count;
         public GameSession Session { get; private set; }
         public int RockCount => rocks.Count;
+        public DamageTarget NearestObjective()
+        {
+            if (Session == null || Session.Mission == null) return null;
+            if (Boss != null && Boss.IsAlive) return Boss;
+            DamageTarget nearest = null; float distance = float.MaxValue;
+            void Consider(DamageTarget actor)
+            {
+                if (actor == null || !actor.IsAlive) return;
+                float d = (actor.transform.position - Session.Player.Body.position).sqrMagnitude;
+                if (d < distance) { distance = d; nearest = actor; }
+            }
+            if (Session.Mission.Asteroids < Session.Mission.AsteroidGoal) foreach (var rock in rocks) Consider(rock);
+            if (Session.Mission.Drones < Session.Mission.DroneGoal) foreach (var drone in drones) Consider(drone);
+            return nearest;
+        }
         public void Configure(AsteroidController[] prefabs) => rockPrefabs = prefabs;
         public void ConfigureEnemies(EnemyController drone, BossController boss, Pickup repair, Pickup doubleShot)
         { dronePrefab = drone; bossPrefab = boss; repairPrefab = repair; doubleShotPrefab = doubleShot; }

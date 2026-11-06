@@ -56,11 +56,13 @@ namespace NebulaDefender
             director.Initialize(this); player.Initialize(this, input, arena);
             Health = player.GetComponent<PlayerHealth>(); Weapon = player.GetComponent<WeaponController>();
             Health.Initialize(this, balance); Weapon.Initialize(this);
+            Camera.main.GetComponent<CameraRig>().Bind(player, this);
             ApplySettings();
             if (quickStart) StartRun(0); else ReturnToMenu();
         }
         private void Update()
         {
+            if (input.ViewPressed && (State == SessionState.Playing || State == SessionState.Paused)) Camera.main.GetComponent<CameraRig>().ToggleView();
             if (input.PausePressed && (State == SessionState.Playing || State == SessionState.Paused)) Pause(State != SessionState.Paused);
             if (IsPlaying) Stats.seconds += Time.deltaTime;
         }

@@ -45,6 +45,11 @@ namespace NebulaDefender.Editor
                     if(material.shader==null||ShaderUtil.ShaderHasError(material.shader))throw new InvalidOperationException("Invalid shader: "+material.name);
                 }
                 if(UnityEngine.Rendering.GraphicsSettings.defaultRenderPipeline is not UniversalRenderPipelineAsset)throw new InvalidOperationException("URP is not configured.");
+                foreach(string guid in AssetDatabase.FindAssets("t:Shader",new[]{"Assets/Nebula"}))
+                {
+                    var shader=AssetDatabase.LoadAssetAtPath<Shader>(AssetDatabase.GUIDToAssetPath(guid));
+                    if(shader==null||ShaderUtil.ShaderHasError(shader))throw new InvalidOperationException("Invalid project shader: "+AssetDatabase.GUIDToAssetPath(guid));
+                }
                 var layers=new[]{"Player","Asteroids","Enemies","PlayerProjectiles","EnemyProjectiles","Pickups"};
                 for(int i=0;i<layers.Length;i++)if(LayerMask.LayerToName(i+8)!=layers[i])throw new InvalidOperationException("Incorrect physics layer: "+layers[i]);
                 if(!Physics.GetIgnoreLayerCollision(8,11)||Physics.GetIgnoreLayerCollision(9,11)||Physics.GetIgnoreLayerCollision(8,12))throw new InvalidOperationException("Incorrect collision matrix.");

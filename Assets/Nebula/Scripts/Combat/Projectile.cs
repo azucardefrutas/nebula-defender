@@ -12,6 +12,19 @@ namespace NebulaDefender
         private Vector3 velocity;
         private float expires;
         private bool spent = true;
+        private TrailRenderer streak;
+        private void Awake()
+        {
+            var mesh = GetComponentInChildren<MeshRenderer>();
+            if (mesh == null) return;
+            streak = gameObject.AddComponent<TrailRenderer>();
+            streak.sharedMaterial = mesh.sharedMaterial;
+            streak.time = 0.055f; streak.minVertexDistance = 0.15f;
+            streak.startWidth = 0.12f; streak.endWidth = 0.01f;
+            streak.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            streak.receiveShadows = false; streak.emitting = false;
+        }
+        private void OnDisable() { if (streak != null) { streak.emitting = false; streak.Clear(); } }
         public void Launch(ProjectilePool owner, Team faction, Vector3 p, Vector3 direction, float speed, int power, float lifetime)
         {
             pool = owner; team = faction; damage = power;
@@ -22,6 +35,7 @@ namespace NebulaDefender
             transform.SetPositionAndRotation(p, body.rotation);
             velocity = direction.normalized * speed; expires = Time.time + lifetime; spent = false;
             gameObject.SetActive(true);
+            if (streak != null) { streak.Clear(); streak.emitting = true; }
         }
         private void FixedUpdate()
         {

@@ -13,6 +13,8 @@ namespace NebulaDefender
         public override bool IsAlive => Vitals != null && !Vitals.Dead;
         public bool ShieldActive => Time.time < shieldUntil;
         public float ShieldRemaining => Mathf.Max(0, shieldReady - Time.time);
+        public float ShieldActiveRemaining => Mathf.Max(0, shieldUntil - Time.time);
+        public float SafetyRemaining => Mathf.Max(0, protectedUntil - Time.time);
         public void Configure(GameObject visual) => shieldVisual = visual;
         public void Initialize(GameSession owner, GameBalance config)
         {

@@ -2,6 +2,6 @@ Result: Succeeded
 Platform: WebGL
 Errors: 0
 Warnings: 0
-Size: 16822869
-Time: 00:04:40.7749886
+Size: 16852712
+Time: 00:00:11.8384954
 Output: C:/Users/tonyh/OneDrive/Documents/nebula 3D/BuildWork/UnityWeb/Builds/WebGL

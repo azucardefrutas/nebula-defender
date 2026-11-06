@@ -5,8 +5,12 @@
 | Nave Aurora | Mesh de fuselaje/alas y primitivas creados para este proyecto | Generated/Prefabs/PlayerShip.prefab |
 | Cuatro rocas irregulares | Icosaedro subdividido con semilla y vértices desplazados | Generated/Meshes/Asteroid*.asset |
 | Drones, Nemesis Prime, fortaleza | Composición procedural original | Generated/Prefabs y escenas |
-| Estrellas | Un mesh estático con 500 triángulos | Generated/Meshes/Stars.asset |
-| Nebulosa y planeta | Shaders URP originales | Art/Materials |
+| Cielo, estrellas y nebulosa | Skybox procedural direccional original; sustituye el fondo plano durante ejecución | Resources/NebulaSky.shader |
+| Estrellas de respaldo | Mesh estático de 500 triángulos, desactivado al iniciar el cielo nuevo | Generated/Meshes/Stars.asset |
+| Planeta | Shader URP original sobre geometría 3D | Art/Materials |
+| Reflejos ambientales | Cubemap procedural de 32×32 por cara, creado una vez | SpaceBackdrop en ejecución |
+| Restos orbitales | Ocho grupos de tres vigas metálicas a distintas profundidades, sin colisión | SpaceBackdrop en ejecución |
+| Estelas láser y destello al impacto | TrailRenderer reutilizado con el proyectil y MaterialPropertyBlock en asteroides | Scripts/Combat y Scripts/Asteroids |
 | Materiales y escudo | URP Lit; paleta original | Generated/Materials |
 | Explosión y fragmentos visuales | Unity Particle System; pool de 16 | Generated/Prefabs/ImpactBurst.prefab |
 | Música y efectos | Síntesis original, sin muestras externas | Audio/Music y Audio/SFX |

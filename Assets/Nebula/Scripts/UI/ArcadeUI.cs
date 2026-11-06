@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 namespace NebulaDefender
 {
     /// <summary>uGUI presentation. Gameplay, profiles and persistence remain owned by their respective systems.</summary>
-    public sealed class ArcadeUI : MonoBehaviour
+    public sealed partial class ArcadeUI : MonoBehaviour
     {
         [SerializeField] private GameSession session;
         [SerializeField] private TMP_FontAsset font;
@@ -26,7 +26,7 @@ namespace NebulaDefender
         private readonly Color ink = new Color(0.025f,0.045f,0.08f,0.96f);
         private readonly Color panel = new Color(0.045f,0.09f,0.14f,0.97f);
         private readonly Color text = new Color(0.83f,0.91f,0.96f);
-        private readonly Color muted = new Color(0.42f,0.59f,0.7f);
+        private readonly Color muted = new Color(0.62f,0.75f,0.83f);
         private readonly Color cyan = new Color(0.18f,0.9f,1);
         private Button first;
         private readonly List<Vector2Int> resolutions = new List<Vector2Int>();
@@ -73,6 +73,7 @@ namespace NebulaDefender
         }
         private void ClearPage()
         {
+            helpVisible=false;
             EventSystem.current.SetSelectedGameObject(null); first=null;
             if(page!=null){page.gameObject.SetActive(false);Destroy(page.gameObject);}
             page=Rect("Active screen",transform,0,0,1920,1080);
@@ -104,21 +105,22 @@ namespace NebulaDefender
             Label(page,"UPB  /  SCIENCE & TECHNOLOGY 2026",88,90,650,30,18,cyan);
             Label(page,"NEBULA\nDEFENDER",82,164,705,218,92);
             Label(page,"G A L A C T I C   A S S A U L T",89,390,660,36,23,cyan);
-            Label(page,"Tres sectores. Una última línea de defensa.",90,457,620,45,24,muted);
-            Button(page,"01   JUGAR",90,542,600,()=>{if(session.Profiles?.Selected==null)Pilots();else Sectors();},true,true);
-            Button(page,"02   REGISTRAR / CAMBIAR PILOTO",90,616,600,Pilots);
-            Button(page,"03   SALÓN DE LA FAMA",90,690,600,Ranking);
-            Button(page,"04   CONFIGURACIÓN",90,764,600,()=>Settings(false));
+            Label(page,"Destruye asteroides, elimina drones y derrota a Némesis en tres sectores.",90,451,620,70,25,muted);
+            Button(page,"01   JUGAR CAMPAÑA",90,532,600,()=>{if(session.Profiles?.Selected==null)Pilots();else Sectors();},true,true);
+            Button(page,"02   CÓMO JUGAR",90,602,600,()=>ShowHelp(MainMenu));
+            Button(page,"03   REGISTRAR / CAMBIAR PILOTO",90,672,600,Pilots);
+            Button(page,"04   SALÓN DE LA FAMA",90,742,600,Ranking);
+            Button(page,"05   CONFIGURACIÓN",90,812,600,()=>Settings(false));
 #if UNITY_WEBGL && !UNITY_EDITOR
-            Button(page,"05   VUELO RÁPIDO / SIN REGISTRO",90,838,600,()=>SceneManager.LoadScene("CoreSandbox"));
+            Button(page,"06   VUELO RÁPIDO / SIN REGISTRO",90,882,600,()=>SceneManager.LoadScene("CoreSandbox"));
 #else
-            Button(page,"05   SALIR",90,838,600,session.Quit);
+            Button(page,"06   SALIR",90,882,600,session.Quit);
 #endif
-            Label(page,session.Profiles?.Selected!=null?"PILOTO ACTIVO  /  "+session.Profiles.Selected.nickname:"SIN PILOTO  /  REGISTRO LOCAL",90,945,680,34,19,cyan);
+            Label(page,session.Profiles?.Selected!=null?"PILOTO ACTIVO  /  "+session.Profiles.Selected.nickname:"SIN PILOTO  /  REGISTRO LOCAL",90,962,680,34,19,cyan);
             Label(page,"UNIVERSIDAD POLITÉCNICA DE BACALAR\nMtro. Esdras Chuc C. · Arcade 3D independiente / Offline",90,1000,690,58,16,muted);
             Label(page,"ND–01\nAURORA INTERCEPTOR",1280,770,520,80,25,cyan);
             Label(page,"WASD / FLECHAS   ·   ESPACIO   ·   SHIFT",1140,1000,700,36,20,muted);
-            Notice(page,90,909,650);FocusFirst();
+            Notice(page,850,915,1000);FocusFirst();
         }
         private void SandboxMenu()
         {
@@ -176,7 +178,7 @@ namespace NebulaDefender
                 Label(slot,$"0{i+1} / "+(unlocked?"DISPONIBLE":"BLOQUEADO"),24,25,344,35,18,unlocked?cyan:muted);
                 Label(slot,data.displayName,24,85,344,100,35);
                 Label(slot,data.Objective,24,196,344,90,23,muted);
-                Button(slot,unlocked?"INICIAR MISIÓN":"COMPLETA EL ANTERIOR",24,303,344,()=>session.StartRun(sector),unlocked,true);
+                Button(slot,unlocked?"VER MISIÓN":"COMPLETA EL ANTERIOR",24,303,344,()=>Briefing(sector),unlocked,true);
             }
             Label(card,"La nave conserva inercia. Gira para orientar el cañón. Los bordes conectan con el lado opuesto.",36,645,1220,50,22,muted);
             Button(card,"MENÚ PRINCIPAL",36,700,360,MainMenu);Notice(card,430,705,800);FocusFirst();
@@ -244,13 +246,14 @@ namespace NebulaDefender
         }
         private void PauseMenu()
         {
-            var card=Modal("VUELO EN SUSPENSIÓN","PAUSA",760,680);
+            var card=Modal("VUELO EN SUSPENSIÓN","PAUSA",860,780);
             Label(card,"El combate, los disparos y el reloj están detenidos.",36,148,680,65,24,muted);
-            Button(card,"CONTINUAR",36,257,688,()=>session.Pause(false),true,true);
-            Button(card,"REINICIAR SECTOR",36,337,688,session.Restart);
-            Button(card,"CONFIGURACIÓN",36,417,688,()=>Settings(true));
-            Button(card,"MENÚ PRINCIPAL",36,497,688,session.ReturnToMenu);
-            Label(card,"ESC para continuar",36,594,680,40,21,muted);FocusFirst();
+            Button(card,"CONTINUAR",36,247,788,()=>session.Pause(false),true,true);
+            Button(card,"CÓMO JUGAR / OBJETIVOS",36,327,788,()=>ShowHelp(PauseMenu));
+            Button(card,"REINICIAR SECTOR",36,407,788,session.Restart);
+            Button(card,"CONFIGURACIÓN",36,487,788,()=>Settings(true));
+            Button(card,"MENÚ PRINCIPAL",36,567,788,session.ReturnToMenu);
+            Label(card,"ESC para continuar · F1 para consultar la ayuda",36,690,788,40,22,muted);FocusFirst();
         }
         private void Results()
         {
@@ -262,37 +265,6 @@ namespace NebulaDefender
             if(complete)Button(card,"SIGUIENTE SECTOR",36,528,908,session.NextSector,true,true);
             else Button(card,"VOLVER A INTENTAR",36,528,908,()=>session.StartRun(0),true,true);
             Button(card,"MENÚ PRINCIPAL",36,611,908,session.ReturnToMenu);Notice(card,36,710,900);FocusFirst();
-        }
-        private void BuildHUD()
-        {
-            hud=Rect("Flight HUD",transform,0,0,1920,1080);
-            var top=Box("Top telemetry",hud,24,22,1872,103,new Color(0.012f,0.027f,0.052f,0.88f));
-            Box("HUD accent",top,0,0,3,103,cyan);
-            telemetry=Label(top,"",22,14,430,40,22);score=Label(top,"",500,14,360,55,34,cyan);
-            Button(top,"PAUSA",865,20,132,()=>session.Pause(true));
-            objective=Label(top,"",1020,13,825,78,24);objective.alignment=TextAlignmentOptions.TopRight;
-            Box("Health track",top,24,68,350,9,panel);healthFill=Box("Health",top,24,68,350,9,cyan);
-            bossPanel=Box("Nemesis telemetry",hud,635,150,650,75,ink).gameObject;
-            bossLabel=Label(bossPanel.transform,"NEMESIS PRIME",22,12,606,35,20,new Color(1,0.4f,0.15f));bossLabel.alignment=TextAlignmentOptions.Center;
-            Box("Boss track",bossPanel.transform,22,57,606,6,panel);bossFill=Box("Boss health",bossPanel.transform,22,57,606,6,new Color(1,0.25f,0.1f));
-            var bottom=Box("Bottom controls",hud,24,1006,1872,50,new Color(0.012f,0.027f,0.052f,0.84f));
-            Label(bottom,"W/S PROPULSIÓN   A/D GIRO   ESPACIO LÁSER   SHIFT ESCUDO   ESC PAUSA",20,14,1200,31,18,muted);
-            shield=Label(hud,"",45,938,800,40,23,cyan);timer=Label(bottom,"",1390,9,450,35,22);timer.alignment=TextAlignmentOptions.MidlineRight;
-        }
-        private void Update()
-        {
-            if(hud==null||!hud.gameObject.activeSelf||session.Mission==null||Time.unscaledTime<nextHud)return;
-            nextHud=Time.unscaledTime+0.1f;
-            var v=session.Health.Vitals;telemetry.text=$"INTEGRIDAD {v.Health:000}%     /     VIDAS {v.Lives}";
-            healthFill.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,350*(float)v.Health/v.MaxHealth);
-            score.text=$"{session.Stats.score:000000} PTS";
-            var m=session.Mission;
-            objective.text=$"0{session.Level.sector} / {session.Level.displayName}\n"+(session.Level.boss?$"DEFENSAS {Mathf.Min(m.Drones,m.DroneGoal)}/{m.DroneGoal}  ·  "+(session.Director.Boss!=null?"DESTRUYE LA INSIGNIA":"ELIMINA LOS DRONES"):$"ASTEROIDES {Mathf.Min(m.Asteroids,m.AsteroidGoal)}/{m.AsteroidGoal}"+(m.DroneGoal>0?$"  ·  DRONES {Mathf.Min(m.Drones,m.DroneGoal)}/{m.DroneGoal}":""));
-            shield.text=session.Health.ShieldActive?"ESCUDO ACTIVO":session.Health.ShieldRemaining>0?$"ESCUDO / RECARGA {session.Health.ShieldRemaining:0.0}s":"ESCUDO LISTO / SHIFT";
-            if(session.Weapon.DoubleShot)shield.text+="    +    LÁSER DOBLE";
-            timer.text=TimeLabel(session.Stats.seconds)+$"    /    AMENAZAS {session.Director.RockCount+session.Director.DroneCount+(session.Director.Boss!=null?1:0)}";
-            var boss=session.Director.Boss;bossPanel.SetActive(boss!=null);
-            if(boss!=null){bossLabel.text=$"NEMESIS PRIME / FASE {boss.Phase}";bossFill.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,606*boss.HealthFraction);}
         }
         private static string TimeLabel(float seconds) => $"{(int)seconds/60:00}:{(int)seconds%60:00}";
     }

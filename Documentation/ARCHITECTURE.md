@@ -18,6 +18,12 @@
 
 La simulación usa tiempo escalado; los menús tiempo no escalado. Pausa y resultados detienen la física mediante `Time.timeScale=0`. El mapa de vuelo se deshabilita fuera del combate. La pérdida de foco pausa la aplicación interactiva. Los bordes transfieren Rigidbody conservando velocidad y exceso de desplazamiento; se puede desactivar la continuidad en el asset de balance.
 
+`CameraRig` recibe explícitamente el jugador y la sesión. Su vista cercana sigue la nave por detrás; C alterna con el encuadre táctico de toda la arena. Se aplica suavizado y se corta el desplazamiento de cámara cuando la nave cruza un borde. La cámara cambia la presentación; la física sigue en XZ. `CombatDirector.NearestObjective` consulta sus listas existentes para guiar a objetivos pendientes fuera del encuadre.
+
+`ArcadeUI.Guidance` es la parte de presentación de informes, ayuda, aprendizaje de controles y HUD. F1 usa una acción de Input System; la ayuda conserva la pausa y vuelve al contexto de origen. Los contadores y barras derivan de `MissionProgress`, nunca de contadores paralelos de interfaz.
+
+`SpaceBackdrop` crea un cielo envolvente con el shader local `Resources/NebulaSky`, un cubemap de reflejos de 32×32 y restos orbitales decorativos sin colliders. Los materiales y el cubemap se crean una vez y se liberan al destruir la escena. El alabeo afecta solo al hijo visual de la nave; las estelas se limpian al reutilizar cada proyectil y los impactos de rocas usan MaterialPropertyBlock.
+
 La reserva inicial de proyectiles alterna ambos equipos y nunca supera `maxProjectiles`, incluso con presupuestos inferiores a 64. El crecimiento posterior mantiene ese mismo límite total.
 
 Windows incluye dos perfiles gráficos seleccionables: **Eficiente** utiliza el asset URP con escala de renderizado 0.8 y sombras de 1024; **Alta** utiliza escala 1.0 y sombras de 2048. La selección se guarda en las preferencias locales. Los perfiles conservan sus índices originales para mantener las preferencias existentes.
