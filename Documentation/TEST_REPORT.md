@@ -2,7 +2,7 @@
 
 ## Estado
 
-Implementación jugable y compilada para Windows y navegador, con **41 pruebas automatizadas aprobadas**: 20 EditMode y 21 PlayMode. No se declara terminada la validación académica: faltan una campaña completa jugada por una persona, escucha de audio, medición en el equipo de exposición y prueba física con Internet desconectado.
+Implementación jugable y compilada para Windows y navegador, con **44 pruebas automatizadas aprobadas**: 20 EditMode y 24 PlayMode. No se declara terminada la validación académica: faltan una campaña completa jugada por una persona, escucha de audio, medición en el equipo de exposición y prueba física con Internet desconectado.
 
 Entorno: Unity **6000.3.15f1**, URP **17.3.0**, Input System **1.19.0**, uGUI/TMP **2.0.0**, Test Framework **1.6.0**. Backend de jugador: Mono, Windows x64. El directorio estaba vacío al inicio; no había una base de pruebas previa ni archivos originales de juego.
 
@@ -11,7 +11,7 @@ Entorno: Unity **6000.3.15f1**, URP **17.3.0**, Input System **1.19.0**, uGUI/TM
 | Grupo | Resultado | Evidencia |
 | --- | --- | --- |
 | Reglas y guardado EditMode | **20/20 aprobadas**, cero omitidas | Evidence/edit-tests.xml |
-| Física, controles e integración PlayMode | **21/21 aprobadas**, cero omitidas | Evidence/play-tests.xml |
+| Física, controles e integración PlayMode | **24/24 aprobadas**, cero omitidas | Evidence/play-tests.xml |
 | Hito inicial de mecánica central | **6/6 aprobadas** antes de generar la campaña completa | Evidence/core-milestone-passed.xml |
 | Referencias de escenas, prefabs, shaders, URP, capas y perfil | Aprobado; **310 objetos revisados** | Evidence/project-validation.txt |
 | WAV originales | 15 archivos, mono 22,050 Hz; pico máximo 0.66; sin revisión subjetiva de audio | Evidence/audio-inspection.json |
@@ -132,3 +132,19 @@ Un primer intento de shader usó el identificador reservado `point`; las compila
 Compilaciones vigentes: Windows **95,169,530 bytes**, 7.14 s incremental; Web **16,852,712 bytes**, 11.84 s incremental. Ambas tienen **cero errores y cero advertencias de build**. El proyecto fuente sigue en Unity 6.3; Web usa la copia aislada 6.4 descrita arriba. El ZIP Windows contiene **161 entradas**, ocupa **38,175,678 bytes** y pasó CRC y presencia de todos los archivos requeridos. SHA-256: `e73ccf54e156eebadf2d5fa966c627ac97914767b953768bf609fc6efd7a9d30`. `web-http-check.json` registra la comprobación actual de los assets servidos y de la descarga Windows.
 
 La revisión visual de esta mejora se realizó en WebGL. El nuevo ejecutable se compiló y empaquetó; su recorrido visual actualizado, el equilibrio de los tres sectores, la escucha y el rendimiento sostenido siguen pendientes. No se toma la compilación como prueba de jugabilidad humana.
+
+## Control con mouse y HUD compacto
+
+Se integró puntería sobre XZ, clic izquierdo para láser, clic derecho para propulsión y botón central para escudo, mediante Unity Input System. Al soltar la propulsión con mouse se aplica frenado asistido. A/D recupera el giro por teclado. La cámara mantiene su rumbo al apuntar, de modo que no arrastra el objetivo con cada giro. Los raycasts de UI se consultan con la posición actual y se reutilizan por fotograma; al salir de un menú, los botones deben soltarse antes de permitir disparos.
+
+Se sustituyeron los paneles grandes por salud/vidas, cuotas, puntuación y escudo en los bordes. La pista de controles desaparece a los 12 s. Ayuda y preparación de misión son breves. La nave incorpora estabilizadores, cañones, placas y líneas luminosas; el escudo permite ver el modelo y el planeta usa ruido procedural para sus continentes y nubes.
+
+La suite vigente aprobó **24/24 PlayMode**, cero fallos/omisiones, en **80.21 s**, y **20/20 EditMode**, cero fallos/omisiones. Las nuevas pruebas verifican orientación y desplazamiento por mouse sin teclado, frenado, pausa, destrucción de una roca por láser real y bloqueo de clics de UI, incluidos clics antes del siguiente Update del EventSystem y botones mantenidos al reanudar. El validador de escenas, referencias y shaders volvió a pasar.
+
+La primera prueba de clic de pausa asumía coordenadas de 16:9. Se sustituyeron por el RectTransform real y se repitió también manteniendo el clic 100 ms; el fallo persistió. Un raycast explícito mostró que el botón quedaba fuera del área de 640×480 del jugador de pruebas. Se cambió Canvas Scaler a Expand y la mira usa conversión real de pantalla a UI. Los intentos fallidos conservados están en `mouse-ui-first-attempt.xml` y `mouse-ui-coordinate-attempt.xml`; el XML vigente corresponde a la suite completa aprobada.
+
+Windows se reconstruyó con **cero errores y cero advertencias**, **95,168,918 bytes**, 28.14 s incremental. El ZIP contiene **161 entradas**, **38,177,277 bytes**, CRC correcto y todos los archivos de Unity. SHA-256: `e8017dd603d28d6059fca9895e977a7f930870a936206cbb9d165f17908a12ce`. Se abrió el ejecutable y se observó el sector 2 con nave, asteroides y HUD compacto; el registro de ese arranque no mostró excepciones. Esta observación no certifica una campaña humana completa ni el equilibrio.
+
+Web se reconstruyó con **cero errores y cero advertencias**, **16,855,925 bytes**, 5 min 16.29 s incremental. En Chromium se comprobaron menú, entrada a vuelo libre, puntería/movimiento/disparos con mouse, escudo con botón central, pausa pulsando el HUD, ayuda y cambio de cámara mediante botones. Se usaron entradas reales de navegador; no se modificaron puntuaciones ni salud desde JavaScript. La consola mantuvo **cero errores y las siete advertencias WebGL/FSR ya documentadas**. La comprobación HTTP validó los tres archivos gzip, la firma Wasm y la descarga Windows contra el SHA-256 local. Capturas: `mouse-menu-final.png`, `mouse-flight-final.png`, `mouse-pause-final.png` y `mouse-help-final.png`.
+
+Continúan pendientes el equilibrio con jugadores, escucha y rendimiento sostenido en computadoras de exposición. Los perfiles del navegador aislado de pruebas y del jugador Windows permanecen separados; no se borró progreso del usuario.

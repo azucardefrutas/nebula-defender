@@ -32,6 +32,10 @@ Capas 8–13: Player, Asteroids, Enemies, PlayerProjectiles, EnemyProjectiles, P
 
 ## Archivos persistentes
 
+El control con mouse amplía el mapa Flight clonado en PilotInput, sin modificar el asset de entrada compartido. Lee posición, disparo, propulsión y escudo; bloquea los clics sobre UI y exige soltar los botones después de un menú. PlayerController proyecta el cursor al plano XZ y aplica el giro en FixedUpdate. CameraRig conserva su rumbo durante la puntería para evitar un bucle entre cámara y objetivo. El frenado asistido se aplica únicamente al control con mouse. A/D recupera el giro por teclado.
+
+ArcadeUI.Guidance presenta un HUD compacto, mira y flecha de objetivo. Los fondos de decoración no reciben raycasts; botones, campo de apodo y controles deslizantes sí. ShipPresentation añade detalles únicamente a la nave procedural identificada; los modelos personalizados se conservan. El escudo usa un material de borde transparente liberado al destruir la nave.
+
 `Application.persistentDataPath/pilots-v1.json`, versión 1, hasta 64 pilotos y 500 partidas. El historial conserva la mejor partida de cada piloto y elimina los registros antiguos que no son su mejor marca al llegar al cupo. Los puntos de guardado actualizan un mismo ID de partida: no duplican partidas ni estadísticas al guardar varias veces. `.bak` contiene el estado anterior; archivos dañados recuperados se conservan aparte. No se usa PlayerPrefs para perfiles ni puntuaciones.
 
 PlayerPrefs almacena únicamente opciones simples. No se guardan credenciales ni se realiza ninguna petición de red desde el juego.

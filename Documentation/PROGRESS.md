@@ -12,7 +12,7 @@ Este registro distingue implementación de verificación. No se considera un jue
 | 6 · Presentación | Meshes originales, nebulosa/planeta, fortaleza, bloom moderado, música y SFX sintetizados | Menú y vuelo revisados en jugador y Editor; quince WAV inspeccionados, pico máximo 0.66 | Escucha y revisión completa de los sectores 2/3 |
 | 7 · Distribución | Perfil Windows x64 Mono y herramienta de build/ZIP | Build final sin errores/advertencias; ejecutable abierto; ZIP completo con CRC verificado | Prueba desconectada y equipo de exposición |
 
-Resultado automatizado vigente: **20 EditMode + 21 PlayMode aprobadas**. Las pruebas cubren capacidad reducida del pool, recogidas físicas y láser doble, continuidad de bordes, campaña por impactos reales y ahora también ayuda F1 y cámara 3D/táctica. El generador se repitió preservando 51 rutas/GUIDs en la entrega inicial. Ver TEST_REPORT.md para el alcance exacto, pruebas pendientes y artefactos. No se marca como terminado el proceso de aceptación académica.
+Resultado automatizado vigente: **20 EditMode + 24 PlayMode aprobadas**. Las pruebas cubren capacidad reducida del pool, recogidas físicas y láser doble, continuidad de bordes, campaña por impactos reales, ayuda F1, cámara 3D/táctica y ahora puntería, propulsión, frenado y bloqueo de clics de UI con mouse. El generador se repitió preservando 51 rutas/GUIDs en la entrega inicial. Ver TEST_REPORT.md para el alcance exacto, pruebas pendientes y artefactos. No se marca como terminado el proceso de aceptación académica.
 
 ## Incidencias resueltas durante el desarrollo
 
@@ -40,3 +40,12 @@ Resultado automatizado vigente: **20 EditMode + 21 PlayMode aprobadas**. Las pru
 - Suite vigente: 20/20 EditMode y 21/21 PlayMode. Las dos pruebas adicionales verifican ayuda/pausa y encuadre/cambio de cámara.
 - Windows y Web reconstruidos con cero errores y advertencias de compilación. Revisión visual de vuelo 3D, vista táctica, ayuda y briefing en Chromium. El ZIP actualizado pasó CRC y la descarga local coincide con su SHA-256.
 - Pendiente: revisión humana del nuevo encuadre durante los tres sectores, nuevo recorrido visual en el ejecutable y rendimiento sostenido en el equipo de exposición. Las capturas están en Documentation/Evidence.
+
+## Mouse y presentación sencilla
+
+- Mouse para apuntar, izquierdo para disparar, derecho para propulsión y botón central para escudo. WASD/Espacio siguen funcionando.
+- Cámara estabilizada durante puntería y frenado suave al soltar el avance con mouse.
+- HUD compacto, guía breve, preparación corta y pistas que desaparecen; se retiraron los paneles grandes de aprendizaje y explicación.
+- Detalles adicionales de la nave, escudo transparente de borde y nueva superficie procedural del planeta.
+- Las tres pruebas nuevas de mouse pasan, incluida destrucción por contacto real de proyectiles y clics de pausa sin disparos accidentales. Se corrigió el encuadre de UI en proporción 4:3.
+- Windows reconstruido, ZIP íntegro y ejecutable abierto/revisado visualmente. La comprobación de dificultad humana y rendimiento sostenido continúa pendiente.

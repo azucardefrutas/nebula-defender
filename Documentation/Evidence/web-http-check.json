@@ -7,7 +7,7 @@
   "assets": {
     "WebGL.data.gz": {
       "http": 200,
-      "bytes": 5889521,
+      "bytes": 5889692,
       "content_type": "application/octet-stream",
       "encoding": "gzip",
       "gzip_integrity": "passed"
@@ -21,7 +21,7 @@
     },
     "WebGL.wasm.gz": {
       "http": 200,
-      "bytes": 10840527,
+      "bytes": 10843583,
       "content_type": "application/wasm",
       "encoding": "gzip",
       "gzip_integrity": "passed"
@@ -29,7 +29,7 @@
   },
   "windows_download": {
     "http": 200,
-    "sha256": "e73ccf54e156eebadf2d5fa966c627ac97914767b953768bf609fc6efd7a9d30",
+    "sha256": "e8017dd603d28d6059fca9895e977a7f930870a936206cbb9d165f17908a12ce",
     "matches_local_package": true
   }
 }

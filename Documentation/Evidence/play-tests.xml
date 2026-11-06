@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<test-run id="2" testcasecount="21" result="Passed" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-05 23:42:41Z" end-time="2026-11-05 23:43:59Z" duration="78.6280676">
-  <test-suite type="TestSuite" id="1031" name="Nebula Defender Galactic Assault" fullname="Nebula Defender Galactic Assault" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-05 23:42:41Z" end-time="2026-11-05 23:43:59Z" duration="78.628068" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+<test-run id="2" testcasecount="24" result="Passed" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-06 02:13:16Z" end-time="2026-11-06 02:14:37Z" duration="80.2082877">
+  <test-suite type="TestSuite" id="1034" name="Nebula Defender Galactic Assault" fullname="Nebula Defender Galactic Assault" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-06 02:13:16Z" end-time="2026-11-06 02:14:37Z" duration="80.208288" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
     <properties>
       <property name="platform" value="PlayMode" />
     </properties>
-    <test-suite type="Assembly" id="1025" name="Nebula.PlayModeTests.dll" fullname="C:/Users/tonyh/OneDrive/Documents/nebula 3D/Library/ScriptAssemblies/Nebula.PlayModeTests.dll" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-05 23:42:41Z" end-time="2026-11-05 23:43:59Z" duration="78.610282" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <test-suite type="Assembly" id="1028" name="Nebula.PlayModeTests.dll" fullname="C:/Users/tonyh/OneDrive/Documents/nebula 3D/Library/ScriptAssemblies/Nebula.PlayModeTests.dll" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-06 02:13:16Z" end-time="2026-11-06 02:14:37Z" duration="80.197362" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
       <properties>
-        <property name="_PID" value="20352" />
+        <property name="_PID" value="11000" />
         <property name="_APPDOMAIN" value="Unity Child Domain" />
         <property name="platform" value="PlayMode" />
         <property name="EditorOnly" value="False" />
       </properties>
-      <test-suite type="TestSuite" id="1026" name="NebulaDefender" fullname="NebulaDefender" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-05 23:42:41Z" end-time="2026-11-05 23:43:59Z" duration="78.608934" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <test-suite type="TestSuite" id="1029" name="NebulaDefender" fullname="NebulaDefender" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-06 02:13:16Z" end-time="2026-11-06 02:14:37Z" duration="80.196657" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
         <properties />
-        <test-suite type="TestSuite" id="1027" name="Tests" fullname="NebulaDefender.Tests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-05 23:42:41Z" end-time="2026-11-05 23:43:59Z" duration="78.608248" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestSuite" id="1030" name="Tests" fullname="NebulaDefender.Tests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-06 02:13:16Z" end-time="2026-11-06 02:14:37Z" duration="80.196285" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
           <properties />
-          <test-suite type="TestFixture" id="1001" name="CampaignFlowTests" fullname="NebulaDefender.Tests.CampaignFlowTests" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-05 23:42:41Z" end-time="2026-11-05 23:43:00Z" duration="19.553246" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1001" name="CampaignFlowTests" fullname="NebulaDefender.Tests.CampaignFlowTests" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-06 02:13:16Z" end-time="2026-11-06 02:13:35Z" duration="19.051480" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1004" name="ActualRockContactDamagesPlayerAfterSpawnProtection" fullname="NebulaDefender.Tests.CampaignFlowTests.ActualRockContactDamagesPlayerAfterSpawnProtection" methodname="ActualRockContactDamagesPlayerAfterSpawnProtection" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="168497444" result="Passed" start-time="2026-11-05 23:42:41Z" end-time="2026-11-05 23:42:45Z" duration="4.666443" asserts="0">
+            <test-case id="1004" name="ActualRockContactDamagesPlayerAfterSpawnProtection" fullname="NebulaDefender.Tests.CampaignFlowTests.ActualRockContactDamagesPlayerAfterSpawnProtection" methodname="ActualRockContactDamagesPlayerAfterSpawnProtection" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="1878217171" result="Passed" start-time="2026-11-06 02:13:16Z" end-time="2026-11-06 02:13:21Z" duration="4.494464" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1002" name="AllThreeMissionConditionsTransitionToFinalVictory" fullname="NebulaDefender.Tests.CampaignFlowTests.AllThreeMissionConditionsTransitionToFinalVictory" methodname="AllThreeMissionConditionsTransitionToFinalVictory" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="988086750" result="Passed" start-time="2026-11-05 23:42:45Z" end-time="2026-11-05 23:42:46Z" duration="0.217169" asserts="0">
+            <test-case id="1002" name="AllThreeMissionConditionsTransitionToFinalVictory" fullname="NebulaDefender.Tests.CampaignFlowTests.AllThreeMissionConditionsTransitionToFinalVictory" methodname="AllThreeMissionConditionsTransitionToFinalVictory" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="1973121165" result="Passed" start-time="2026-11-06 02:13:21Z" end-time="2026-11-06 02:13:21Z" duration="0.104997" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1007" name="AsteroidTreeTerminatesAtSmallAndPoolNeverExceedsLimit" fullname="NebulaDefender.Tests.CampaignFlowTests.AsteroidTreeTerminatesAtSmallAndPoolNeverExceedsLimit" methodname="AsteroidTreeTerminatesAtSmallAndPoolNeverExceedsLimit" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="645454110" result="Passed" start-time="2026-11-05 23:42:46Z" end-time="2026-11-05 23:42:46Z" duration="0.188245" asserts="0">
+            <test-case id="1007" name="AsteroidTreeTerminatesAtSmallAndPoolNeverExceedsLimit" fullname="NebulaDefender.Tests.CampaignFlowTests.AsteroidTreeTerminatesAtSmallAndPoolNeverExceedsLimit" methodname="AsteroidTreeTerminatesAtSmallAndPoolNeverExceedsLimit" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="1964563515" result="Passed" start-time="2026-11-06 02:13:21Z" end-time="2026-11-06 02:13:21Z" duration="0.072654" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1003" name="DronesSpawnPursueAndFireHostileProjectiles" fullname="NebulaDefender.Tests.CampaignFlowTests.DronesSpawnPursueAndFireHostileProjectiles" methodname="DronesSpawnPursueAndFireHostileProjectiles" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="1124527403" result="Passed" start-time="2026-11-05 23:42:46Z" end-time="2026-11-05 23:42:50Z" duration="4.679084" asserts="0">
+            <test-case id="1003" name="DronesSpawnPursueAndFireHostileProjectiles" fullname="NebulaDefender.Tests.CampaignFlowTests.DronesSpawnPursueAndFireHostileProjectiles" methodname="DronesSpawnPursueAndFireHostileProjectiles" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="2055564033" result="Passed" start-time="2026-11-06 02:13:21Z" end-time="2026-11-06 02:13:26Z" duration="4.627341" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1005" name="LosingAllLivesEntersDefeatAndBlocksWeapons" fullname="NebulaDefender.Tests.CampaignFlowTests.LosingAllLivesEntersDefeatAndBlocksWeapons" methodname="LosingAllLivesEntersDefeatAndBlocksWeapons" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="1399354417" result="Passed" start-time="2026-11-05 23:42:50Z" end-time="2026-11-05 23:43:00Z" duration="9.237329" asserts="0">
+            <test-case id="1005" name="LosingAllLivesEntersDefeatAndBlocksWeapons" fullname="NebulaDefender.Tests.CampaignFlowTests.LosingAllLivesEntersDefeatAndBlocksWeapons" methodname="LosingAllLivesEntersDefeatAndBlocksWeapons" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="326207219" result="Passed" start-time="2026-11-06 02:13:26Z" end-time="2026-11-06 02:13:35Z" duration="9.204900" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1006" name="PooledLaserReuseDoesNotCarrySpentDamageAcrossShots" fullname="NebulaDefender.Tests.CampaignFlowTests.PooledLaserReuseDoesNotCarrySpentDamageAcrossShots" methodname="PooledLaserReuseDoesNotCarrySpentDamageAcrossShots" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="460065103" result="Passed" start-time="2026-11-05 23:43:00Z" end-time="2026-11-05 23:43:00Z" duration="0.542858" asserts="0">
+            <test-case id="1006" name="PooledLaserReuseDoesNotCarrySpentDamageAcrossShots" fullname="NebulaDefender.Tests.CampaignFlowTests.PooledLaserReuseDoesNotCarrySpentDamageAcrossShots" methodname="PooledLaserReuseDoesNotCarrySpentDamageAcrossShots" classname="NebulaDefender.Tests.CampaignFlowTests" runstate="Runnable" seed="1303996014" result="Passed" start-time="2026-11-06 02:13:35Z" end-time="2026-11-06 02:13:35Z" duration="0.529822" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
@@ -60,30 +60,30 @@
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1008" name="CombatAcceptanceTests" fullname="NebulaDefender.Tests.CombatAcceptanceTests" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-05 23:43:00Z" end-time="2026-11-05 23:43:56Z" duration="55.352027" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1008" name="CombatAcceptanceTests" fullname="NebulaDefender.Tests.CombatAcceptanceTests" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-06 02:13:35Z" end-time="2026-11-06 02:14:30Z" duration="55.057654" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1010" name="PhysicalPickupRepairsOnceAndDoubleLaserExpiresAcrossPause" fullname="NebulaDefender.Tests.CombatAcceptanceTests.PhysicalPickupRepairsOnceAndDoubleLaserExpiresAcrossPause" methodname="PhysicalPickupRepairsOnceAndDoubleLaserExpiresAcrossPause" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" seed="1889374377" result="Passed" start-time="2026-11-05 23:43:00Z" end-time="2026-11-05 23:43:18Z" duration="17.615003" asserts="0">
+            <test-case id="1010" name="PhysicalPickupRepairsOnceAndDoubleLaserExpiresAcrossPause" fullname="NebulaDefender.Tests.CombatAcceptanceTests.PhysicalPickupRepairsOnceAndDoubleLaserExpiresAcrossPause" methodname="PhysicalPickupRepairsOnceAndDoubleLaserExpiresAcrossPause" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" seed="2080346746" result="Passed" start-time="2026-11-06 02:13:35Z" end-time="2026-11-06 02:13:53Z" duration="17.602239" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1011" name="PlayerWrapPreservesVelocityAndHeading" fullname="NebulaDefender.Tests.CombatAcceptanceTests.PlayerWrapPreservesVelocityAndHeading" methodname="PlayerWrapPreservesVelocityAndHeading" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" seed="2004480765" result="Passed" start-time="2026-11-05 23:43:18Z" end-time="2026-11-05 23:43:18Z" duration="0.060468" asserts="0">
+            <test-case id="1011" name="PlayerWrapPreservesVelocityAndHeading" fullname="NebulaDefender.Tests.CombatAcceptanceTests.PlayerWrapPreservesVelocityAndHeading" methodname="PlayerWrapPreservesVelocityAndHeading" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" seed="1209907047" result="Passed" start-time="2026-11-06 02:13:53Z" end-time="2026-11-06 02:13:53Z" duration="0.053540" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1009" name="SmallPoolRespectsConfiguredCapacityAndBothFactionsCanFire" fullname="NebulaDefender.Tests.CombatAcceptanceTests.SmallPoolRespectsConfiguredCapacityAndBothFactionsCanFire" methodname="SmallPoolRespectsConfiguredCapacityAndBothFactionsCanFire" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" seed="227041427" result="Passed" start-time="2026-11-05 23:43:18Z" end-time="2026-11-05 23:43:18Z" duration="0.064116" asserts="0">
+            <test-case id="1009" name="SmallPoolRespectsConfiguredCapacityAndBothFactionsCanFire" fullname="NebulaDefender.Tests.CombatAcceptanceTests.SmallPoolRespectsConfiguredCapacityAndBothFactionsCanFire" methodname="SmallPoolRespectsConfiguredCapacityAndBothFactionsCanFire" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" seed="1640511554" result="Passed" start-time="2026-11-06 02:13:53Z" end-time="2026-11-06 02:13:53Z" duration="0.076741" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1012" name="ThreeSectorsCanCompleteThroughWeaponAndColliderHits" fullname="NebulaDefender.Tests.CombatAcceptanceTests.ThreeSectorsCanCompleteThroughWeaponAndColliderHits" methodname="ThreeSectorsCanCompleteThroughWeaponAndColliderHits" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" seed="1735523950" result="Passed" start-time="2026-11-05 23:43:18Z" end-time="2026-11-05 23:43:56Z" duration="37.610511" asserts="0">
+            <test-case id="1012" name="ThreeSectorsCanCompleteThroughWeaponAndColliderHits" fullname="NebulaDefender.Tests.CombatAcceptanceTests.ThreeSectorsCanCompleteThroughWeaponAndColliderHits" methodname="ThreeSectorsCanCompleteThroughWeaponAndColliderHits" classname="NebulaDefender.Tests.CombatAcceptanceTests" runstate="Runnable" seed="316551953" result="Passed" start-time="2026-11-06 02:13:53Z" end-time="2026-11-06 02:14:30Z" duration="37.323094" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
@@ -91,79 +91,100 @@
               </properties>
             </test-case>
           </test-suite>
-          <test-suite type="TestFixture" id="1013" name="CoreCombatTests" fullname="NebulaDefender.Tests.CoreCombatTests" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-05 23:43:56Z" end-time="2026-11-05 23:43:59Z" duration="3.700673" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <test-suite type="TestFixture" id="1013" name="CoreCombatTests" fullname="NebulaDefender.Tests.CoreCombatTests" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" testcasecount="14" result="Passed" start-time="2026-11-06 02:14:30Z" end-time="2026-11-06 02:14:37Z" duration="6.085496" total="14" passed="14" failed="0" inconclusive="0" skipped="0" asserts="0">
             <properties />
-            <test-case id="1024" name="Close3DCameraKeepsShipVisibleAndCChangesToTacticalView" fullname="NebulaDefender.Tests.CoreCombatTests.Close3DCameraKeepsShipVisibleAndCChangesToTacticalView" methodname="Close3DCameraKeepsShipVisibleAndCChangesToTacticalView" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="781550907" result="Passed" start-time="2026-11-05 23:43:56Z" end-time="2026-11-05 23:43:56Z" duration="0.374810" asserts="0">
+            <test-case id="1027" name="Close3DCameraKeepsShipVisibleAndCChangesToTacticalView" fullname="NebulaDefender.Tests.CoreCombatTests.Close3DCameraKeepsShipVisibleAndCChangesToTacticalView" methodname="Close3DCameraKeepsShipVisibleAndCChangesToTacticalView" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1265360967" result="Passed" start-time="2026-11-06 02:14:30Z" end-time="2026-11-06 02:14:31Z" duration="0.316076" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1022" name="EnterActivatesTheSelectedMenuAction" fullname="NebulaDefender.Tests.CoreCombatTests.EnterActivatesTheSelectedMenuAction" methodname="EnterActivatesTheSelectedMenuAction" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1515627483" result="Passed" start-time="2026-11-05 23:43:56Z" end-time="2026-11-05 23:43:56Z" duration="0.254264" asserts="0">
+            <test-case id="1025" name="EnterActivatesTheSelectedMenuAction" fullname="NebulaDefender.Tests.CoreCombatTests.EnterActivatesTheSelectedMenuAction" methodname="EnterActivatesTheSelectedMenuAction" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="262911561" result="Passed" start-time="2026-11-06 02:14:31Z" end-time="2026-11-06 02:14:31Z" duration="0.176943" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1021" name="EscapeActionPausesAndResumesWithoutDuplicateToggle" fullname="NebulaDefender.Tests.CoreCombatTests.EscapeActionPausesAndResumesWithoutDuplicateToggle" methodname="EscapeActionPausesAndResumesWithoutDuplicateToggle" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1056913994" result="Passed" start-time="2026-11-05 23:43:56Z" end-time="2026-11-05 23:43:57Z" duration="0.274016" asserts="0">
+            <test-case id="1024" name="EscapeActionPausesAndResumesWithoutDuplicateToggle" fullname="NebulaDefender.Tests.CoreCombatTests.EscapeActionPausesAndResumesWithoutDuplicateToggle" methodname="EscapeActionPausesAndResumesWithoutDuplicateToggle" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1729046307" result="Passed" start-time="2026-11-06 02:14:31Z" end-time="2026-11-06 02:14:31Z" duration="0.207318" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1023" name="F1HelpFreezesCombatAndReturnsToFlight" fullname="NebulaDefender.Tests.CoreCombatTests.F1HelpFreezesCombatAndReturnsToFlight" methodname="F1HelpFreezesCombatAndReturnsToFlight" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="759597712" result="Passed" start-time="2026-11-05 23:43:57Z" end-time="2026-11-05 23:43:57Z" duration="0.458148" asserts="0">
+            <test-case id="1026" name="F1HelpFreezesCombatAndReturnsToFlight" fullname="NebulaDefender.Tests.CoreCombatTests.F1HelpFreezesCombatAndReturnsToFlight" methodname="F1HelpFreezesCombatAndReturnsToFlight" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="757726038" result="Passed" start-time="2026-11-06 02:14:31Z" end-time="2026-11-06 02:14:32Z" duration="0.401816" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1014" name="KeyboardThrustAndTurnMoveRigidbodyOnXZPlane" fullname="NebulaDefender.Tests.CoreCombatTests.KeyboardThrustAndTurnMoveRigidbodyOnXZPlane" methodname="KeyboardThrustAndTurnMoveRigidbodyOnXZPlane" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1111932907" result="Passed" start-time="2026-11-05 23:43:57Z" end-time="2026-11-05 23:43:58Z" duration="0.677727" asserts="0">
+            <test-case id="1014" name="KeyboardThrustAndTurnMoveRigidbodyOnXZPlane" fullname="NebulaDefender.Tests.CoreCombatTests.KeyboardThrustAndTurnMoveRigidbodyOnXZPlane" methodname="KeyboardThrustAndTurnMoveRigidbodyOnXZPlane" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1059941894" result="Passed" start-time="2026-11-06 02:14:32Z" end-time="2026-11-06 02:14:32Z" duration="0.649368" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1016" name="LargeRockSplitsIntoTwoMediumRocksAndCannotAwardTwice" fullname="NebulaDefender.Tests.CoreCombatTests.LargeRockSplitsIntoTwoMediumRocksAndCannotAwardTwice" methodname="LargeRockSplitsIntoTwoMediumRocksAndCannotAwardTwice" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="302577421" result="Passed" start-time="2026-11-05 23:43:58Z" end-time="2026-11-05 23:43:58Z" duration="0.080362" asserts="0">
+            <test-case id="1019" name="LargeRockSplitsIntoTwoMediumRocksAndCannotAwardTwice" fullname="NebulaDefender.Tests.CoreCombatTests.LargeRockSplitsIntoTwoMediumRocksAndCannotAwardTwice" methodname="LargeRockSplitsIntoTwoMediumRocksAndCannotAwardTwice" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="822461924" result="Passed" start-time="2026-11-06 02:14:32Z" end-time="2026-11-06 02:14:32Z" duration="0.050417" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1017" name="PauseFreezesPhysicsTimersAndFireThenResumes" fullname="NebulaDefender.Tests.CoreCombatTests.PauseFreezesPhysicsTimersAndFireThenResumes" methodname="PauseFreezesPhysicsTimersAndFireThenResumes" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1976749722" result="Passed" start-time="2026-11-05 23:43:58Z" end-time="2026-11-05 23:43:58Z" duration="0.521886" asserts="0">
+            <test-case id="1016" name="MouseAimAndLeftClickDestroyRockThroughRealProjectile" fullname="NebulaDefender.Tests.CoreCombatTests.MouseAimAndLeftClickDestroyRockThroughRealProjectile" methodname="MouseAimAndLeftClickDestroyRockThroughRealProjectile" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="609916558" result="Passed" start-time="2026-11-06 02:14:32Z" end-time="2026-11-06 02:14:34Z" duration="1.369131" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1019" name="ProjectilesExpireAndReturnToBoundedPool" fullname="NebulaDefender.Tests.CoreCombatTests.ProjectilesExpireAndReturnToBoundedPool" methodname="ProjectilesExpireAndReturnToBoundedPool" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1587709214" result="Passed" start-time="2026-11-05 23:43:58Z" end-time="2026-11-05 23:43:59Z" duration="0.275568" asserts="0">
+            <test-case id="1015" name="MouseAimsThrustsAndBrakesWithoutKeyboard" fullname="NebulaDefender.Tests.CoreCombatTests.MouseAimsThrustsAndBrakesWithoutKeyboard" methodname="MouseAimsThrustsAndBrakesWithoutKeyboard" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1559691388" result="Passed" start-time="2026-11-06 02:14:34Z" end-time="2026-11-06 02:14:35Z" duration="1.209265" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1015" name="RealLaserDestroysRockAndAwardsOnce" fullname="NebulaDefender.Tests.CoreCombatTests.RealLaserDestroysRockAndAwardsOnce" methodname="RealLaserDestroysRockAndAwardsOnce" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="199836444" result="Passed" start-time="2026-11-05 23:43:59Z" end-time="2026-11-05 23:43:59Z" duration="0.472622" asserts="0">
+            <test-case id="1017" name="MouseClickOnPauseCannotFireAndHeldButtonDoesNotLeakIntoFlight" fullname="NebulaDefender.Tests.CoreCombatTests.MouseClickOnPauseCannotFireAndHeldButtonDoesNotLeakIntoFlight" methodname="MouseClickOnPauseCannotFireAndHeldButtonDoesNotLeakIntoFlight" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="583820190" result="Passed" start-time="2026-11-06 02:14:35Z" end-time="2026-11-06 02:14:35Z" duration="0.392022" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1018" name="ShieldCannotBeReactivatedDuringCooldown" fullname="NebulaDefender.Tests.CoreCombatTests.ShieldCannotBeReactivatedDuringCooldown" methodname="ShieldCannotBeReactivatedDuringCooldown" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="2046325991" result="Passed" start-time="2026-11-05 23:43:59Z" end-time="2026-11-05 23:43:59Z" duration="0.095650" asserts="0">
+            <test-case id="1020" name="PauseFreezesPhysicsTimersAndFireThenResumes" fullname="NebulaDefender.Tests.CoreCombatTests.PauseFreezesPhysicsTimersAndFireThenResumes" methodname="PauseFreezesPhysicsTimersAndFireThenResumes" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1891153352" result="Passed" start-time="2026-11-06 02:14:35Z" end-time="2026-11-06 02:14:36Z" duration="0.463688" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />
                 <property name="repeatIteration" value="0" />
               </properties>
             </test-case>
-            <test-case id="1020" name="SpaceAndShiftActionsTriggerWeaponAndShield" fullname="NebulaDefender.Tests.CoreCombatTests.SpaceAndShiftActionsTriggerWeaponAndShield" methodname="SpaceAndShiftActionsTriggerWeaponAndShield" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1921778287" result="Passed" start-time="2026-11-05 23:43:59Z" end-time="2026-11-05 23:43:59Z" duration="0.211547" asserts="0">
+            <test-case id="1022" name="ProjectilesExpireAndReturnToBoundedPool" fullname="NebulaDefender.Tests.CoreCombatTests.ProjectilesExpireAndReturnToBoundedPool" methodname="ProjectilesExpireAndReturnToBoundedPool" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="172118055" result="Passed" start-time="2026-11-06 02:14:36Z" end-time="2026-11-06 02:14:36Z" duration="0.259048" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="RealLaserDestroysRockAndAwardsOnce" fullname="NebulaDefender.Tests.CoreCombatTests.RealLaserDestroysRockAndAwardsOnce" methodname="RealLaserDestroysRockAndAwardsOnce" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="1041470567" result="Passed" start-time="2026-11-06 02:14:36Z" end-time="2026-11-06 02:14:36Z" duration="0.398766" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="ShieldCannotBeReactivatedDuringCooldown" fullname="NebulaDefender.Tests.CoreCombatTests.ShieldCannotBeReactivatedDuringCooldown" methodname="ShieldCannotBeReactivatedDuringCooldown" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="812852549" result="Passed" start-time="2026-11-06 02:14:36Z" end-time="2026-11-06 02:14:36Z" duration="0.050240" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="SpaceAndShiftActionsTriggerWeaponAndShield" fullname="NebulaDefender.Tests.CoreCombatTests.SpaceAndShiftActionsTriggerWeaponAndShield" methodname="SpaceAndShiftActionsTriggerWeaponAndShield" classname="NebulaDefender.Tests.CoreCombatTests" runstate="Runnable" seed="230960717" result="Passed" start-time="2026-11-06 02:14:36Z" end-time="2026-11-06 02:14:37Z" duration="0.137678" asserts="0">
               <properties>
                 <property name="_JOINTYPE" value="UnityCombinatorial" />
                 <property name="retryIteration" value="0" />

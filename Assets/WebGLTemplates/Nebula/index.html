@@ -12,7 +12,7 @@
 <body>
   <header><div><strong>NEBULA DEFENDER</strong><small>GALACTIC ASSAULT · 3D</small></div><nav><a href="/descargar/NebulaDefender-Windows-x64.zip">DESCARGAR PARA WINDOWS</a><button id="fullscreen">PANTALLA COMPLETA</button></nav></header>
   <main id="game"><canvas id="unity-canvas" width="1920" height="1080" tabindex="0" aria-label="Nebula Defender, juego espacial tridimensional"></canvas><section id="loading"><h1>NEBULA DEFENDER</h1><p>Preparando tu nave y los tres sectores</p><progress id="progress" max="1" value="0"></progress><p id="status" role="status">Cargando el juego…</p><button id="enter" hidden>ENTRAR AL JUEGO</button><p id="error" role="alert"></p></section></main>
-  <footer>W / S propulsión · A / D giro · ESPACIO disparar · SHIFT escudo · C vista 3D/táctica · F1 ayuda &nbsp; | &nbsp; Guardado local en este navegador</footer>
+  <footer>Mouse: apunta · Clic: dispara · Derecho: avanza · ESC: pausa</footer>
   <script>
     const canvas=document.getElementById('unity-canvas');
     const status=document.getElementById('status');
@@ -20,6 +20,7 @@
     let player;
     document.getElementById('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.getElementById('game').requestFullscreen();canvas.focus();}catch(error){document.getElementById('error').textContent=error.message;}};
     canvas.addEventListener('keydown',event=>{if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.code))event.preventDefault();});
+    canvas.addEventListener('contextmenu',event=>event.preventDefault());
     document.addEventListener('keydown',event=>{if(event.code==='F1')event.preventDefault();});
     const config={
       dataUrl:'Build/{{{ DATA_FILENAME }}}',

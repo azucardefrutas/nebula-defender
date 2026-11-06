@@ -19,13 +19,13 @@ En este equipo puedes hacer doble clic en **ABRIR_NEBULA.cmd**: abre Unity 6.3 d
 1. En Unity Hub, usa **Add → Add project from disk** y elige esta carpeta completa (`nebula 3D`).
 2. Ábrela con **Unity 6.3 LTS, 6000.3.15f1**. Se necesita una licencia válida del Editor. La importación inicial puede tardar.
 3. Usa **Tools → Nebula Defender → Open Core Sandbox** y pulsa **Play**. Comienza el vuelo directamente, sin registro ni menú previo.
-4. **W/S** acelera/frena, **A/D** gira, **Espacio** dispara, **Shift** activa escudo, **Esc** pausa. También sirven las flechas.
+4. **Mouse** apunta, **clic izquierdo** dispara y **clic derecho** avanza. Pulsa la **rueda** o **Shift** para el escudo. **Esc** pausa. WASD y Espacio siguen disponibles.
 
 Si faltan recursos generados, usa **Tools → Nebula Defender → Generate Demo**. La primera apertura de un proyecto sin escena generada también intenta crearlos automáticamente. No hay que arrastrar componentes ni montar referencias a mano.
 
 ## Campaña
 
-La cámara principal sigue ahora la nave desde atrás. Pulsa **C** para alternar con la vista táctica y **F1** para abrir la guía. Cada sector ofrece un informe de misión; el HUD muestra los objetivos pendientes y un indicador para encontrar amenazas fuera de vista.
+La cámara sigue la nave y estabiliza su orientación al apuntar con mouse. Pulsa **C** para la vista táctica y **F1** para una guía breve. La pantalla mantiene salud, objetivo, puntos y escudo en los bordes, dejando libre el combate.
 
 Usa **Tools → Nebula Defender → Open Campaign** y pulsa Play. Registra un apodo, selecciona un sector desbloqueado y completa sus objetivos. Los siguientes sectores se desbloquean al ganar; la pantalla de resultados permite continuar. Al perder las tres vidas termina la partida.
 

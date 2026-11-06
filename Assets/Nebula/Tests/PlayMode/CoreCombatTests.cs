@@ -12,6 +12,7 @@ namespace NebulaDefender.Tests
     {
         private GameSession session;
         private Keyboard keyboard;
+        private Mouse mouse;
         private InputSettings.BackgroundBehavior originalBackground;
 #if UNITY_EDITOR
         private InputSettings.EditorInputBehaviorInPlayMode originalEditorInput;
@@ -35,6 +36,7 @@ namespace NebulaDefender.Tests
         [UnityTearDown] public IEnumerator Cleanup()
         {
             if(keyboard!=null)InputSystem.RemoveDevice(keyboard);
+            if(mouse!=null)InputSystem.RemoveDevice(mouse);
             InputSystem.settings.backgroundBehavior=originalBackground;
 #if UNITY_EDITOR
             InputSystem.settings.editorInputBehaviorInPlayMode=originalEditorInput;
@@ -58,6 +60,76 @@ namespace NebulaDefender.Tests
             Assert.That(Mathf.Abs(session.Player.Body.position.y),Is.LessThan(0.01f));
             Assert.That(Mathf.Abs(Mathf.DeltaAngle(0,session.Player.Body.rotation.eulerAngles.y)),Is.GreaterThan(20));
             Assert.That(session.Player.Body.linearVelocity.magnitude,Is.LessThanOrEqualTo(session.Balance.maxSpeed+0.6f));
+        }
+        [UnityTest] public IEnumerator MouseAimsThrustsAndBrakesWithoutKeyboard()
+        {
+            session.Director.Clear(); yield return null;
+            mouse=InputSystem.AddDevice<Mouse>(); InputSystem.EnableDevice(mouse);
+            InputSystem.QueueStateEvent(mouse,new MouseState()); yield return null;
+            var aim=Camera.main.WorldToScreenPoint(new Vector3(7,0,10));
+            InputSystem.QueueStateEvent(mouse,new MouseState { position=new Vector2(aim.x,aim.y) }.WithButton(MouseButton.Right));
+            yield return new WaitForSeconds(.55f);
+            Assert.That(session.Input.MouseSteering,Is.True);
+            Assert.That(session.Player.PointerAimValid,Is.True);
+            Assert.That(session.Player.Body.position.magnitude,Is.GreaterThan(1));
+            Assert.That(session.Player.Body.position.y,Is.EqualTo(0).Within(.01f));
+            Assert.That(Mathf.Abs(Mathf.DeltaAngle(0,session.Player.Body.rotation.eulerAngles.y)),Is.GreaterThan(12));
+            float speed=session.Player.Body.linearVelocity.magnitude;
+            InputSystem.QueueStateEvent(mouse,new MouseState { position=new Vector2(aim.x,aim.y) });
+            yield return new WaitForSeconds(.4f);
+            Assert.That(session.Player.Body.linearVelocity.magnitude,Is.LessThan(speed*.7f));
+            session.Pause(true);
+            var p=session.Player.Body.position; float time=session.Stats.seconds;
+            InputSystem.QueueStateEvent(mouse,new MouseState { position=new Vector2(aim.x,aim.y) }.WithButton(MouseButton.Right).WithButton(MouseButton.Left));
+            yield return new WaitForSecondsRealtime(.2f);
+            Assert.That(session.Player.Body.position,Is.EqualTo(p));
+            Assert.That(session.Stats.seconds,Is.EqualTo(time));
+            Assert.That(session.Input.Fire,Is.False);
+        }
+        [UnityTest] public IEnumerator MouseAimAndLeftClickDestroyRockThroughRealProjectile()
+        {
+            session.Director.Clear(); yield return null;
+            var rock=session.Director.SpawnRock(0,new Vector3(4,0,7),Vector3.zero);
+            mouse=InputSystem.AddDevice<Mouse>(); InputSystem.EnableDevice(mouse);
+            InputSystem.QueueStateEvent(mouse,new MouseState()); yield return null;
+            var aim=Camera.main.WorldToScreenPoint(rock.transform.position);
+            InputSystem.QueueStateEvent(mouse,new MouseState { position=new Vector2(aim.x,aim.y) });
+            yield return new WaitForSeconds(.7f);
+            InputSystem.QueueStateEvent(mouse,new MouseState { position=new Vector2(aim.x,aim.y) }.WithButton(MouseButton.Left));
+            yield return new WaitForSeconds(.6f);
+            Assert.That(rock==null,Is.True,"Mouse aiming and real laser contact must destroy the target.");
+            Assert.That(session.Stats.score,Is.GreaterThanOrEqualTo(session.Balance.smallPoints));
+        }
+        [UnityTest] public IEnumerator MouseClickOnPauseCannotFireAndHeldButtonDoesNotLeakIntoFlight()
+        {
+            session.Director.Clear(); yield return null;
+            mouse=InputSystem.AddDevice<Mouse>(); InputSystem.EnableDevice(mouse);
+            InputSystem.QueueStateEvent(mouse,new MouseState()); yield return null;
+            UnityEngine.UI.Button pauseButton=null;
+            foreach(var button in Object.FindObjectsByType<UnityEngine.UI.Button>(FindObjectsSortMode.None))
+                if(button.name=="Button / II")pauseButton=button;
+            Assert.That(pauseButton,Is.Not.Null);
+            var rect=(RectTransform)pauseButton.transform;
+            var point=RectTransformUtility.WorldToScreenPoint(null,rect.TransformPoint(rect.rect.center));
+            InputSystem.QueueStateEvent(mouse,new MouseState { position=point });
+            yield return null; yield return null;
+            var hits=new System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>();
+            UnityEngine.EventSystems.EventSystem.current.RaycastAll(new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current) { position=point },hits);
+            Assert.That(hits.Count,Is.GreaterThan(0),$"UI raycast must hit pause: position={point}, screen={Screen.width}x{Screen.height}, rect={rect.rect}");
+            Assert.That(hits[0].gameObject,Is.EqualTo(pauseButton.gameObject));
+            InputSystem.QueueStateEvent(mouse,new MouseState { position=point }.WithButton(MouseButton.Left));
+            InputSystem.Update();
+            Assert.That(session.Input.Fire,Is.False,"UI must block the click before the next EventSystem update.");
+            yield return new WaitForSecondsRealtime(.1f);
+            Assert.That(session.Input.Fire,Is.False);
+            InputSystem.QueueStateEvent(mouse,new MouseState { position=point });
+            yield return new WaitForSecondsRealtime(.12f);
+            Assert.That(session.State,Is.EqualTo(SessionState.Paused));
+            InputSystem.QueueStateEvent(mouse,new MouseState { position=new Vector2(Screen.width*.5f,Screen.height*.5f) }.WithButton(MouseButton.Left));
+            session.Pause(false);
+            yield return new WaitForSecondsRealtime(.12f);
+            Assert.That(session.Input.Fire,Is.False,"A click held while returning from a menu must first be released.");
+            Assert.That(session.Projectiles.ActiveCount,Is.Zero);
         }
         [UnityTest] public IEnumerator RealLaserDestroysRockAndAwardsOnce()
         {

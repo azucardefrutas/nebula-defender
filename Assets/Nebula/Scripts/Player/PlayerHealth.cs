@@ -8,6 +8,7 @@ namespace NebulaDefender
         private GameSession session;
         private GameBalance balance;
         private float protectedUntil, shieldUntil, shieldReady;
+        private Material shieldMaterial;
         public PilotVitals Vitals { get; private set; }
         public override Team Team => Team.Player;
         public override bool IsAlive => Vitals != null && !Vitals.Dead;
@@ -20,6 +21,11 @@ namespace NebulaDefender
         {
             session = owner; balance = config; Vitals = new PilotVitals(config.startingLives, config.healthPerLife);
             protectedUntil = Time.time + config.respawnProtection; shieldUntil = shieldReady = 0;
+            if (shieldVisual != null && shieldMaterial == null)
+            {
+                var shader = Resources.Load<Shader>("ShieldRim");
+                if (shader != null) { shieldMaterial = new Material(shader); shieldVisual.GetComponent<Renderer>().sharedMaterial = shieldMaterial; }
+            }
         }
         private void Update()
         {
@@ -45,6 +51,7 @@ namespace NebulaDefender
             else if (lostLife) session.Player.ResetPosition();
         }
         public void Repair(int amount) => Vitals.Repair(amount);
+        private void OnDestroy() { if (shieldMaterial != null) Destroy(shieldMaterial); }
         private void OnCollisionEnter(Collision collision)
         {
             int layer = collision.gameObject.layer;

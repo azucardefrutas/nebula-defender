@@ -2,6 +2,10 @@
 
 | Entrada | Acción |
 | --- | --- |
+| Mover el mouse | Orientar la nave hacia la mira, sobre el plano de combate |
+| Mantener clic izquierdo | Disparar |
+| Mantener clic derecho | Avanzar; al soltar, la asistencia frena suavemente |
+| Pulsar la rueda (botón central) | Activar escudo |
 | W / Arriba | Acelerar hacia la proa |
 | S / Abajo | Frenar y aplicar propulsión inversa |
 | A / Izquierda | Girar a la izquierda |
@@ -14,11 +18,11 @@
 | C | Alternar cámara cercana en tercera persona y vista táctica superior |
 | Tab, flechas y ratón | Navegar por los controles de interfaz |
 
-La nave conserva inercia. Girar modifica su orientación; no elimina inmediatamente su velocidad anterior. El cañón dispara hacia la proa. Al atravesar una marca del perímetro se reaparece en el borde opuesto.
+Con mouse, la nave apunta al lugar señalado y frena suavemente al soltar la propulsión. La cámara mantiene su orientación para evitar que el objetivo gire al apuntar. A/D vuelve al control de giro por teclado; mover el mouse recupera la puntería. El cañón dispara hacia la proa y conserva su cadencia. Los clics sobre botones no disparan; al regresar de un menú hay que soltar los botones del mouse antes de utilizarlos.
 
-La vista principal sigue a la nave desde atrás para apreciar el volumen. Un indicador cian señala objetivos necesarios fuera del encuadre. Si prefieres ver toda la zona de combate, pulsa C o el botón de vista del HUD. La guía con F1 explica los controles, la fragmentación y las defensas.
+La vista principal sigue a la nave para apreciar el volumen. Un indicador cian señala objetivos fuera del encuadre. C muestra toda la zona de combate y F1 abre una guía breve.
 
-La campaña muestra un informe antes de comenzar cada misión. El HUD separa las cuotas de asteroides y drones, señala lo que falta y distingue el bono opcional por no recibir daño. No es necesario eliminar las amenazas residuales una vez cumplida la misión.
+La preparación muestra el objetivo y el botón DESPEGAR. El HUD compacto presenta salud, vidas, puntos, cuotas y escudo. La pista de controles desaparece tras 12 segundos. Los fragmentos también cuentan; no es necesario eliminar amenazas residuales al cumplir la misión.
 
 Preparado para mando: stick izquierdo propulsión/giro; gatillo derecho disparo; botón sur escudo; Start pausa. Su funcionamiento con hardware físico se considera pendiente hasta realizar esa prueba.
 

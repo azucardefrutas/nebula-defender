@@ -33,6 +33,7 @@ namespace NebulaDefender
         public void Configure(GameSession owner, TMP_FontAsset typeface) { session = owner; font = typeface; }
         private IEnumerator Start()
         {
+            GetComponent<CanvasScaler>().screenMatchMode=CanvasScaler.ScreenMatchMode.Expand;
             yield return null;
             var module = EventSystem.current.GetComponent<InputSystemUIInputModule>();
             if (module.actionsAsset == null) module.AssignDefaultActions();
@@ -45,14 +46,14 @@ namespace NebulaDefender
             if (resolutions.Count == 0) resolutions.AddRange(new[]{new Vector2Int(1280,720),new Vector2Int(1600,900),new Vector2Int(1920,1080)});
             BuildHUD(); session.StateChanged += StateChanged; StateChanged(session.State);
         }
-        private void OnDestroy() { if (session != null) session.StateChanged -= StateChanged; }
+        private void OnDestroy() { Cursor.visible=true;if (session != null) session.StateChanged -= StateChanged; }
         private RectTransform Rect(string name,Transform parent,float x,float y,float w,float h)
         {
             var go = new GameObject(name,typeof(RectTransform));var r = go.GetComponent<RectTransform>();
             r.SetParent(parent,false);r.anchorMin=r.anchorMax=new Vector2(0,1);r.pivot=new Vector2(0,1);r.anchoredPosition=new Vector2(x,-y);r.sizeDelta=new Vector2(w,h);return r;
         }
         private RectTransform Box(string name,Transform parent,float x,float y,float w,float h,Color color)
-        { var r=Rect(name,parent,x,y,w,h);r.gameObject.AddComponent<Image>().color=color;return r; }
+        { var r=Rect(name,parent,x,y,w,h);var image=r.gameObject.AddComponent<Image>();image.color=color;image.raycastTarget=false;return r; }
         private TMP_Text Label(Transform parent,string value,float x,float y,float w,float h,int size,Color? color=null)
         {
             var r=Rect("Text / "+value,parent,x,y,w,h);var t=r.gameObject.AddComponent<TextMeshProUGUI>();
@@ -62,6 +63,7 @@ namespace NebulaDefender
         private Button Button(Transform parent,string value,float x,float y,float w,Action action,bool enabled=true,bool primary=false)
         {
             var r=Box("Button / "+value,parent,x,y,w,60,primary?new Color(0.06f,0.27f,0.35f):panel);
+            r.GetComponent<Image>().raycastTarget=true;
             var b=r.gameObject.AddComponent<Button>();var colors=b.colors;
             colors.normalColor=Color.white;colors.highlightedColor=new Color(0.45f,0.9f,1);colors.selectedColor=new Color(0.4f,0.8f,1);colors.pressedColor=new Color(0.2f,0.6f,0.7f);colors.disabledColor=new Color(0.4f,0.45f,0.5f);b.colors=colors;
             b.interactable=enabled;
@@ -89,6 +91,7 @@ namespace NebulaDefender
         }
         private void StateChanged(SessionState state)
         {
+            if(state!=SessionState.Playing)Cursor.visible=true;
             if(hud==null)return;
             hud.gameObject.SetActive(state==SessionState.Playing||state==SessionState.Paused);
             if(state==SessionState.Menu)MainMenu();
@@ -105,27 +108,27 @@ namespace NebulaDefender
             Label(page,"UPB  /  SCIENCE & TECHNOLOGY 2026",88,90,650,30,18,cyan);
             Label(page,"NEBULA\nDEFENDER",82,164,705,218,92);
             Label(page,"G A L A C T I C   A S S A U L T",89,390,660,36,23,cyan);
-            Label(page,"Destruye asteroides, elimina drones y derrota a Némesis en tres sectores.",90,451,620,70,25,muted);
-            Button(page,"01   JUGAR CAMPAÑA",90,532,600,()=>{if(session.Profiles?.Selected==null)Pilots();else Sectors();},true,true);
-            Button(page,"02   CÓMO JUGAR",90,602,600,()=>ShowHelp(MainMenu));
-            Button(page,"03   REGISTRAR / CAMBIAR PILOTO",90,672,600,Pilots);
-            Button(page,"04   SALÓN DE LA FAMA",90,742,600,Ranking);
-            Button(page,"05   CONFIGURACIÓN",90,812,600,()=>Settings(false));
+            Label(page,"Tres sectores. Una última defensa.",90,451,620,70,25,muted);
+            Button(page,"JUGAR",90,532,600,()=>{if(session.Profiles?.Selected==null)Pilots();else Sectors();},true,true);
+            Button(page,"CÓMO JUGAR",90,602,600,()=>ShowHelp(MainMenu));
+            Button(page,"PILOTOS",90,672,600,Pilots);
+            Button(page,"RÉCORDS",90,742,600,Ranking);
+            Button(page,"OPCIONES",90,812,600,()=>Settings(false));
 #if UNITY_WEBGL && !UNITY_EDITOR
-            Button(page,"06   VUELO RÁPIDO / SIN REGISTRO",90,882,600,()=>SceneManager.LoadScene("CoreSandbox"));
+            Button(page,"VUELO LIBRE",90,882,600,()=>SceneManager.LoadScene("CoreSandbox"));
 #else
-            Button(page,"06   SALIR",90,882,600,session.Quit);
+            Button(page,"SALIR",90,882,600,session.Quit);
 #endif
             Label(page,session.Profiles?.Selected!=null?"PILOTO ACTIVO  /  "+session.Profiles.Selected.nickname:"SIN PILOTO  /  REGISTRO LOCAL",90,962,680,34,19,cyan);
             Label(page,"UNIVERSIDAD POLITÉCNICA DE BACALAR\nMtro. Esdras Chuc C. · Arcade 3D independiente / Offline",90,1000,690,58,16,muted);
             Label(page,"ND–01\nAURORA INTERCEPTOR",1280,770,520,80,25,cyan);
-            Label(page,"WASD / FLECHAS   ·   ESPACIO   ·   SHIFT",1140,1000,700,36,20,muted);
+            Label(page,"MOUSE + CLIC  /  TÚ PILOTAS",1140,1000,700,36,20,muted);
             Notice(page,850,915,1000);FocusFirst();
         }
         private void SandboxMenu()
         {
-            var card=Modal("ESCENA DE MECÁNICA CENTRAL","VUELO DE PRUEBA",900,650);
-            Label(card,"Nave 3D · física XZ · láser · asteroides destructibles\nEste vuelo no modifica los perfiles ni el ranking.",36,166,820,100,26,muted);
+            var card=Modal("VUELO LIBRE","VUELO DE PRUEBA",900,650);
+            Label(card,"Apunta con el mouse. Destruye y sobrevive.",36,166,820,100,26,muted);
             Button(card,"INICIAR VUELO",36,320,828,()=>session.StartRun(0),true,true);
             Button(card,"ABRIR CAMPAÑA",36,405,828,()=>{Time.timeScale=1;SceneManager.LoadScene("Campaign");});
 #if !(UNITY_WEBGL && !UNITY_EDITOR)
@@ -144,6 +147,7 @@ namespace NebulaDefender
             var card=Modal("PILOTOS / SOLO EN ESTE EQUIPO","REGISTRO DE PILOTO",1060,860);
             Label(card,"Apodo (2–24 caracteres). No se necesita una cuenta online.",36,135,980,40,22,muted);
             var inputRoot=Box("Pilot nickname",card,36,194,640,62,panel);
+            inputRoot.GetComponent<Image>().raycastTarget=true;
             var field=inputRoot.gameObject.AddComponent<TMP_InputField>();
             var viewport=Rect("Viewport",inputRoot,16,6,608,50);viewport.gameObject.AddComponent<RectMask2D>();
             var inputText=Label(viewport,"",0,0,608,50,25);inputText.alignment=TextAlignmentOptions.MidlineLeft;inputText.textWrappingMode=TextWrappingModes.NoWrap;
@@ -170,7 +174,7 @@ namespace NebulaDefender
         {
             if(session.Profiles?.Selected==null){Pilots();return;}
             var card=Modal("CAMPAÑA / "+session.Profiles.Selected.nickname,"SELECCIONA EL SECTOR",1300,780);
-            Label(card,"W / S acelerar y frenar · A / D girar · ESPACIO disparar · SHIFT escudo",36,142,1220,38,22,muted);
+            Label(card,"Elige tu misión.",36,142,1220,38,22,muted);
             for(int i=0;i<session.Levels.Length;i++)
             {
                 int sector=i;var data=session.Levels[i];bool unlocked=i<session.UnlockedSector;
@@ -180,7 +184,7 @@ namespace NebulaDefender
                 Label(slot,data.Objective,24,196,344,90,23,muted);
                 Button(slot,unlocked?"VER MISIÓN":"COMPLETA EL ANTERIOR",24,303,344,()=>Briefing(sector),unlocked,true);
             }
-            Label(card,"La nave conserva inercia. Gira para orientar el cañón. Los bordes conectan con el lado opuesto.",36,645,1220,50,22,muted);
+            Label(card,"Los fragmentos también cuentan.",36,645,1220,50,22,muted);
             Button(card,"MENÚ PRINCIPAL",36,700,360,MainMenu);Notice(card,430,705,800);FocusFirst();
         }
         public void Ranking()
@@ -204,6 +208,7 @@ namespace NebulaDefender
         {
             Label(parent,name,36,y,330,40,23);
             var root=Rect(name,parent,400,y+4,470,34);var slider=root.gameObject.AddComponent<Slider>();
+            var sliderHit=root.gameObject.AddComponent<Image>();sliderHit.color=Color.clear;sliderHit.raycastTarget=true;
             Box("Track",root,0,13,470,8,panel);
             var fillArea=Rect("Fill Area",root,0,0,470,34);
             var fill=Box("Fill",fillArea,0,13,470,8,cyan);
@@ -211,6 +216,7 @@ namespace NebulaDefender
             slider.fillRect=fill;slider.direction=Slider.Direction.LeftToRight;
             var handleArea=Rect("Handle Area",root,0,0,470,34);
             var handle=Box("Handle",handleArea,0,4,20,26,text);handle.anchorMin=handle.anchorMax=new Vector2(0,0.5f);handle.pivot=new Vector2(0.5f,0.5f);handle.anchoredPosition=Vector2.zero;
+            handle.GetComponent<Image>().raycastTarget=true;
             slider.handleRect=handle;slider.targetGraphic=handle.GetComponent<Image>();slider.minValue=0;slider.maxValue=1;slider.value=value;
             var amount=Label(parent,Mathf.RoundToInt(value*100)+"%",900,y,110,40,23,cyan);
             slider.onValueChanged.AddListener(v=>amount.text=Mathf.RoundToInt(v*100)+"%");return slider;
@@ -247,13 +253,12 @@ namespace NebulaDefender
         private void PauseMenu()
         {
             var card=Modal("VUELO EN SUSPENSIÓN","PAUSA",860,780);
-            Label(card,"El combate, los disparos y el reloj están detenidos.",36,148,680,65,24,muted);
             Button(card,"CONTINUAR",36,247,788,()=>session.Pause(false),true,true);
-            Button(card,"CÓMO JUGAR / OBJETIVOS",36,327,788,()=>ShowHelp(PauseMenu));
+            Button(card,"AYUDA",36,327,788,()=>ShowHelp(PauseMenu));
             Button(card,"REINICIAR SECTOR",36,407,788,session.Restart);
             Button(card,"CONFIGURACIÓN",36,487,788,()=>Settings(true));
             Button(card,"MENÚ PRINCIPAL",36,567,788,session.ReturnToMenu);
-            Label(card,"ESC para continuar · F1 para consultar la ayuda",36,690,788,40,22,muted);FocusFirst();
+            Label(card,"ESC para continuar",36,690,788,40,22,muted);FocusFirst();
         }
         private void Results()
         {

@@ -3,6 +3,8 @@
 | Recurso | Origen | Ubicación |
 | --- | --- | --- |
 | Nave Aurora | Mesh de fuselaje/alas y primitivas creados para este proyecto | Generated/Prefabs/PlayerShip.prefab |
+| Detalle Aurora | Estabilizadores inclinados, cañones, placas y líneas luminosas originales | Scripts/Player/ShipPresentation.cs |
+| Escudo de energía | Shader transparente de borde y barrido, sin textura | Resources/ShieldRim.shader |
 | Cuatro rocas irregulares | Icosaedro subdividido con semilla y vértices desplazados | Generated/Meshes/Asteroid*.asset |
 | Drones, Nemesis Prime, fortaleza | Composición procedural original | Generated/Prefabs y escenas |
 | Cielo, estrellas y nebulosa | Skybox procedural direccional original; sustituye el fondo plano durante ejecución | Resources/NebulaSky.shader |
