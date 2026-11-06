@@ -12,6 +12,7 @@ namespace NebulaDefender
         [Min(0)] public float drag = 0.45f;
         [Min(0)] public float reverseAcceleration = 19;
         public Vector2 arenaHalfSize = new Vector2(27, 17);
+        public bool openSpace = true;
         public bool wrapEdges = true;
         [Header("Combat")]
         public int startingLives = 3;

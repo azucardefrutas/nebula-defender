@@ -22,7 +22,7 @@ namespace NebulaDefender
         {
             director = owner; rng = new System.Random(seed); body = GetComponent<Rigidbody>();
             health = owner.Session.Level.enemyHealth; body.position = position; transform.position = position;
-            patrolTarget = -position; State = DroneState.Patrol;
+            patrolTarget = owner.Session.Player.Body.position * 2 - position; State = DroneState.Patrol;
             nextFire = Time.time + 1.8f + (float)rng.NextDouble();
         }
         private void FixedUpdate()
@@ -77,6 +77,12 @@ namespace NebulaDefender
             if (health > 0) return;
             State = DroneState.Destroyed; GetComponent<Collider>().enabled = false;
             director.DroneDestroyed(this); Destroy(gameObject);
+        }
+        public void Relocate(Vector3 position)
+        {
+            body.position = position; transform.position = position; body.linearVelocity = Vector3.zero;
+            patrolTarget = director.Session.Player.Body.position; State = DroneState.Patrol;
+            nextFire = Mathf.Max(nextFire, Time.time + 1.5f);
         }
     }
 }

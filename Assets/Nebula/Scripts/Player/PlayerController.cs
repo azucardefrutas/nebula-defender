@@ -57,9 +57,9 @@ namespace NebulaDefender
             body.linearVelocity = Vector3.ClampMagnitude(body.linearVelocity, balance.maxSpeed);
             arena.Contain(body);
         }
-        public void ResetPosition()
+        public void ResetPosition(bool resetToOrigin = true)
         {
-            body.position = Vector3.zero; body.rotation = Quaternion.identity;
+            if (resetToOrigin) { body.position = Vector3.zero; body.rotation = Quaternion.identity; }
             body.linearVelocity = body.angularVelocity = Vector3.zero;
         }
     }

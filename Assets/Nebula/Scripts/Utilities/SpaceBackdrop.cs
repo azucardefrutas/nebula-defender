@@ -13,6 +13,9 @@ namespace NebulaDefender
         private Transform[] depthDebris;
         private void Start()
         {
+            // Hide legacy demo markers without rewriting existing scenes or custom art.
+            foreach (var renderer in GetComponentsInChildren<MeshRenderer>())
+                if (renderer.gameObject.name == "Wrap marker") renderer.enabled = false;
             var shader = Resources.Load<Shader>("NebulaSky");
             if (shader != null)
             {

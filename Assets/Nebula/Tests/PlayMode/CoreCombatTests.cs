@@ -218,6 +218,67 @@ namespace NebulaDefender.Tests
             Assert.That(session.State,Is.EqualTo(SessionState.Playing));
             InputSystem.QueueStateEvent(keyboard,new KeyboardState());
         }
+        [UnityTest] public IEnumerator LasersFragmentsAndRespawnWorkFarFromOrigin()
+        {
+            session.Director.Clear(); yield return null;
+            var center=new Vector3(400,0,250); var body=session.Player.Body;
+            body.position=center; body.rotation=Quaternion.identity; body.linearVelocity=Vector3.zero;
+            yield return new WaitForFixedUpdate(); yield return null;
+            Assert.That(Vector3.Distance(session.Player.transform.position,center),Is.LessThan(.01f));
+            var target=session.Director.SpawnRock(0,center+Vector3.forward*7,Vector3.zero);
+            int score=session.Stats.score;
+            Assert.That(session.Weapon.TryFire(),Is.True);
+            yield return new WaitForSeconds(.35f);
+            Assert.That(target==null,Is.True,"Lasers must survive beyond the old rectangle and hit real colliders.");
+            Assert.That(session.Stats.score,Is.EqualTo(score+session.Balance.smallPoints));
+            var large=session.Director.SpawnRock(2,center+Vector3.right*6,Vector3.zero);
+            large.Hit(999,large.transform.position); yield return null;
+            int fragments=0;
+            foreach(var rock in Object.FindObjectsByType<AsteroidController>(FindObjectsSortMode.None))
+                if(rock.Tier==1) { fragments++; Assert.That(Vector3.Distance(rock.transform.position,center),Is.LessThan(10)); }
+            Assert.That(fragments,Is.EqualTo(2));
+            session.Director.Clear();
+            yield return new WaitForSeconds(3.1f);
+            var respawnPosition=body.position;
+            session.Health.Hit(100,respawnPosition);
+            Assert.That(session.Health.Vitals.Lives,Is.EqualTo(2));
+            Assert.That(body.position,Is.EqualTo(respawnPosition),"A lost life must not teleport the pilot back to the origin.");
+        }
+        [UnityTest] public IEnumerator OpenSpaceReusesDistantThreatsAndSpawnsDronesNearPilot()
+        {
+            int count=session.Director.RockCount; int score=session.Stats.score;
+            var center=new Vector3(800,0,600); session.Player.Body.position=center;
+            yield return new WaitForSeconds(1.25f);
+            Assert.That(session.Director.RockCount,Is.EqualTo(count));
+            Assert.That(session.Stats.score,Is.EqualTo(score));
+            foreach(var rock in Object.FindObjectsByType<AsteroidController>(FindObjectsSortMode.None))
+                Assert.That(Vector3.Distance(rock.transform.position,center),Is.LessThan(80));
+            session.BeginSector(1); session.Player.Body.position=center;
+            yield return new WaitForSeconds(2.3f);
+            Assert.That(session.Director.DroneCount,Is.GreaterThan(0));
+            foreach(var drone in Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None))
+                Assert.That(Vector3.Distance(drone.transform.position,center),Is.LessThan(50));
+        }
+        [UnityTest] public IEnumerator TacticalCameraAndBossFollowCombatAwayFromOrigin()
+        {
+            var center=new Vector3(500,0,-400); session.Player.Body.position=center;
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.C));
+            yield return new WaitForSecondsRealtime(.12f);
+            var visible=Camera.main.WorldToViewportPoint(session.Player.Body.position);
+            Assert.That(visible.z,Is.GreaterThan(0)); Assert.That(visible.x,Is.InRange(.4f,.6f)); Assert.That(visible.y,Is.InRange(.4f,.6f));
+            InputSystem.QueueStateEvent(keyboard,new KeyboardState());
+            session.BeginSector(2); session.Player.Body.position=center;
+            for(int i=0;i<session.Level.droneGoal;i++)session.AwardDrone();
+            yield return new WaitForSeconds(.15f);
+            Assert.That(session.Director.Boss,Is.Not.Null);
+            Assert.That(Vector3.Distance(session.Director.Boss.transform.position,center),Is.LessThan(25));
+            session.Player.Body.linearVelocity=Vector3.forward*8;
+            yield return new WaitForSeconds(1.2f);
+            Assert.That(Vector3.Distance(session.Director.Boss.transform.position,session.Player.Body.position),Is.LessThan(30));
+            session.ReturnToMenu(); yield return null; yield return null;
+            var menuCenter=Camera.main.WorldToViewportPoint(Vector3.zero);
+            Assert.That(menuCenter.z,Is.GreaterThan(0)); Assert.That(menuCenter.x,Is.InRange(.4f,.6f)); Assert.That(menuCenter.y,Is.InRange(.4f,.6f));
+        }
         [UnityTest] public IEnumerator Close3DCameraKeepsShipVisibleAndCChangesToTacticalView()
         {
             var camera=Camera.main;var rig=camera.GetComponent<CameraRig>();

@@ -16,9 +16,11 @@
 
 ## Tiempo y límites
 
-La simulación usa tiempo escalado; los menús tiempo no escalado. Pausa y resultados detienen la física mediante `Time.timeScale=0`. El mapa de vuelo se deshabilita fuera del combate. La pérdida de foco pausa la aplicación interactiva. Los bordes transfieren Rigidbody conservando velocidad y exceso de desplazamiento; se puede desactivar la continuidad en el asset de balance.
+La simulación usa tiempo escalado; los menús tiempo no escalado. Pausa y resultados detienen la física mediante `Time.timeScale=0`. El mapa de vuelo se deshabilita fuera del combate. La pérdida de foco pausa la aplicación interactiva. El balance usa `openSpace=true`: no hay paredes, marcas de perímetro ni continuidad entre bordes. La nave no se envuelve, detiene o reposiciona al alejarse; perder una vida conserva su posición. La utilidad clásica de continuidad queda disponible únicamente para configuraciones anteriores con espacio abierto desactivado.
 
-`CameraRig` recibe explícitamente el jugador y la sesión. Su vista cercana sigue la nave por detrás; C alterna con el encuadre táctico de toda la arena. Se aplica suavizado y se corta el desplazamiento de cámara cuando la nave cruza un borde. La cámara cambia la presentación; la física sigue en XZ. `CombatDirector.NearestObjective` consulta sus listas existentes para guiar a objetivos pendientes fuera del encuadre.
+`CameraRig` recibe explícitamente el jugador y la sesión. Ambas vistas siguen al jugador; C alterna la perspectiva cercana y un encuadre táctico del combate local. La cámara cambia la presentación; la física sigue en XZ. `CombatDirector.NearestObjective` consulta sus listas existentes para guiar a objetivos pendientes fuera del encuadre.
+
+Los generadores sitúan amenazas alrededor de la posición actual del piloto. Cada segundo, el director reutiliza actores vivos que estén a más de 80 unidades y fuera del encuadre, colocándolos también fuera del encuadre cerca de la nueva zona; conserva salud, cuotas y puntuación. Los fragmentos nacen junto a la roca destruida. El jefe patrulla alrededor de un ancla que sigue al piloto. Los proyectiles conservan tiempo de vida y cupo del pool, sin retirarse por cruzar el antiguo rectángulo. El límite de objetos activos sigue protegiendo el rendimiento.
 
 `ArcadeUI.Guidance` es la parte de presentación de informes, ayuda, aprendizaje de controles y HUD. F1 usa una acción de Input System; la ayuda conserva la pausa y vuelve al contexto de origen. Los contadores y barras derivan de `MissionProgress`, nunca de contadores paralelos de interfaz.
 

@@ -48,7 +48,7 @@ namespace NebulaDefender
             protectedUntil = Time.time + (lostLife ? balance.respawnProtection : balance.hitProtection);
             session.Feedback.Impact(point, lostLife ? 3 : 1);
             if (Vitals.Dead) session.Lose();
-            else if (lostLife) session.Player.ResetPosition();
+            else if (lostLife) session.Player.ResetPosition(!balance.openSpace);
         }
         public void Repair(int amount) => Vitals.Repair(amount);
         private void OnDestroy() { if (shieldMaterial != null) Destroy(shieldMaterial); }

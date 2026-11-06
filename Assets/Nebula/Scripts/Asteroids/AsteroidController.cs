@@ -37,6 +37,10 @@ namespace NebulaDefender
             if (flashUntil > 0 && Time.time >= flashUntil) { flashUntil = 0; surface.SetPropertyBlock(null); }
         }
         private void FixedUpdate() { if (IsAlive) director.Session.Arena.Contain(body); }
+        public void Relocate(Vector3 position, Vector3 velocity)
+        {
+            body.position = position; transform.position = position; body.linearVelocity = velocity;
+        }
         public override void Hit(int damage, Vector3 point)
         {
             if (!IsAlive || damage <= 0 || !director.Session.IsPlaying) return;

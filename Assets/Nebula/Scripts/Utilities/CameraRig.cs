@@ -11,6 +11,7 @@ namespace NebulaDefender
         public bool ShakeEnabled { get; set; } = true;
         private float shake;
         private Vector3 stablePosition;
+        private Vector3 tacticalOffset;
         private PlayerController player;
         private GameSession session;
         private Vector3 lastPlayerPosition;
@@ -28,7 +29,8 @@ namespace NebulaDefender
             var direction = new Vector3(0, 1, -0.36f).normalized;
             float halfVertical = Mathf.Max(balance.arenaHalfSize.y + 5, (balance.arenaHalfSize.x + 4) / Mathf.Max(0.5f, aspect));
             float distance = halfVertical / Mathf.Tan(view.fieldOfView * Mathf.Deg2Rad * 0.5f) + 9;
-            stablePosition = direction * distance;
+            tacticalOffset = direction * distance;
+            stablePosition = tacticalOffset + (session != null && session.State != SessionState.Menu && balance.openSpace ? player.Body.position : Vector3.zero);
             transform.SetPositionAndRotation(stablePosition, Quaternion.LookRotation(-direction));
         }
         private void LateUpdate()
@@ -51,11 +53,15 @@ namespace NebulaDefender
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(focus - stablePosition), blend);
                 lastPlayerPosition = p;
             }
+            else if (inFlight && TacticalView)
+            {
+                stablePosition = (balance.openSpace ? player.Body.position : Vector3.zero) + tacticalOffset;
+            }
             else
             {
                 if (wasInFlight) Fit();
             }
-            wasInFlight = inFlight && !TacticalView;
+            wasInFlight = inFlight;
             shake = Mathf.MoveTowards(shake, 0, Time.unscaledDeltaTime * 2);
             transform.position = stablePosition + (ShakeEnabled ? new Vector3(Mathf.Sin(Time.unscaledTime * 83), 0, Mathf.Cos(Time.unscaledTime * 71)) * shake * 0.12f : Vector3.zero);
         }

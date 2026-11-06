@@ -16,6 +16,8 @@ namespace NebulaDefender
         private float nextDrone;
         private bool bossSpawned;
         private Transform pickupRoot;
+        private Camera view;
+        private float nextReposition;
         public BossController Boss { get; private set; }
         public int DroneCount => drones.Count;
         public GameSession Session { get; private set; }
@@ -38,17 +40,22 @@ namespace NebulaDefender
         public void Configure(AsteroidController[] prefabs) => rockPrefabs = prefabs;
         public void ConfigureEnemies(EnemyController drone, BossController boss, Pickup repair, Pickup doubleShot)
         { dronePrefab = drone; bossPrefab = boss; repairPrefab = repair; doubleShotPrefab = doubleShot; }
-        public void Initialize(GameSession owner) => Session = owner;
+        public void Initialize(GameSession owner) { Session = owner; view = Camera.main; }
         public void Begin(LevelDefinition definition)
         {
             Clear(); level = definition; rng = new System.Random(level.seed);
-            bossSpawned = false; nextDrone = Time.time + 2;
+            bossSpawned = false; nextDrone = Time.time + 2; nextReposition = Time.time + 1;
             pickupRoot = new GameObject("Active pickups").transform; pickupRoot.SetParent(transform);
             for (int i = 0; i < level.initialRocks; i++) SpawnRock(i % 3, SpawnPoint(), RandomDirection() * level.asteroidSpeed);
         }
         private void Update()
         {
             if (Session == null || !Session.IsPlaying || level == null) return;
+            if (Session.Arena.OpenSpace && Time.time >= nextReposition)
+            {
+                nextReposition = Time.time + 1;
+                RepositionDistantThreats();
+            }
             int remaining = level.droneGoal - Session.Mission.Drones;
             if (remaining > drones.Count && drones.Count < level.simultaneousDrones && Time.time >= nextDrone)
             {
@@ -60,8 +67,37 @@ namespace NebulaDefender
                 bossSpawned = true; Boss = Instantiate(bossPrefab, transform); Boss.Initialize(this);
             }
         }
-        private Vector3 SpawnPoint()
+        private bool Visible(Vector3 p)
         {
+            var v = view.WorldToViewportPoint(p);
+            return v.z > 0 && v.x > -.1f && v.x < 1.1f && v.y > -.1f && v.y < 1.1f;
+        }
+        private void RepositionDistantThreats()
+        {
+            var center = Session.Player.Body.position;
+            foreach (var rock in rocks)
+                if (rock != null && rock.IsAlive && rock.enabled && (rock.transform.position-center).sqrMagnitude > 80*80 && !Visible(rock.transform.position))
+                {
+                    var p = SpawnPoint(true);
+                    rock.Relocate(p, (center-p).normalized * level.asteroidSpeed);
+                }
+            foreach (var drone in drones)
+                if (drone != null && drone.IsAlive && drone.enabled && (drone.transform.position-center).sqrMagnitude > 80*80 && !Visible(drone.transform.position))
+                    drone.Relocate(SpawnPoint(true));
+        }
+        private Vector3 SpawnPoint(bool offscreen = false)
+        {
+            if (Session.Arena.OpenSpace)
+            {
+                var center = Session.Player.Body.position;
+                for (int i = 0; i < 24; i++)
+                {
+                    var p = center + RandomDirection() * (offscreen ? Range(34,44) : Range(14,26));
+                    if (!offscreen || !Visible(p)) return p;
+                }
+                var behind = view.transform.forward; behind.y = 0; behind.Normalize();
+                return center - behind * 55;
+            }
             var h = Session.Arena.HalfSize;
             for (int i = 0; i < 20; i++)
             {
@@ -89,7 +125,9 @@ namespace NebulaDefender
                 for (int i = 0; i < 2; i++)
                 {
                     Vector3 direction = Quaternion.Euler(0, (i == 0 ? -65 : 65), 0) * (velocity.sqrMagnitude > 0.01f ? velocity.normalized : Vector3.forward);
-                    SpawnRock(rock.Tier - 1, ArenaBounds.Wrapped(p + direction * 1.25f, Session.Arena.HalfSize), direction * (level.asteroidSpeed + 1.2f * (3 - rock.Tier)));
+                    var fragmentPosition = p + direction * 1.25f;
+                    if (!Session.Arena.OpenSpace) fragmentPosition = ArenaBounds.Wrapped(fragmentPosition, Session.Arena.HalfSize);
+                    SpawnRock(rock.Tier - 1, fragmentPosition, direction * (level.asteroidSpeed + 1.2f * (3 - rock.Tier)));
                 }
             }
             Session.AwardRock(rock.Tier);

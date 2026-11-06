@@ -4,7 +4,7 @@ Proyecto 3D independiente para la Semana de Ciencia y Tecnología 2026, Universi
 
 ## Experiencia
 
-Shooter arcade individual, offline, con cámara 3D que sigue la nave desde atrás y arriba. C alterna con una vista táctica elevada de toda la zona. El piloto de la nave experimental Aurora protege tres sectores frente a máquinas hostiles. Partidas cortas y controles de Asteroids: acelerar, conservar inercia, girar para orientar el cañón, frenar y esquivar. La simulación transcurre en XZ; Y aporta volumen visual.
+Shooter arcade individual, offline, con cámara 3D que sigue la nave desde atrás y arriba. C alterna con una vista táctica elevada del combate local. El piloto de la nave experimental Aurora protege tres sectores frente a máquinas hostiles. Partidas cortas y controles de Asteroids: acelerar, conservar inercia, girar para orientar el cañón, frenar y esquivar. La simulación transcurre en XZ; Y aporta volumen visual. Por solicitud del jugador, se eliminó el perímetro y la continuidad entre bordes: el vuelo es abierto y las amenazas se organizan cerca de la nave.
 
 ## Reglas
 

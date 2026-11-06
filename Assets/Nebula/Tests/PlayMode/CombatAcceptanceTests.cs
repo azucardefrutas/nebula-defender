@@ -84,7 +84,7 @@ namespace NebulaDefender.Tests
         }
 #endif
 
-        [UnityTest] public IEnumerator PlayerWrapPreservesVelocityAndHeading()
+        [UnityTest] public IEnumerator PlayerCrossesFormerPerimeterWithoutWrappingOrStopping()
         {
             var body = session.Player.Body;
             body.position = new Vector3(session.Arena.HalfSize.x + 0.5f, 0, 0);
@@ -92,11 +92,16 @@ namespace NebulaDefender.Tests
             body.linearVelocity = new Vector3(4, 0, 2);
             var velocity = body.linearVelocity;
             var rotation = body.rotation;
+            Assert.That(session.Arena.OpenSpace,Is.True);
+            var position=body.position;
             session.Arena.Contain(body);
-            Assert.That(body.position.x, Is.EqualTo(-session.Arena.HalfSize.x + 0.5f).Within(0.001f));
+            Assert.That(body.position,Is.EqualTo(position));
             Assert.That(body.linearVelocity, Is.EqualTo(velocity));
             Assert.That(Quaternion.Angle(body.rotation, rotation), Is.LessThan(0.001f));
-            yield return null;
+            yield return new WaitForFixedUpdate();
+            Assert.That(body.position.x,Is.GreaterThan(session.Arena.HalfSize.x));
+            foreach(var renderer in Object.FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None))
+                if(renderer.gameObject.name=="Wrap marker")Assert.That(renderer.enabled,Is.False);
         }
 
         [UnityTest] public IEnumerator ThreeSectorsCanCompleteThroughWeaponAndColliderHits()

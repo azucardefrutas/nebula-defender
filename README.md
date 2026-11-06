@@ -25,7 +25,7 @@ Si faltan recursos generados, usa **Tools → Nebula Defender → Generate Demo*
 
 ## Campaña
 
-La cámara sigue la nave y estabiliza su orientación al apuntar con mouse. Pulsa **C** para la vista táctica y **F1** para una guía breve. La pantalla mantiene salud, objetivo, puntos y escudo en los bordes, dejando libre el combate.
+Vuela sin perímetro ni saltos entre bordes. La cámara sigue la nave y estabiliza su orientación al apuntar con mouse. Pulsa **C** para la vista táctica y **F1** para una guía breve. La pantalla mantiene salud, objetivo, puntos y escudo en los bordes, dejando libre el combate.
 
 Usa **Tools → Nebula Defender → Open Campaign** y pulsa Play. Registra un apodo, selecciona un sector desbloqueado y completa sus objetivos. Los siguientes sectores se desbloquean al ganar; la pantalla de resultados permite continuar. Al perder las tres vidas termina la partida.
 

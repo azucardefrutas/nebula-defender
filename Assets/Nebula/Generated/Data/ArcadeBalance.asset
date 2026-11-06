@@ -18,6 +18,7 @@ MonoBehaviour:
   drag: 0.45
   reverseAcceleration: 19
   arenaHalfSize: {x: 27, y: 17}
+  openSpace: 1
   wrapEdges: 1
   startingLives: 3
   healthPerLife: 100

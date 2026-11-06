@@ -10,6 +10,7 @@ namespace NebulaDefender
         private Rigidbody body;
         private int health, maximum;
         private float nextShot, originTime;
+        private Vector3 anchor;
         public override Team Team => Team.Hostile;
         public override bool IsAlive => health > 0;
         public float HealthFraction => maximum > 0 ? (float)health / maximum : 0;
@@ -18,14 +19,17 @@ namespace NebulaDefender
         public void Initialize(CombatDirector owner)
         {
             director = owner; health = maximum = owner.Session.Level.bossHealth;
-            body = GetComponent<Rigidbody>(); body.position = new Vector3(0, 0, 10); transform.position = body.position;
+            anchor = owner.Session.Arena.OpenSpace ? owner.Session.Player.Body.position : Vector3.zero;
+            body = GetComponent<Rigidbody>(); body.position = anchor + new Vector3(0, 0, 10); transform.position = body.position;
             originTime = Time.time; nextShot = Time.time + 2;
         }
         private void FixedUpdate()
         {
             if (!IsAlive || !director.Session.IsPlaying) return;
             float t = Time.time - originTime;
-            body.MovePosition(new Vector3(Mathf.Sin(t * 0.32f) * 15, 0, 10 + Mathf.Sin(t * 0.53f) * 2));
+            if (director.Session.Arena.OpenSpace)
+                anchor = Vector3.MoveTowards(anchor, director.Session.Player.Body.position, director.Session.Balance.maxSpeed * 1.05f * Time.fixedDeltaTime);
+            body.MovePosition(anchor + new Vector3(Mathf.Sin(t * 0.32f) * 15, 0, 10 + Mathf.Sin(t * 0.53f) * 2));
             if (Time.time < nextShot) return;
             var session = director.Session;
             var direction = session.Player.Body.position - body.position;

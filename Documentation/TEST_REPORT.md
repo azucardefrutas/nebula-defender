@@ -2,7 +2,7 @@
 
 ## Estado
 
-Implementación jugable y compilada para Windows y navegador, con **44 pruebas automatizadas aprobadas**: 20 EditMode y 24 PlayMode. No se declara terminada la validación académica: faltan una campaña completa jugada por una persona, escucha de audio, medición en el equipo de exposición y prueba física con Internet desconectado.
+Implementación jugable y compilada para Windows y navegador, con **47 pruebas automatizadas aprobadas**: 20 EditMode y 27 PlayMode. No se declara terminada la validación académica: faltan una campaña completa jugada por una persona, escucha de audio, medición en el equipo de exposición y prueba física con Internet desconectado.
 
 Entorno: Unity **6000.3.15f1**, URP **17.3.0**, Input System **1.19.0**, uGUI/TMP **2.0.0**, Test Framework **1.6.0**. Backend de jugador: Mono, Windows x64. El directorio estaba vacío al inicio; no había una base de pruebas previa ni archivos originales de juego.
 
@@ -11,7 +11,7 @@ Entorno: Unity **6000.3.15f1**, URP **17.3.0**, Input System **1.19.0**, uGUI/TM
 | Grupo | Resultado | Evidencia |
 | --- | --- | --- |
 | Reglas y guardado EditMode | **20/20 aprobadas**, cero omitidas | Evidence/edit-tests.xml |
-| Física, controles e integración PlayMode | **24/24 aprobadas**, cero omitidas | Evidence/play-tests.xml |
+| Física, controles e integración PlayMode | **27/27 aprobadas**, cero omitidas | Evidence/play-tests.xml |
 | Hito inicial de mecánica central | **6/6 aprobadas** antes de generar la campaña completa | Evidence/core-milestone-passed.xml |
 | Referencias de escenas, prefabs, shaders, URP, capas y perfil | Aprobado; **310 objetos revisados** | Evidence/project-validation.txt |
 | WAV originales | 15 archivos, mono 22,050 Hz; pico máximo 0.66; sin revisión subjetiva de audio | Evidence/audio-inspection.json |
@@ -148,3 +148,19 @@ Windows se reconstruyó con **cero errores y cero advertencias**, **95,168,918 b
 Web se reconstruyó con **cero errores y cero advertencias**, **16,855,925 bytes**, 5 min 16.29 s incremental. En Chromium se comprobaron menú, entrada a vuelo libre, puntería/movimiento/disparos con mouse, escudo con botón central, pausa pulsando el HUD, ayuda y cambio de cámara mediante botones. Se usaron entradas reales de navegador; no se modificaron puntuaciones ni salud desde JavaScript. La consola mantuvo **cero errores y las siete advertencias WebGL/FSR ya documentadas**. La comprobación HTTP validó los tres archivos gzip, la firma Wasm y la descarga Windows contra el SHA-256 local. Capturas: `mouse-menu-final.png`, `mouse-flight-final.png`, `mouse-pause-final.png` y `mouse-help-final.png`.
 
 Continúan pendientes el equilibrio con jugadores, escucha y rendimiento sostenido en computadoras de exposición. Los perfiles del navegador aislado de pruebas y del jugador Windows permanecen separados; no se borró progreso del usuario.
+
+## Eliminación del perímetro
+
+El balance entregado activa espacio abierto. Se ocultan las marcas heredadas de escenas existentes y el generador ya no las crea. Nave, asteroides y drones no se envuelven ni se detienen al cruzar el antiguo rectángulo. Los láseres conservan su caducidad y cupo, pero no se retiran por cruzarlo; los fragmentos nacen en la posición de destrucción y una vida perdida ya no devuelve la nave al origen.
+
+Las amenazas se generan alrededor del piloto. Cada segundo se reutilizan actores vivos a más de 80 unidades y fuera de pantalla, con aparición también fuera del encuadre; no se conceden puntos ni se alteran cuotas al hacerlo. Ambas cámaras siguen la nave. El jefe aparece en la zona actual y su ancla la sigue. Los decorados originales permanecen en el mundo y pueden quedar atrás.
+
+La suite completa aprobó **27/27 PlayMode**, sin fallos ni omisiones, en **89.08 s**, y **20/20 EditMode**. Se reemplazó la prueba de continuidad por cruce sin frenado o teletransporte y se añadieron pruebas de disparos/fractura/reaparición en (400,0,250), amenazas locales en (800,0,600), cámara táctica y jefe en (500,0,-400). Se comprobó que las marcas heredadas no renderizan y que reutilizar amenazas conserva el número de rocas y la puntuación.
+
+Una primera ejecución aprobó 26/27: el escenario de disparos intentaba usar el Transform antes de que el Rigidbody colocado lejos del origen se sincronizara con él. Se hizo esperar un paso físico y un fotograma antes de disparar; la suite completa aprobó. El intento se conserva en `open-space-first-attempt.xml`. La última corrección de cámara al volver al menú desde la vista táctica se verificó con la prueba ampliada aislada en `open-space-camera-passed.xml`; forma parte de los 27 casos y no se suma de nuevo. La suite completa está también preservada en `open-space-suite-passed.xml`.
+
+La prueba de navegador mantuvo propulsión y disparos con mouse durante varios segundos, alejándose de los decorados iniciales sin salto ni perímetro visible. Chromium mantuvo cero errores y las siete advertencias WebGL/FSR ya descritas. El recorrido humano completo de los sectores y el rendimiento sostenido siguen pendientes.
+
+En la exportación final se repitió el vuelo con mouse durante 6.8 s y se pulsaron los botones de vista táctica, pausa y menú. La cámara mantuvo a la nave visible lejos de la zona inicial y recuperó el encuadre de origen al volver al menú. Capturas: `open-space-final.png`, `open-space-tactical-final.png` y `open-space-menu-final.png`.
+
+Ambas compilaciones finales tienen **cero errores y cero advertencias**. Windows: **95,170,943 bytes**, 00:00:23.5106595 incremental; Web: **16,857,695 bytes**, 00:21:14.7983595 incremental. El ZIP Windows tiene **161 entradas**, **38,177,975 bytes**, pasó CRC y verificación de archivos requeridos. SHA-256: `796e6228e639b9be9b805bb57573ebddec015c9a28db698861adef745005ab66`. Los resúmenes y `web-http-check.json` corresponden a estos artefactos. El indicador de objetivos también se mantiene disponible en vista táctica cuando queda una amenaza fuera del encuadre. El validador de referencias y shaders pasó. La revisión visual de este cambio se realizó en WebGL; el recorrido manual de la nueva compilación Windows queda pendiente.

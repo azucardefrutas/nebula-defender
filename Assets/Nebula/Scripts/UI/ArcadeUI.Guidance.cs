@@ -154,7 +154,7 @@ namespace NebulaDefender
         private void UpdateTargetMarker()
         {
             var target = session.Director.NearestObjective();
-            if (target == null || flightCamera.TacticalView || !session.IsPlaying) { targetMarker.gameObject.SetActive(false); return; }
+            if (target == null || (flightCamera.TacticalView && !session.Arena.OpenSpace) || !session.IsPlaying) { targetMarker.gameObject.SetActive(false); return; }
             var v = gameplayCamera.WorldToViewportPoint(target.transform.position);
             bool outside = v.z < 0 || v.x < .05f || v.x > .95f || v.y < .12f || v.y > .85f;
             targetMarker.gameObject.SetActive(outside); if (!outside) return;

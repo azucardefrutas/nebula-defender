@@ -6,6 +6,7 @@ namespace NebulaDefender
     {
         [SerializeField] private GameBalance balance;
         public Vector2 HalfSize => balance.arenaHalfSize;
+        public bool OpenSpace => balance.openSpace;
         public void Configure(GameBalance value) => balance = value;
         public static Vector3 Wrapped(Vector3 p, Vector2 half)
         {
@@ -16,6 +17,7 @@ namespace NebulaDefender
         }
         public void Contain(Rigidbody body)
         {
+            if (OpenSpace) return;
             var p = body.position;
             if (Mathf.Abs(p.x) <= HalfSize.x && Mathf.Abs(p.z) <= HalfSize.y) return;
             if (balance.wrapEdges) body.position = Wrapped(p, HalfSize);
@@ -25,6 +27,6 @@ namespace NebulaDefender
                 body.position = p; body.linearVelocity = Vector3.zero;
             }
         }
-        public bool Outside(Vector3 p, float margin = 2) => Mathf.Abs(p.x) > HalfSize.x + margin || Mathf.Abs(p.z) > HalfSize.y + margin;
+        public bool Outside(Vector3 p, float margin = 2) => !OpenSpace && (Mathf.Abs(p.x) > HalfSize.x + margin || Mathf.Abs(p.z) > HalfSize.y + margin);
     }
 }

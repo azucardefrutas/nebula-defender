@@ -255,11 +255,6 @@ namespace NebulaDefender.Editor
             var starMesh=new Mesh{name="Star field",vertices=stars.ToArray(),triangles=triangles.ToArray()};starMesh.RecalculateNormals();
             string starPath=Root+"/Meshes/Stars.asset";var stored=AssetDatabase.LoadAssetAtPath<Mesh>(starPath);if(stored==null){AssetDatabase.CreateAsset(starMesh,starPath);stored=starMesh;}else UnityEngine.Object.DestroyImmediate(starMesh);
             var starField=ProceduralModels.Part("Distant stars",scenery,stored,Material("Stars",new Color(0.6f,0.8f,1),0,new Color(0.7f,0.9f,1.2f)),Vector3.zero,Vector3.one);
-            var boundary=Material("Boundary",new Color(0.035f,0.12f,0.2f),0,new Color(0.025f,0.14f,0.23f));
-            for(int i=-26;i<=26;i+=2) foreach(float z in new[]{-balance.arenaHalfSize.y,balance.arenaHalfSize.y})
-                ProceduralModels.Primitive("Wrap marker",PrimitiveType.Cube,scenery,boundary,new Vector3(i,-0.8f,z),new Vector3(0.8f,0.04f,0.08f));
-            for(int i=-16;i<=16;i+=2) foreach(float x in new[]{-balance.arenaHalfSize.x,balance.arenaHalfSize.x})
-                ProceduralModels.Primitive("Wrap marker",PrimitiveType.Cube,scenery,boundary,new Vector3(x,-0.8f,i),new Vector3(0.08f,0.04f,0.8f));
             var nebula=Material("Nebula cloud",new Color(0.007f,0.014f,0.035f),0);nebula.shader=Shader.Find("Nebula Defender/Nebula");
             var cloud=ProceduralModels.Primitive("Nebula backdrop",PrimitiveType.Quad,scenery,nebula,new Vector3(0,-65,15),new Vector3(330,240,1));cloud.transform.rotation=Quaternion.Euler(90,0,0);
             var station=CreateFortress(scenery);

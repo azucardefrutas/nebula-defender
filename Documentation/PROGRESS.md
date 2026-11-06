@@ -12,7 +12,7 @@ Este registro distingue implementación de verificación. No se considera un jue
 | 6 · Presentación | Meshes originales, nebulosa/planeta, fortaleza, bloom moderado, música y SFX sintetizados | Menú y vuelo revisados en jugador y Editor; quince WAV inspeccionados, pico máximo 0.66 | Escucha y revisión completa de los sectores 2/3 |
 | 7 · Distribución | Perfil Windows x64 Mono y herramienta de build/ZIP | Build final sin errores/advertencias; ejecutable abierto; ZIP completo con CRC verificado | Prueba desconectada y equipo de exposición |
 
-Resultado automatizado vigente: **20 EditMode + 24 PlayMode aprobadas**. Las pruebas cubren capacidad reducida del pool, recogidas físicas y láser doble, continuidad de bordes, campaña por impactos reales, ayuda F1, cámara 3D/táctica y ahora puntería, propulsión, frenado y bloqueo de clics de UI con mouse. El generador se repitió preservando 51 rutas/GUIDs en la entrega inicial. Ver TEST_REPORT.md para el alcance exacto, pruebas pendientes y artefactos. No se marca como terminado el proceso de aceptación académica.
+Resultado automatizado vigente: **20 EditMode + 27 PlayMode aprobadas**. Las pruebas cubren capacidad del pool, recogidas y láser doble, campaña por impactos reales, ayuda F1, cámara, control con mouse y ahora vuelo sin perímetro, combate y reaparición lejos del origen, amenazas locales y seguimiento táctico/jefe. El generador se repitió preservando 51 rutas/GUIDs en la entrega inicial. Ver TEST_REPORT.md para el alcance exacto, pruebas pendientes y artefactos. No se marca como terminado el proceso de aceptación académica.
 
 ## Incidencias resueltas durante el desarrollo
 
@@ -49,3 +49,11 @@ Resultado automatizado vigente: **20 EditMode + 24 PlayMode aprobadas**. Las pru
 - Detalles adicionales de la nave, escudo transparente de borde y nueva superficie procedural del planeta.
 - Las tres pruebas nuevas de mouse pasan, incluida destrucción por contacto real de proyectiles y clics de pausa sin disparos accidentales. Se corrigió el encuadre de UI en proporción 4:3.
 - Windows reconstruido, ZIP íntegro y ejecutable abierto/revisado visualmente. La comprobación de dificultad humana y rendimiento sostenido continúa pendiente.
+
+## Vuelo sin perímetro
+
+- Eliminadas las marcas visibles y desactivado el salto entre bordes en el balance entregado; no se detiene ni devuelve al jugador al cruzar la zona anterior.
+- Disparos y fragmentos funcionan fuera de esa zona. Perder una vida conserva la posición actual.
+- Asteroides y drones se generan alrededor del piloto; los actores muy lejanos se reutilizan fuera de cámara sin sumar puntos o cambiar las cuotas.
+- La cámara táctica sigue la nave, el jefe aparece cerca del combate y el regreso al menú recupera su encuadre.
+- Suite PlayMode: 27/27 aprobadas. La comprobación ampliada del regreso de cámara al menú también pasó por separado, sin sumarse de nuevo al total.
