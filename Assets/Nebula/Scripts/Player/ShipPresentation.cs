@@ -12,6 +12,24 @@ namespace NebulaDefender
         { if(trails!=null)foreach(var trail in trails)trail.Clear(); }
         public void Build(Transform visual)
         {
+            if (visual != null && visual.Find("Authored Aurora") != null)
+            {
+                // Authored wings and guns are baked into the FBX; only flight trails are dynamic.
+                if(trails!=null)return;
+                var trailMaterial=visual.Find("Ion exhaust").GetComponentInChildren<MeshRenderer>().sharedMaterial;
+                trails=new TrailRenderer[2];
+                for(int i=0;i<2;i++)
+                {
+                    var nozzle=new GameObject("Ion trail").transform; nozzle.SetParent(visual,false);
+                    nozzle.localPosition=new Vector3(i==0?-.77f:.77f,0,-1.55f);
+                    var trail=nozzle.gameObject.AddComponent<TrailRenderer>();
+                    trail.sharedMaterial=trailMaterial; trail.time=.18f; trail.startWidth=.14f; trail.endWidth=0;
+                    trail.minVertexDistance=.08f; trail.emitting=false;
+                    trail.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off; trail.receiveShadows=false;
+                    trails[i]=trail;
+                }
+                return;
+            }
             if (visual == null || visual.Find("Titanium fuselage") == null || visual.Find("Aurora details") != null) return;
             Material metal = null, dark = null, glow = null, blue = null;
             foreach (var r in visual.GetComponentsInChildren<MeshRenderer>())

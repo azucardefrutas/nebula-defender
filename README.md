@@ -8,7 +8,7 @@ Shooter espacial arcade 3D, individual y offline para Windows. Creado para la Se
 
 - **Instalador Windows 1.0:** abre `Builds/NebulaDefender-Setup-x64.exe`. Incluye el juego completo, accesos directos y desinstalador; no requiere Unity ni Visual Studio.
 - **Windows sin instalar:** abre `JUGAR_WINDOWS.cmd` o `Builds/Windows/NebulaDefender.exe`.
-- **Vista previa como página:** abre `JUGAR_LOCALHOST.cmd` y entra a **http://localhost:8080**. Mantén el servidor abierto mientras juegas. Esta exportación corresponde a la revisión anterior de vuelo abierto; todavía no incluye la nueva campaña de portales. La descarga del ZIP sí entrega el jugador Windows actual.
+- **Como página:** abre `JUGAR_LOCALHOST.cmd` y entra a **http://localhost:8080**. Mantén el servidor abierto mientras juegas. Incluye la campaña de portales y los modelos originales nuevos. Si tenías abierta una versión anterior, recarga la página desde el menú.
 - **Otra computadora Windows:** extrae todo `Builds/NebulaDefender-Windows-x64.zip` y ejecuta `Windows/NebulaDefender.exe`.
 
 La página ejecuta una exportación WebAssembly del mismo juego Unity. El proyecto fuente y el ejecutable usan Unity 6.3; la exportación web utiliza una copia de compilación con el Unity 6.4 que ya tiene soporte web en este equipo. Consulta [BUILD_WEB.md](Documentation/BUILD_WEB.md). Los perfiles del navegador y de Windows se guardan por separado.
@@ -43,6 +43,8 @@ La salida es `Builds/Windows/NebulaDefender.exe` junto con `NebulaDefender_Data`
 Consulta [las instrucciones de compilación](Documentation/BUILD_WINDOWS.md) y [el informe de pruebas](Documentation/TEST_REPORT.md) para conocer los resultados obtenidos y las verificaciones pendientes. La existencia de código no equivale a una función verificada.
 
 ## Tecnología y organización
+
+La revisión visual incorpora modelos originales de Aurora, Marauder, Nemesis Prime y cuatro asteroides con cráteres, creados en Blender 5.1.2 e importados como FBX. Incluye sus fuentes editables y una herramienta de integración; ver [modelos originales](Documentation/ORIGINAL_ART.md). No hace falta Blender para abrir el juego o compilar los FBX existentes.
 
 Unity 6.3 LTS · C# · URP 17.3.0 · Input System 1.19.0 · Unity Physics 3D · uGUI/TextMeshPro · Unity Test Framework 1.6.0 · Git local. Sin backend, servicios online ni recursos de pago. La importación de paquetes puede requerir conexión en una computadora nueva; el ejecutable no depende del Editor ni de los paquetes de desarrollo.
 

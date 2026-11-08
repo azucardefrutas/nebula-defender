@@ -1,0 +1,55 @@
+{
+  "tool": "5.1.2",
+  "origin": "Original geometry authored for Nebula Defender",
+  "assets": [
+    {
+      "model": "Aurora",
+      "triangles": 4500,
+      "renderers": 1,
+      "materials": 6,
+      "fbx_bytes": 133324
+    },
+    {
+      "model": "Marauder",
+      "triangles": 2008,
+      "renderers": 1,
+      "materials": 4,
+      "fbx_bytes": 73900
+    },
+    {
+      "model": "Nemesis",
+      "triangles": 7484,
+      "renderers": 2,
+      "materials": 3,
+      "fbx_bytes": 196204
+    },
+    {
+      "model": "Asteroid0",
+      "triangles": 1280,
+      "renderers": 1,
+      "materials": 4,
+      "fbx_bytes": 66348
+    },
+    {
+      "model": "Asteroid1",
+      "triangles": 1280,
+      "renderers": 1,
+      "materials": 4,
+      "fbx_bytes": 66380
+    },
+    {
+      "model": "Asteroid2",
+      "triangles": 1280,
+      "renderers": 1,
+      "materials": 4,
+      "fbx_bytes": 66364
+    },
+    {
+      "model": "Asteroid3",
+      "triangles": 1280,
+      "renderers": 1,
+      "materials": 4,
+      "fbx_bytes": 66332
+    }
+  ]
+}

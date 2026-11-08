@@ -2,7 +2,9 @@
 
 Abre `JUGAR_LOCALHOST.cmd` desde la raíz del proyecto. Sirve el juego en **http://localhost:8080** y abre el navegador. Conserva la ventana del servidor durante la partida; Ctrl+C lo cierra. No se publica el proyecto en Internet.
 
-Pulsa **ENTRAR AL JUEGO** al terminar la carga. Usa el menú para registrar un piloto e iniciar la campaña. **VUELO RÁPIDO / SIN REGISTRO** abre CoreSandbox para probar la nave directamente. Los controles son W/S, A/D, Espacio, Shift y Escape. La pantalla completa se activa desde el botón de la página.
+Pulsa **ENTRAR AL JUEGO** al terminar la carga. **JUGAR** prepara la campaña sin registro obligatorio; **VUELO LIBRE** abre CoreSandbox para probar la nave directamente. Mouse apunta, izquierdo dispara, derecho avanza y rueda/Shift activa escudo. WASD y Espacio siguen disponibles. La pantalla completa se activa desde el botón de la página.
+
+La compilación actual incluye los modelos originales creados en Blender y la campaña «Vuelve a casa»: despeja cada sector y entra en el portal azul. Si tenías abierta la exportación anterior, recarga desde el menú para descargar la versión nueva.
 
 El botón **DESCARGAR PARA WINDOWS** entrega el ZIP completo del ejecutable. También puede iniciarse con `JUGAR_WINDOWS.cmd`, sin navegador ni servidor.
 

@@ -2,6 +2,16 @@
 
 ## Windows 1.0 · Vuelve a casa
 
+### Revisión de modelos originales
+
+Se crearon siete fuentes `.blend` con Blender 5.1.2 y sus siete FBX: Aurora, Marauder, Nemesis y cuatro asteroides con cráteres. Ya están integrados en prefabs, escenas, menú y ambas compilaciones. Sus materiales son URP Lit compartidos; no se descargaron modelos ni se consumieron créditos.
+
+Se ejecutaron **30/30 PlayMode** con el arte nuevo (128.17 s), validación de 292 objetos/referencias y validación de escala, orientación, materiales y geometría de los siete FBX. Windows y Web compilaron sin errores ni advertencias. Se verificaron otra vez la instalación/desinstalación real y los 161 archivos del paquete. En localhost se inspeccionaron menú y vuelo libre, movimiento y proyectiles. La versión Web ya incluye también los portales; sustituye el estado web pendiente del registro anterior.
+
+Pendiente: recorrido visual completo de los sectores 2/3 durante una partida humana, escucha y rendimiento en el equipo de exposición. Los renderizados de los cuatro tipos de modelo se revisaron en Unity; esto no sustituye el recorrido humano. Detalles en `ORIGINAL_ART.md` y `TEST_REPORT.md`.
+
+### Registro de la campaña antes de la revisión de arte
+
 - Implementado: campaña de tres rutas con portal físico, victoria al volver a casa, inicio sin registro, asistencia ligera de puntería, primera mejora garantizada, atracción de recogidas, combate más próximo, estelas de motores y cámara estable.
 - Ejecutado: **20/20 EditMode y 30/30 PlayMode**. La nueva campaña atraviesa los tres sectores mediante armas, contactos físicos y entrada a los portales en un escenario controlado. La comprobación posterior del radio de entrada pasó **3/3** pruebas de campaña; ya están incluidas en el total, no se suman otra vez.
 - Distribución: jugador Windows 1.0 compilado sin errores ni advertencias. Instalador `.exe` creado y ejecutado en una carpeta temporal; los 161 archivos coinciden por SHA-256. Desinstalación comprobada conservando un archivo ajeno y la inscripción real del usuario.

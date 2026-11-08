@@ -1,0 +1,26 @@
+{
+  "result": "passed",
+  "web_assets": [
+    {
+      "file": "WebGL.data.gz",
+      "bytes": 6513175,
+      "sha256": "df040013dc85da8aa53118d7a17d037818bd8551cb5c1dff6b59b880aa1c20c1",
+      "served_matches_build": true
+    },
+    {
+      "file": "WebGL.framework.js.gz",
+      "bytes": 90481,
+      "sha256": "7a3aee9c8217dab49ee7fb66be52828554dfc1883acd34510f0eeb4c868cc075",
+      "served_matches_build": true
+    },
+    {
+      "file": "WebGL.wasm.gz",
+      "bytes": 10850647,
+      "sha256": "91113e7f2716a636942c7f2b9e4c0f2aa6cb67c91c63a403e1f8635a45e63a7f",
+      "served_matches_build": true
+    }
+  ],
+  "windows_zip_sha256": "ca1950043a442e7580ff3f105bb69ceeb72dcfa8730c51ffb10a3377df28ebfa",
+  "windows_download_matches_build": true,
+  "browser_check": "Menu, original models, free flight, W movement, visible projectiles; no console errors; one optional FSR warning."
+}

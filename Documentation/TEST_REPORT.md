@@ -1,6 +1,29 @@
 # Informe de pruebas — actualizado el 6 de noviembre de 2026
 
-## Resultado actual · Windows 1.0
+## Resultado actual · Modelos originales en Windows y localhost
+
+Se generaron siete modelos originales con Blender 5.1.2, se importaron los FBX en Unity 6.3 y se sustituyeron exclusivamente los elementos visuales de los prefabs de la demo. Las fuentes `.blend` se conservan fuera de Assets. No se utilizaron generaciones de Meshy/Tripo ni modelos descargados.
+
+| Verificación de esta revisión | Resultado | Evidencia |
+| --- | --- | --- |
+| Código C# de las cuatro asambleas | Aprobado con referencias reales del Editor instalado | Registro local standalone-csharp.log |
+| Importación de los siete FBX | Escala, orientación +Z de Aurora, materiales URP, menos de 10,000 triángulos por modelo y ausencia de colliders visuales aprobados | Evidence/authored-models-validation.txt |
+| Inspección visual de modelos importados | Aurora, Marauder, Nemesis y una roca renderizados y revisados en Unity | Evidence/model-*.png |
+| Integración/física/campaña con arte nuevo | **30/30 PlayMode**, 128.17 s, sin omisiones | Evidence/play-tests.xml |
+| Referencias de escenas y prefabs | **292 objetos** aprobados; sin referencias rotas detectadas | Evidence/project-validation.txt |
+| Windows x64 | Succeeded, cero errores/advertencias, **95,703,219 bytes**, 12.73 s | Evidence/build-summary.txt |
+| Web | Succeeded, cero errores/advertencias de build, **17,486,472 bytes**, 3 min 27 s | Evidence/web-build-summary.txt |
+| Instalador actualizado | **28,183,922 bytes**, instalación y desinstalación reales aprobadas; 161 archivos coinciden por hash; archivo ajeno y registro del usuario conservados | Evidence/installer-build.json; installer-qa.json |
+| ZIP actualizado | **38,510,415 bytes**, 161 entradas, CRC y runtime completo aprobados | Evidence/package-inspection.json |
+| Archivos servidos en localhost | Los tres archivos gzip coinciden por hash con la nueva exportación; firma Wasm y cabeceras válidas. El ZIP descargado coincide con el paquete Windows | Evidence/authored-web-check.json |
+
+En la página real de localhost se recorrió la entrada → menú → vuelo libre. Se vieron Aurora, las nuevas rocas, movimiento con W, proyectiles al mantener Espacio y daño por contacto. Se utilizó CoreSandbox para no registrar puntuaciones de pruebas en el perfil seleccionado del usuario. La consola de esa sesión no registró errores y mostró una advertencia del shader opcional FSR, sin ocultarla. Las pruebas completas del combate con mouse y de extracción siguen incluidas en la suite PlayMode; la comprobación web de esta revisión es un recorrido breve, no una campaña humana completa.
+
+El nuevo ejecutable nativo se abrió y su registro inicializó Direct3D 12 y PhysX sin excepciones de juego observadas en ese arranque. La captura de su ventana no permitió distinguir con fiabilidad su contenido; **la revisión visual de esta revisión se certifica en Unity y Web, no en el jugador nativo**. Se conservan las pruebas visuales nativas de revisiones anteriores como historial.
+
+Los 20 EditMode de reglas/guardado de la campaña anterior siguen registrados; esas reglas no cambiaron en esta revisión. Faltan campaña humana completa, escucha, teclado/mando físicos en Windows, prueba desconectada y rendimiento sostenido en el equipo escolar. No se deduce 60 FPS de los conteos de polígonos ni de una compilación aprobada.
+
+## Campaña 1.0 antes de la revisión de arte
 
 **50 pruebas aprobadas: 20 EditMode y 30 PlayMode**, sin omisiones. La campaña «Vuelve a casa» permite jugar sin registro, cumplir las cuotas, abrir un portal y completar cada sector al cruzarlo. La victoria final requiere al jefe y la entrada al último portal.
 

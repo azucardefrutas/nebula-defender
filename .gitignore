@@ -16,3 +16,4 @@ output/
 Documentation/Evidence/*.log
 __pycache__/
 *.pyc
+ArtSource/AuthoredV1/*.blend1

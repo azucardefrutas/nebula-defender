@@ -1,0 +1,8 @@
+Original Blender art / Unity imported validation
+Aurora: 4494 triangles; 1 renderers; bounds (3.52, 1.12, 3.16); URP materials valid; no visual colliders.
+Marauder: 2008 triangles; 1 renderers; bounds (2.30, 0.72, 1.66); URP materials valid; no visual colliders.
+Nemesis: 7436 triangles; 2 renderers; bounds (9.59, 1.83, 4.80); URP materials valid; no visual colliders.
+Asteroid0: 1280 triangles; 1 renderers; bounds (1.89, 1.67, 1.77); URP materials valid; no visual colliders.
+Asteroid1: 1280 triangles; 1 renderers; bounds (1.89, 1.69, 1.76); URP materials valid; no visual colliders.
+Asteroid2: 1280 triangles; 1 renderers; bounds (1.91, 1.72, 1.78); URP materials valid; no visual colliders.
+Asteroid3: 1280 triangles; 1 renderers; bounds (1.91, 1.70, 1.76); URP materials valid; no visual colliders.
