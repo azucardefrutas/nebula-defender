@@ -31,7 +31,8 @@ def gh(*args, json_result=False):
 
 
 def assets():
-    return gh("api", f"repos/{REPO}/releases/tags/{TAG}", json_result=True)["assets"]
+    release = gh("api", f"repos/{REPO}/releases/tags/{TAG}", json_result=True)
+    return gh("api", f"repos/{REPO}/releases/{release['id']}/assets?per_page=100", json_result=True)
 
 
 def download(name, folder):
