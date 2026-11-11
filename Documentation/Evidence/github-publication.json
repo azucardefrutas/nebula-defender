@@ -1,0 +1,99 @@
+{
+  "result": "passed",
+  "verified_at_utc": "2026-11-11T18:09:18.132463+00:00",
+  "repository": "https://github.com/azucardefrutas/nebula-defender",
+  "release": "https://github.com/azucardefrutas/nebula-defender/releases/tag/v1.0.0",
+  "tag": "v1.0.0",
+  "source_snapshot": {
+    "result": "passed",
+    "source_commit": "e0421f79466e59e1d02f452353654a0fb7ee8dd1",
+    "tracked_files_verified": 538,
+    "blender_sources": 7,
+    "fbx_models": 7,
+    "remote_tree_matches_local": true
+  },
+  "workflow": "https://github.com/azucardefrutas/nebula-defender/actions/runs/43074485629",
+  "workflow_conclusion": "success",
+  "installer_full_anonymous_download": {
+    "result": "passed",
+    "anonymous_download": true,
+    "installer_url": "https://github.com/azucardefrutas/nebula-defender/releases/download/v1.0.0/NebulaDefender-Setup-x64.exe",
+    "bytes": 28240308,
+    "sha256": "022d48fd73f26e9ffb4672b35edc22eacb60860daeecd1875f3bbde00761d659",
+    "windows_executable_signature": "MZ"
+  },
+  "archive_assembly": {
+    "result": "passed",
+    "method": "Assembled from the verified installer and compiled web payload; Unity was not rebuilt.",
+    "payload_files_verified": 163,
+    "web_files_verified": 6,
+    "workflow_url": "https://github.com/azucardefrutas/nebula-defender/actions/runs/43074485629",
+    "assets": [
+      {
+        "name": "NebulaDefender-Setup-x64.exe",
+        "bytes": 28240308,
+        "sha256": "022d48fd73f26e9ffb4672b35edc22eacb60860daeecd1875f3bbde00761d659"
+      },
+      {
+        "name": "NebulaDefender-Windows-x64.zip",
+        "bytes": 38513207,
+        "sha256": "37c4dfa8ee706c4be74bd52fddfb205d8ca21c9b506a24e8d8b11a094e671af8"
+      },
+      {
+        "name": "NebulaDefender-Web-Local.zip",
+        "bytes": 55327180,
+        "sha256": "0e8d5eda304ace75e7f95118d7c3116c04b666dc930e7c3b94ddd32989ed3fae"
+      },
+      {
+        "name": "NebulaDefender-Unity-Source.zip",
+        "bytes": 9700537,
+        "sha256": "d13d906533036693e33985ab66082e9bcf666dce11d7fce366170a9af26d2ba0"
+      }
+    ]
+  },
+  "public_assets": [
+    {
+      "name": "distribution-verification.json",
+      "bytes": 1002,
+      "sha256": "688de34b7e2bba6de8daf3a7f8e715d5d5c21dbe76a3e3b568b21c3608e7ce8c",
+      "url": "https://github.com/azucardefrutas/nebula-defender/releases/download/v1.0.0/distribution-verification.json",
+      "anonymous_http_status": 200
+    },
+    {
+      "name": "NebulaDefender-Setup-x64.exe",
+      "bytes": 28240308,
+      "sha256": "022d48fd73f26e9ffb4672b35edc22eacb60860daeecd1875f3bbde00761d659",
+      "url": "https://github.com/azucardefrutas/nebula-defender/releases/download/v1.0.0/NebulaDefender-Setup-x64.exe",
+      "anonymous_http_status": 200
+    },
+    {
+      "name": "NebulaDefender-Unity-Source.zip",
+      "bytes": 9700537,
+      "sha256": "d13d906533036693e33985ab66082e9bcf666dce11d7fce366170a9af26d2ba0",
+      "url": "https://github.com/azucardefrutas/nebula-defender/releases/download/v1.0.0/NebulaDefender-Unity-Source.zip",
+      "anonymous_http_status": 200
+    },
+    {
+      "name": "NebulaDefender-Web-Local.zip",
+      "bytes": 55327180,
+      "sha256": "0e8d5eda304ace75e7f95118d7c3116c04b666dc930e7c3b94ddd32989ed3fae",
+      "url": "https://github.com/azucardefrutas/nebula-defender/releases/download/v1.0.0/NebulaDefender-Web-Local.zip",
+      "anonymous_http_status": 200
+    },
+    {
+      "name": "NebulaDefender-Windows-x64.zip",
+      "bytes": 38513207,
+      "sha256": "37c4dfa8ee706c4be74bd52fddfb205d8ca21c9b506a24e8d8b11a094e671af8",
+      "url": "https://github.com/azucardefrutas/nebula-defender/releases/download/v1.0.0/NebulaDefender-Windows-x64.zip",
+      "anonymous_http_status": 200
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 389,
+      "sha256": "490959981a1b7d4bb230f57721bb7b48983aab2c42b10adb171c3c861a0ad4ff",
+      "url": "https://github.com/azucardefrutas/nebula-defender/releases/download/v1.0.0/SHA256SUMS.txt",
+      "anonymous_http_status": 200
+    }
+  ],
+  "verification_scope": "Installer fully downloaded without authentication and compared by SHA-256; all asset HEAD requests returned 200; server digests and checksum manifest match; archives verified on GitHub against all payload hashes."
+}

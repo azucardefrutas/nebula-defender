@@ -1,4 +1,10 @@
-# Progreso — actualizado el 6 de noviembre de 2026
+# Progreso — actualizado el 11 de noviembre de 2026
+
+## Repositorio y distribución publicados
+
+Se publicaron el repositorio [nebula-defender](https://github.com/azucardefrutas/nebula-defender) y la [release v1.0.0](https://github.com/azucardefrutas/nebula-defender/releases/tag/v1.0.0), con instalador Windows x64, portable, web local, fuente Unity, hashes e informe de distribución. Se comprobaron los seis enlaces públicos; el instalador se descargó completo y su SHA-256 coincidió con el original probado.
+
+El ensamblado remoto aprobó la comprobación de los 163 archivos del jugador y seis archivos web antes de publicar ambos ZIP. La revisión funcional del juego permanece en el informe del 6 de noviembre; publicar no implica repetir las pruebas de Unity ni resolver las comprobaciones humanas pendientes. Véanse `PUBLISHING.md` y `Evidence/github-publication.json`.
 
 ## Windows 1.0 · Vuelve a casa
 

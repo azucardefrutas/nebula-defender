@@ -1,0 +1,29 @@
+{
+  "result": "passed",
+  "method": "Assembled from the verified installer and compiled web payload; Unity was not rebuilt.",
+  "payload_files_verified": 163,
+  "web_files_verified": 6,
+  "workflow_url": "https://github.com/azucardefrutas/nebula-defender/actions/runs/43074485629",
+  "assets": [
+    {
+      "name": "NebulaDefender-Setup-x64.exe",
+      "bytes": 28240308,
+      "sha256": "022d48fd73f26e9ffb4672b35edc22eacb60860daeecd1875f3bbde00761d659"
+    },
+    {
+      "name": "NebulaDefender-Windows-x64.zip",
+      "bytes": 38513207,
+      "sha256": "37c4dfa8ee706c4be74bd52fddfb205d8ca21c9b506a24e8d8b11a094e671af8"
+    },
+    {
+      "name": "NebulaDefender-Web-Local.zip",
+      "bytes": 55327180,
+      "sha256": "0e8d5eda304ace75e7f95118d7c3116c04b666dc930e7c3b94ddd32989ed3fae"
+    },
+    {
+      "name": "NebulaDefender-Unity-Source.zip",
+      "bytes": 9700537,
+      "sha256": "d13d906533036693e33985ab66082e9bcf666dce11d7fce366170a9af26d2ba0"
+    }
+  ]
+}

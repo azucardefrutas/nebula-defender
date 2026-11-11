@@ -1,5 +1,15 @@
 # Informe de pruebas — actualizado el 11 de noviembre de 2026
 
+## Publicación GitHub comprobada
+
+Repositorio público: [azucardefrutas/nebula-defender](https://github.com/azucardefrutas/nebula-defender). Release: [v1.0.0](https://github.com/azucardefrutas/nebula-defender/releases/tag/v1.0.0).
+
+Los seis archivos publicados respondieron HTTP 200 sin autenticación y con el tamaño esperado. El instalador se descargó por completo desde el enlace público: **28,240,308 bytes**, firma MZ y SHA-256 `022d48fd73f26e9ffb4672b35edc22eacb60860daeecd1875f3bbde00761d659`, coincidente con el instalador probado localmente. El manifiesto público coincide con los digests de GitHub de las cuatro distribuciones.
+
+El ensamblado de ZIPs terminó correctamente en [GitHub Actions](https://github.com/azucardefrutas/nebula-defender/actions/runs/43074485629). El runner instaló el `.exe` publicado en modo QA y comparó los hashes de los **163 archivos** antes de crear el portable. También comprobó los **seis archivos web compilados**, el CRC de ambos ZIP y que el Windows ZIP incluido en Web fuera idéntico al portable publicado. No se ejecutó Unity, no se recompiló el juego ni se certificó una partida humana en el runner.
+
+Los intentos de carga directa desde este equipo de los ZIP grandes quedaron incompletos por fallos de transporte; se sustituyeron por el ensamblado en GitHub, conservando el instalador y el código ya publicados. Evidencia final: `Evidence/github-publication.json` y `Evidence/github-archive-assembly.json`. Los informes locales de empaquetado se conservan por separado y no sustituyen los hashes públicos de Releases.
+
 ## Empaquetado para publicación
 
 El 11 de noviembre se añadieron los avisos de terceros y el texto OFL de Liberation Sans al paquete de distribución. No se cambió la lógica ni se recompiló el jugador Unity. El instalador se volvió a empaquetar con NSIS 3.13 y pasó una instalación/desinstalación real con hashes de **163 archivos**: preservó el archivo ajeno y el registro del usuario. Tamaño del instalador: **28,240,308 bytes**. ZIP portable: **38,513,207 bytes**, 163 entradas, CRC y datos/runtime aprobados. Evidencia vigente: `installer-build.json`, `installer-qa.json` y `package-inspection.json`. El QA anterior de arte queda en `installer-original-art-qa.json`.

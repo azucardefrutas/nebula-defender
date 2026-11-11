@@ -92,11 +92,14 @@ En localhost se revisaron menú, modelos, vuelo, movimiento y proyectiles; la co
 
 **[Informe de pruebas](Documentation/TEST_REPORT.md)** · [Entrega 1.0.0](Documentation/RELEASE-1.0.0.md)
 
+La publicación se comprobó sin iniciar sesión: se descargó el instalador completo y su SHA-256 coincide con el original. Los ZIP portable y web se ensamblaron en GitHub a partir del mismo instalador y de los seis archivos web compilados, verificando los 163 archivos del jugador. No se recompiló Unity. [Ejecución aprobada](https://github.com/azucardefrutas/nebula-defender/actions/runs/43074485629) · [Informe de publicación](Documentation/Evidence/github-publication.json).
+
 ## Documentación
 
 - [Diseño](Documentation/GAME_DESIGN_DOCUMENT.md) · [Sectores](Documentation/LEVELS.md).
 - [Compilar Windows](Documentation/BUILD_WINDOWS.md) · [Web local](Documentation/BUILD_WEB.md).
 - [Desarrollo local](Documentation/LOCAL_DEVELOPMENT.md) · [Modelos originales](Documentation/ORIGINAL_ART.md).
 - [Progreso](Documentation/PROGRESS.md) · [Avisos de terceros](THIRD_PARTY_NOTICES.md).
+- [Publicación, descargas y verificación](Documentation/PUBLISHING.md).
 
 Proyecto académico para la **Semana de Ciencia y Tecnología 2026, Universidad Politécnica de Bacalar**. Docente: **Mtro. Esdras Chuc C.** Nebula Defender es independiente de Dead Tap.

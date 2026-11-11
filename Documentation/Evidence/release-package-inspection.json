@@ -1,0 +1,42 @@
+{
+  "result": "passed",
+  "tag": "v1.0.0",
+  "source_commit": "e0421f79466e59e1d02f452353654a0fb7ee8dd1",
+  "assets": [
+    {
+      "name": "NebulaDefender-Setup-x64.exe",
+      "bytes": 28240308,
+      "sha256": "022d48fd73f26e9ffb4672b35edc22eacb60860daeecd1875f3bbde00761d659"
+    },
+    {
+      "name": "NebulaDefender-Windows-x64.zip",
+      "bytes": 38513207,
+      "sha256": "d5a68be61bfaca2c04d16fa8eb66da0368e67e0c0e3b937e4ff440ddca0d4765"
+    },
+    {
+      "name": "NebulaDefender-Web-Local.zip",
+      "bytes": 55327271,
+      "sha256": "522d79f2c60d206648eda05b1fc3288e98b61a50ff95561ae6b7ce1524611eca"
+    },
+    {
+      "name": "NebulaDefender-Unity-Source.zip",
+      "bytes": 9700537,
+      "sha256": "d13d906533036693e33985ab66082e9bcf666dce11d7fce366170a9af26d2ba0"
+    }
+  ],
+  "archives": {
+    "NebulaDefender-Unity-Source.zip": {
+      "entries": 592,
+      "crc": "passed"
+    },
+    "NebulaDefender-Web-Local.zip": {
+      "entries": 12,
+      "crc": "passed"
+    },
+    "NebulaDefender-Windows-x64.zip": {
+      "entries": 163,
+      "crc": "passed"
+    }
+  },
+  "scope": "Local prepublication package verification. Public archive digests and remote assembly verification are recorded in github-publication.json."
+}

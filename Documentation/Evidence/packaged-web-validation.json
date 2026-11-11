@@ -1,0 +1,12 @@
+{
+  "result": "passed",
+  "archive": "NebulaDefender-Web-Local.zip",
+  "archive_sha256": "522d79f2c60d206648eda05b1fc3288e98b61a50ff95561ae6b7ce1524611eca",
+  "health": "passed",
+  "html": "passed",
+  "wasm_headers": "passed",
+  "license_notices": "included",
+  "included_windows_download_sha256": "d5a68be61bfaca2c04d16fa8eb66da0368e67e0c0e3b937e4ff440ddca0d4765",
+  "server_scope": "127.0.0.1 only",
+  "scope": "Local prepublication package verification. Public archive digests and remote assembly verification are recorded in github-publication.json."
+}
