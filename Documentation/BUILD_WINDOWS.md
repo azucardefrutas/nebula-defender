@@ -49,7 +49,7 @@ Builds/
   NebulaDefender-Setup-x64.exe
 ```
 
-La entrega recomendada es `NebulaDefender-Setup-x64.exe`: incluye el jugador completo, instala por usuario sin pedir administrador, crea accesos directos e incluye desinstalador. El compilador NSIS debe estar previamente instalado; `build_installer.py` detecta el existente y no descarga software. La desinstalación elimina únicamente los archivos empaquetados, preservando partidas guardadas y archivos ajenos.
+La entrega recomendada es `NebulaDefender-Setup-x64.exe`: incluye el jugador completo, instala por usuario sin pedir administrador, crea accesos directos e incluye desinstalador. `build_installer.py` busca NSIS en `NSIS_COMPILER`, PATH, instalaciones habituales, `BuildWork/Tools/NSIS` y la caché de electron-builder; no descarga software por sí mismo. La distribución preparada para publicación se empaquetó con NSIS 3.13 portable. La desinstalación elimina únicamente los archivos empaquetados, preservando partidas guardadas y archivos ajenos. Los paquetes conservan los avisos de terceros y el texto OFL de Liberation Sans.
 
 Como alternativa portable, copiar o comprimir la carpeta entera. En el otro equipo: extraer primero el ZIP y abrir NebulaDefender.exe. El ranking permanece local a cada computadora.
 

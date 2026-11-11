@@ -1,9 +1,9 @@
 {
-  "target": "C:\\Users\\tonyh\\AppData\\Local\\Temp\\NebulaInstallerQA-lmo9eq9_",
+  "target": "C:\\Users\\tonyh\\AppData\\Local\\Temp\\NebulaInstallerQA-gjljxctj",
   "installer": "NebulaDefender-Setup-x64.exe",
-  "installer_sha256": "2a4419f1fcdfaa157eb65d45066d5288fe157d681a1eaded80c826b435cfb062",
+  "installer_sha256": "022d48fd73f26e9ffb4672b35edc22eacb60860daeecd1875f3bbde00761d659",
   "result": "passed",
-  "payload_files_checked": 161,
+  "payload_files_checked": 163,
   "hashes_match": true,
   "foreign_file_preserved": true,
   "user_registration_untouched": true

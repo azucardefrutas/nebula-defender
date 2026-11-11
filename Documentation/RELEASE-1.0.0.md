@@ -30,7 +30,7 @@ La presentación incluye siete modelos originales Blender/FBX, materiales URP, f
 
 ## Evidencia y límites
 
-Se conservan 30 PlayMode con el arte actual, 20 EditMode de reglas/guardado, validación de 292 objetos, builds Windows/Web sin errores ni advertencias y QA real del instalador con hashes de 161 archivos.
+Se conservan 30 PlayMode con el arte actual, 20 EditMode de reglas/guardado, validación de 292 objetos y builds Windows/Web sin errores ni advertencias. El empaquetado para publicación añade los avisos de terceros a Windows y Web. El nuevo instalador pasó QA real de instalación y desinstalación con hashes de **163 archivos**, conservando un archivo ajeno y el registro del usuario; no se recompiló ni se cambió la lógica del juego para añadir estos avisos.
 
 La revisión visual se realizó en Unity y Web. El jugador Windows arrancó, pero su apariencia no pudo certificarse con la captura disponible. Faltan campaña humana completa, escucha, controles físicos de Windows, prueba físicamente desconectada y medición sostenida en el equipo de exposición. La consola Web muestra una advertencia del shader opcional FSR. [Informe detallado](TEST_REPORT.md).
 

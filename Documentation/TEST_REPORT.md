@@ -1,4 +1,10 @@
-# Informe de pruebas — actualizado el 6 de noviembre de 2026
+# Informe de pruebas — actualizado el 11 de noviembre de 2026
+
+## Empaquetado para publicación
+
+El 11 de noviembre se añadieron los avisos de terceros y el texto OFL de Liberation Sans al paquete de distribución. No se cambió la lógica ni se recompiló el jugador Unity. El instalador se volvió a empaquetar con NSIS 3.13 y pasó una instalación/desinstalación real con hashes de **163 archivos**: preservó el archivo ajeno y el registro del usuario. Tamaño del instalador: **28,240,308 bytes**. ZIP portable: **38,513,207 bytes**, 163 entradas, CRC y datos/runtime aprobados. Evidencia vigente: `installer-build.json`, `installer-qa.json` y `package-inspection.json`. El QA anterior de arte queda en `installer-original-art-qa.json`.
+
+El resto de este informe conserva la validación funcional y visual de la revisión del 6 de noviembre. Estas pruebas no se presentan como ejecutadas de nuevo al publicar.
 
 ## Resultado actual · Modelos originales en Windows y localhost
 

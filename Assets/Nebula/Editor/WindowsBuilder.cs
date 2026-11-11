@@ -53,6 +53,9 @@ namespace NebulaDefender.Editor
             if(report.summary.result!=BuildResult.Succeeded||report.summary.totalErrors!=0)throw new BuildFailedException("Windows build failed; inspect Evidence/build.log and build-summary.txt.");
             foreach(string name in new[]{"NebulaDefender.exe","UnityPlayer.dll","NebulaDefender_Data"})
                 if(!File.Exists(Path.Combine(output,name))&&!Directory.Exists(Path.Combine(output,name)))throw new BuildFailedException("Missing build artifact: "+name);
+            Directory.CreateDirectory(Path.Combine(output,"Licenses"));
+            File.Copy(Path.Combine(project,"THIRD_PARTY_NOTICES.md"),Path.Combine(output,"THIRD_PARTY_NOTICES.md"),true);
+            File.Copy(Path.Combine(project,"Assets","TextMesh Pro","Fonts","LiberationSans - OFL.txt"),Path.Combine(output,"Licenses","LiberationSans-OFL.txt"),true);
             File.WriteAllText(Path.Combine(output,"LEEME.txt"),"NEBULA DEFENDER 1.0 - VUELVE A CASA\r\nAbre tres rutas de salto: despeja cada sector, entra en el portal azul y derrota a Nemesis para volver a casa.\r\nExtrae la carpeta completa y ejecuta NebulaDefender.exe. Conserva todos sus datos y bibliotecas. No necesitas Unity ni Visual Studio.\r\nMouse: apuntar. Clic izquierdo: disparar. Mantener clic derecho: avanzar. Pulsar rueda o Shift: escudo. C: camara. Escape: pausa. WASD y Espacio tambien disponibles.\r\nJUGAR permite entrar directamente; registra un piloto si quieres guardar marcas en el ranking local.\r\n");
             string zip=Path.Combine(project,"Builds","NebulaDefender-Windows-x64.zip");
             if(File.Exists(zip))File.Move(zip,Path.Combine(project,"Builds","NebulaDefender-Windows-x64-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff")+".zip"));

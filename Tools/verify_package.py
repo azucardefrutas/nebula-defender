@@ -18,7 +18,8 @@ def main():
         if bad_entry:
             raise RuntimeError("ZIP integrity failure: " + bad_entry)
         names = archive.namelist()
-        required = ["Windows/NebulaDefender.exe", "Windows/UnityPlayer.dll"]
+        required = ["Windows/NebulaDefender.exe", "Windows/UnityPlayer.dll",
+                    "Windows/THIRD_PARTY_NOTICES.md", "Windows/Licenses/LiberationSans-OFL.txt"]
         missing = [name for name in required if name not in names]
         if not any(name in names for name in ["Windows/NebulaDefender_Data/data.unity3d", "Windows/NebulaDefender_Data/globalgamemanagers"]):
             missing.append("Unity scene data (packed or unpacked)")

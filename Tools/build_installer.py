@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,8 +15,17 @@ WORK = ROOT / "BuildWork/Installer"
 def main():
     if not (PAYLOAD / "NebulaDefender.exe").is_file():
         raise RuntimeError("Build the Unity Windows player first.")
-    compilers = list((Path(os.environ["LOCALAPPDATA"]) / "electron-builder/Cache").glob("nsis*/**/makensis.exe"))
-    compiler = next((p for p in compilers if (p.parent / "Include/MUI2.nsh").exists()), None)
+    compilers = []
+    if os.environ.get("NSIS_COMPILER"):
+        compilers.append(Path(os.environ["NSIS_COMPILER"]))
+    if shutil.which("makensis"):
+        compilers.append(Path(shutil.which("makensis")))
+    for environment in ["ProgramFiles", "ProgramFiles(x86)"]:
+        if os.environ.get(environment):
+            compilers.append(Path(os.environ[environment]) / "NSIS/makensis.exe")
+    compilers.extend((ROOT / "BuildWork/Tools/NSIS").glob("**/makensis.exe"))
+    compilers.extend((Path(os.environ["LOCALAPPDATA"]) / "electron-builder/Cache").glob("nsis*/**/makensis.exe"))
+    compiler = next((p for p in compilers if p.is_file() and (p.parent / "Include/MUI2.nsh").exists()), None)
     if compiler is None:
         raise RuntimeError("NSIS compiler not found. No software was installed.")
     files = sorted(p for p in PAYLOAD.rglob("*") if p.is_file())
@@ -101,7 +111,9 @@ SectionEnd
     WORK.mkdir(parents=True, exist_ok=True)
     script = WORK / "NebulaDefender.nsi"
     script.write_text(source, encoding="utf-8-sig")
-    result = subprocess.run([str(compiler), "/V3", str(script)], cwd=ROOT, capture_output=True, text=True, errors="replace")
+    compiler_environment = dict(os.environ, NSISDIR=str(compiler.parent))
+    result = subprocess.run([str(compiler), "/V3", str(script)], cwd=ROOT, env=compiler_environment,
+                            capture_output=True, text=True, errors="replace")
     (ROOT / "Documentation/Evidence/installer-build.log").write_text(result.stdout + result.stderr, encoding="utf-8")
     if result.returncode or not OUTPUT.is_file():
         raise RuntimeError("Installer compilation failed. Inspect installer-build.log.")

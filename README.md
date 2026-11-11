@@ -86,7 +86,7 @@ Modelos separados de Rigidbody/colliders; proyectiles reutilizables; daño únic
 
 ## Validación y alcance
 
-Se conservan **30/30 PlayMode aprobadas** con el arte actual y **20/20 EditMode** de reglas/guardado. Se verificaron 292 objetos/referencias y los siete FBX. Windows y Web compilaron sin errores ni advertencias de build. Instalación y desinstalación reales comprobaron hashes de 161 archivos y preservaron un archivo ajeno y el registro del usuario.
+Se conservan **30/30 PlayMode aprobadas** con el arte actual y **20/20 EditMode** de reglas/guardado. Se verificaron 292 objetos/referencias y los siete FBX. Windows y Web compilaron sin errores ni advertencias de build. El instalador de distribución, incluidos sus avisos de terceros, pasó instalación y desinstalación reales con hashes de **163 archivos**, preservando un archivo ajeno y el registro del usuario.
 
 En localhost se revisaron menú, modelos, vuelo, movimiento y proyectiles; la consola mostró una advertencia del shader opcional FSR. La revisión visual de esta versión se realizó en Unity y Web: el jugador nativo arrancó, pero su apariencia no pudo certificarse con la captura disponible. Faltan campaña humana completa, escucha, controles físicos en Windows, prueba físicamente desconectada y rendimiento sostenido en el equipo de exposición. No se afirma una tasa de 60 FPS medida.
 

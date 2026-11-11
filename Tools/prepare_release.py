@@ -43,6 +43,8 @@ def main():
                 archive.write(path, prefix + "Builds/WebGL/" + path.relative_to(web).as_posix())
         archive.write(ROOT / "Tools/serve_web.py", prefix + "Tools/serve_web.py")
         archive.write(ROOT / "JUGAR_LOCALHOST.cmd", prefix + "JUGAR_LOCALHOST.cmd")
+        archive.write(ROOT / "THIRD_PARTY_NOTICES.md", prefix + "THIRD_PARTY_NOTICES.md")
+        archive.write(ROOT / "Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt", prefix + "Licenses/LiberationSans-OFL.txt")
         archive.write(ROOT / "Builds/NebulaDefender-Windows-x64.zip", prefix + "Builds/NebulaDefender-Windows-x64.zip")
         archive.writestr(prefix + "LEEME.txt", "NEBULA DEFENDER 1.0 - WEB LOCAL\n\n"
             "Extrae toda esta carpeta. Con Python 3.10 o posterior instalado, abre JUGAR_LOCALHOST.cmd.\n"
