@@ -13,3 +13,5 @@
 *.wav binary
 *.ttf binary
 *.png binary
+
+Distribution/WebGL/** -text
